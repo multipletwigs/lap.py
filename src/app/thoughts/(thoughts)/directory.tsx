@@ -10,7 +10,7 @@ interface MDXMetadata {
 export const metadata: Record<string, MDXMetadata> = {
   "the-beginning": {
     title: "the-beginning",
-    displayTitle: "开始？",
+    displayTitle: "第 N 個開始",
     component: <Beginning />,
   },
 };

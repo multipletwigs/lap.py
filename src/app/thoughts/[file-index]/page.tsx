@@ -15,7 +15,14 @@ export async function generateStaticParams() {
 }
 
 const ThoughtsContent = ({ params }: { params: { "file-index": string } }) => {
-  return <div>{metadata[params["file-index"]].component}</div>;
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-10">
+        {metadata[params["file-index"]].displayTitle}
+      </h1>
+      {metadata[params["file-index"]].component}
+    </div>
+  );
 };
 
 export default ThoughtsContent;

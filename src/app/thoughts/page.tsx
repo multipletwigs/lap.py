@@ -16,7 +16,7 @@ const getThoughts = (): MDXMetaData[] => {
 
     return {
       title: thought.replace(".mdx", ""),
-      createdAt: file.birthtime.toDateString(),
+      createdAt: file.birthtime.toISOString().split("T")[0].replace(/-/g, "/"),
       updatedAt: file.mtime.toDateString(),
     };
   });
@@ -26,14 +26,18 @@ const getThoughts = (): MDXMetaData[] => {
 const Thoughts = () => {
   return (
     <div>
+      <h1 className="text-lg font-bold mb-10">Thoughts</h1>
       {getThoughts().map((thought) => {
+        if (thought.title === "directory.tsx") return null;
         return (
           <a
-            key={thought.title}
-            className="flex flex-row justify-between text-bold"
+            className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
             href={`/thoughts/${thought.title}`}
           >
-            {metadata[thought.title]?.displayTitle}
+            <h2 className="text-md font-bold">
+              {metadata[thought.title].displayTitle}
+            </h2>
+            <p className="text-sm">{thought.createdAt}</p>
           </a>
         );
       })}
