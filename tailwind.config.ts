@@ -6,6 +6,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -22,7 +23,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       padding: {
-        clamp: "clamp(1rem, 10vw, 6rem)",
+        clamp:
+          "0 clamp(1.5rem, calc(25vw - 6rem), 20rem) 0 clamp(1.5rem, calc(25vw - 6rem), 20rem)",
       },
       colors: {
         border: "hsl(var(--border))",
