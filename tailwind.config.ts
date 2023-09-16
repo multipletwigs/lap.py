@@ -22,7 +22,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       padding: {
-        clamp: "clamp(1rem, 5vw, 24rem)",
+        clamp: "clamp(1rem, 10vw, 6rem)",
       },
       colors: {
         border: "hsl(var(--border))",
