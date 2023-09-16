@@ -3,7 +3,11 @@ import fs from "fs";
 import { metadata } from "../(thoughts)/directory";
 
 export async function generateStaticParams() {
-  const thoughts = fs.readdirSync("./src/app/thoughts/(thoughts)");
+  const thoughts = fs
+    .readdirSync("./src/app/thoughts/(thoughts)")
+    .filter((thought) => {
+      return thought.includes(".mdx");
+    });
 
   return thoughts.map((thought, index) => ({
     "file-index": thought.replace(".mdx", ""),
