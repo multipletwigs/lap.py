@@ -31,6 +31,7 @@ const Thoughts = () => {
         if (thought.title === "directory.tsx") return null;
         return (
           <a
+            key={thought.title}
             className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
             href={`/thoughts/${thought.title}`}
           >
