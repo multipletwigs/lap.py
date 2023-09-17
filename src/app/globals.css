@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  ::selection {
+    background: rgb(207, 159, 255, 30%);
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
