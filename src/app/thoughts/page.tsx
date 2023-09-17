@@ -28,7 +28,7 @@ const Thoughts = () => {
     <div className="flex flex-col gap-2">
       {getThoughts().map((thought) => {
         if (thought.title === "directory.tsx") return null;
-        return <ThoughtItem {...thought} />;
+        return <ThoughtItem key={thought.title} {...thought} />;
       })}
     </div>
   );
