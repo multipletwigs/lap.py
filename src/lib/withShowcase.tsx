@@ -8,4 +8,6 @@ const withShowcase = (WrappedComponent: React.ComponentType<any>) => {
   );
 };
 
+withShowcase.displayName = "withShowcase HOC";
+
 export default withShowcase;
