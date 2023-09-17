@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 const Footer = () => {
   const links = {
     twitter: {
-      href: "https://twitter.com/lappy",
+      href: "https://twitter.com/multipletwigs",
       text: "Twitter",
     },
     github: {
-      href: "",
+      href: "https://github.com/multipletwigs",
       text: "GitHub",
     },
     instagram: {

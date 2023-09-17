@@ -3,15 +3,14 @@
 import Link from "next/link";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import NavBarCopy from "./labels";
+import { usePathname } from "next/navigation";
 
 export interface NavigationItemProps {
   triggerName: string;
@@ -23,24 +22,19 @@ export interface NavigationItemProps {
 }
 
 function Navigation() {
-  const [selected, setSelected] = useState(2);
+  const pathName = `/${usePathname().split("/")[1]}`;
 
   return (
     <NavigationMenu>
       <NavigationMenuList>
         {Object.values(NavBarCopy).map((item, index) => {
           return (
-            <NavigationMenuItem
-              key={item.triggerName}
-              onClick={() => {
-                setSelected(index);
-              }}
-            >
+            <NavigationMenuItem key={item.triggerName}>
               {item.link && (
                 <Link href={item.link.href} legacyBehavior passHref>
                   <NavigationMenuLink
                     className={navigationMenuTriggerStyle({
-                      className: selected === index ? "bg-accent" : "",
+                      selected: pathName === item.link.href,
                     })}
                   >
                     {item.link.text}

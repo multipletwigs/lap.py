@@ -26,7 +26,6 @@ const getThoughts = (): MDXMetaData[] => {
 const Thoughts = () => {
   return (
     <div>
-      <h1 className="text-lg font-bold mb-10">Thoughts</h1>
       {getThoughts().map((thought) => {
         if (thought.title === "directory.tsx") return null;
         return (
