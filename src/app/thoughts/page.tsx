@@ -1,8 +1,8 @@
 import React from "react";
 import fs from "fs";
-import { metadata } from "./(thoughts)/directory";
+import ThoughtItem from "./(components)/thought-item";
 
-interface MDXMetaData {
+export interface MDXMetaData {
   title: string;
   createdAt: string;
   updatedAt: string;
@@ -25,21 +25,10 @@ const getThoughts = (): MDXMetaData[] => {
 
 const Thoughts = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {getThoughts().map((thought) => {
         if (thought.title === "directory.tsx") return null;
-        return (
-          <a
-            key={thought.title}
-            className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
-            href={`/thoughts/${thought.title}`}
-          >
-            <h2 className="text-md font-bold">
-              {metadata[thought.title].displayTitle}
-            </h2>
-            <p className="text-sm">{thought.createdAt}</p>
-          </a>
-        );
+        return <ThoughtItem {...thought} />;
       })}
     </div>
   );
