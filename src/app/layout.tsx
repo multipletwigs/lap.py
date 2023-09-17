@@ -52,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-w-screen min-h-screen flex-col items-center px-5 py-24">
+      <body className="flex min-w-screen min-h-screen flex-col items-center px-5 py-12 sm:py-24">
         <main className="w-full max-w-[640px]">
           <header className="flex justify-between flex-col sm:flex-row gap-4 items-center mb-10">
             <div className="flex flex-col items-center sm:items-start">

@@ -78,3 +78,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  @keyframes gradient-animation {
+    0% {
+      background: linear-gradient(90deg, #69b7eb, #b3dbd3, #f4d6db);
+    }
+    20% {
+      background: linear-gradient(90deg, #f598a8, #f6edb2);
+    }
+    100% {
+      background: linear-gradient(90deg, #cfecd0, #ffc5ca);
+    }
+  }
+  .gradient-animation {
+    animation: gradient-animation 1s ease-in-out infinite;
+  }
+}
