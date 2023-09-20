@@ -2,6 +2,9 @@ import { Badge } from "@/components/ui/badge";
 import "./globals.css";
 import type { Metadata } from "next";
 import Navigation from "@/components/navigation/navigation";
+import { SunIcon } from "@radix-ui/react-icons";
+import { ThemeProvider } from "@/components/theme-provider";
+import ModeToggle from "@/components/mode-toggle";
 
 export const metadata: Metadata = {
   title: "Lappy",
@@ -52,22 +55,33 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-w-screen min-h-screen flex-col items-center px-5 py-12 sm:py-24">
-        <main className="w-full max-w-[640px]">
-          <header className="flex justify-between flex-col sm:flex-row gap-4 items-center mb-10">
-            <div className="flex flex-col items-center sm:items-start">
-              <h1 className="w-fit font-bold text-lg">
-                邝立浩 / Zachary / Lappy
-              </h1>
-              <Badge variant={"secondary"} className="w-fit mt-1">
-                Design Engineer
-              </Badge>
-            </div>
-            <Navigation />
-          </header>
-          {children}
-          <Footer />
-        </main>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex min-w-screen min-h-screen flex-col items-center px-5 py-12 sm:py-24">
+            <main className="w-full max-w-[640px]">
+              <header className="flex justify-between flex-col sm:flex-row gap-4 items-center mb-10">
+                <div className="flex flex-col items-center sm:items-start">
+                  <h1 className="w-fit font-bold text-lg flex items-center justify-center">
+                    邝立浩 / Zachary / Lappy
+                  </h1>
+                  <div className="flex flex-row">
+                    <Badge variant={"secondary"} className="w-fit mt-1">
+                      Design Engineer
+                    </Badge>
+                  </div>
+                </div>
+                <Navigation />
+              </header>
+              {children}
+              <Footer />
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,26 +1,41 @@
+"use client";
+import { InputWithButton } from "@/components/file-input/file-input";
+import Image from "next/image";
 import React from "react";
 
-const svg = `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-  <filter id="noiseFilter">
-    <feTurbulence
-      type="fractalNoise"
-      baseFrequency="0.65"
-      numOctaves="3"
-      stitchTiles="stitch"
-    />
-  </filter>
-
-  <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-</svg>`;
-
-const dataUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
-
 const ArcGradientCards = () => {
+  const [imageUrl, setImageUrl] = React.useState("/gradient-card-1.jpg");
+
   return (
-    <div className="flex flex-col justify-center items-center my-24">
+    <div className="flex flex-col items-center justify-center my-16 gap-6">
       <div
-        className={`bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 h-24 w-24 blur-xl rounded-full animate-bounce hover:[animation-play-state:paused]`}
-      ></div>
+        className={
+          "w-[320px] h-[320px] flex items-center justify-center bg-slate-100 relative overflow-clip"
+        }
+      >
+        <Image
+          src={imageUrl}
+          alt={""}
+          width={300}
+          height={300}
+          className="object-cover w-[250px] h-[250px] z-10"
+        ></Image>
+        <Image
+          src={imageUrl}
+          alt={""}
+          width={300}
+          height={300}
+          className="object-cover w-[250px] h-[300px] absolute blur-[50px] top-[70px] saturate-[250%] animate-slow-spin brightness-200 [animation-play-state: paused]"
+        ></Image>
+        <Image
+          src={imageUrl}
+          alt={""}
+          width={300}
+          height={300}
+          className="object-cover w-[300px] h-[300px] absolute blur-[50px] bottom-0 rounded-lg saturate-[250%] animate-slow-spin-reverse brightness-200 hover:[animation-play-state:paused]"
+        ></Image>
+      </div>
+      <InputWithButton setImageUrl={setImageUrl} />
     </div>
   );
 };

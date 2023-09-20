@@ -45,7 +45,7 @@ const navigationMenuTriggerStyle = cva(
   {
     variants: {
       selected: {
-        true: "bg-slate-100",
+        true: "bg-slate-100 dark:bg-slate-800",
       },
     },
   }

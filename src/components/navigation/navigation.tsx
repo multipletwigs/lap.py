@@ -11,6 +11,7 @@ import {
 import { ReactNode, useEffect } from "react";
 import NavBarCopy from "./labels";
 import { usePathname } from "next/navigation";
+import ModeToggle from "../mode-toggle";
 
 export interface NavigationItemProps {
   triggerName: string;

@@ -30,7 +30,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     img: ({ src, alt }) => (
       <img
-        className="w-full rounded-md shadow-md my-10 grayscale hover:grayscale-0 transition-all duration-1000"
+        className="w-full rounded-md shadow-md my-10 grayscale hover:grayscale-0 transition-all duration-200"
         src={src}
         alt={alt}
       ></img>
