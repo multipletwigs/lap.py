@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import "./globals.css";
 import type { Metadata } from "next";
 import Navigation from "@/components/navigation/navigation";
-import { SunIcon } from "@radix-ui/react-icons";
+import { IconJarLogoIcon, SunIcon } from "@radix-ui/react-icons";
 import { ThemeProvider } from "@/components/theme-provider";
 import ModeToggle from "@/components/mode-toggle";
 
@@ -69,10 +69,11 @@ export default function RootLayout({
                   <h1 className="w-fit font-bold text-lg flex items-center justify-center">
                     邝立浩 / Zachary / Lappy
                   </h1>
-                  <div className="flex flex-row">
-                    <Badge variant={"secondary"} className="w-fit mt-1">
+                  <div className="flex flex-row gap-2 items-center mt-2">
+                    <Badge variant={"secondary"} className="w-fit">
                       Design Engineer
                     </Badge>
+                    <ModeToggle />
                   </div>
                 </div>
                 <Navigation />
