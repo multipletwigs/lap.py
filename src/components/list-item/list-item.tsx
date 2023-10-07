@@ -1,7 +1,5 @@
 "use client";
 
-import { metadata } from "@/app/thoughts/(thoughts)/directory";
-import { MDXMetaData } from "@/app/thoughts/page";
 import {
   Tooltip,
   TooltipContent,
@@ -9,8 +7,14 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useLayoutEffect, useRef, useState } from "react";
+import { MDXDirMetadata } from "@/app/thoughts/(thoughts)/directory";
 
-export const ThoughtItem = (thought: MDXMetaData) => {
+export interface ListItemProp {
+  MDXMetadata: MDXDirMetadata;
+  route: "projects" | "thoughts"; 
+}
+
+export const ListItem = (props: ListItemProp) => {
   // get current mouse position
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const itemRef = useRef<HTMLAnchorElement>(null);
@@ -36,14 +40,14 @@ export const ThoughtItem = (thought: MDXMetaData) => {
         <TooltipTrigger asChild>
           <a
             ref={itemRef}
-            key={thought.title}
+            key={props.MDXMetadata.title}
             className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
-            href={`/thoughts/${thought.title}`}
+            href={`/${props.route}/${props.MDXMetadata.title}`}
           >
             <h2 className="text-lg font-bold">
-              {metadata[thought.title].displayTitle}
+              {props.MDXMetadata.displayTitle}
             </h2>
-            <p className="text-sm">{thought.createdAt}</p>
+            <p className="text-sm">{props.MDXMetadata.cdate}</p>
           </a>
         </TooltipTrigger>
         <TooltipContent
@@ -51,7 +55,7 @@ export const ThoughtItem = (thought: MDXMetaData) => {
           alignOffset={mousePosition.x - 50}
           sideOffset={-mousePosition.y + 5}
         >
-          {metadata[thought.title].description}
+          {props.MDXMetadata.description}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

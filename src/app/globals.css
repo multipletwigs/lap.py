@@ -74,6 +74,7 @@
   * {
     @apply border-border;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   body {
     @apply bg-background text-foreground;

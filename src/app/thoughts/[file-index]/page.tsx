@@ -1,6 +1,6 @@
 import React from "react";
 import fs from "fs";
-import { metadata } from "../(thoughts)/directory";
+import metadata from "../(thoughts)/directory";
 
 export async function generateStaticParams() {
   const thoughts = fs
