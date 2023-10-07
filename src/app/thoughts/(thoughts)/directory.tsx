@@ -25,7 +25,7 @@ const metadata: ThoughtsDirectory = {
   },
   "i-graduated": {
     title: "i-graduated",
-    displayTitle: "Graduation sucks",
+    displayTitle: "Graduation hurts",
     component: <IGraduated />,
     cdate: "22/09/2023",
     description: "How I wish I didn't try so hard.",

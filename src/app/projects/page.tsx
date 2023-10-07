@@ -2,8 +2,6 @@ import React from "react";
 import metadata from "./(project-md)/directory";
 import ListItem from "@/components/list-item";
 
-// const getProjects =
-
 const Projects = () => {
   return Object.keys(metadata).map((catTitle, idx) => {
     return (
