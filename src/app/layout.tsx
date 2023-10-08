@@ -7,6 +7,7 @@ import {
 } from "@/components/navigation/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import ModeToggle from "@/components/mode-toggle";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Lappy",
@@ -86,6 +87,7 @@ export default function RootLayout({
             </main>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
