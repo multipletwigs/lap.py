@@ -42,10 +42,6 @@ const ToggleModes: Record<
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
-  useEffect(() => {
-    console.log(theme);
-  });
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
