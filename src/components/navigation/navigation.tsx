@@ -40,7 +40,7 @@ export const DropdownNavigation = () => {
             <HamburgerMenuIcon className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent align="end">
           {Object.values(NavBarCopy).map((item) => {
             return (
               <DropdownMenuItem key={item.triggerName}>
