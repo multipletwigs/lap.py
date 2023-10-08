@@ -7,11 +7,18 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
-import { ReactNode, useEffect } from "react";
+} from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ReactNode } from "react";
 import NavBarCopy from "./labels";
 import { usePathname } from "next/navigation";
-import ModeToggle from "../mode-toggle";
+import { Button } from "@/components/ui/button";
+import { CheckIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 export interface NavigationItemProps {
   triggerName: string;
@@ -22,13 +29,46 @@ export interface NavigationItemProps {
   };
 }
 
-function Navigation() {
+export const DropdownNavigation = () => {
   const pathName = `/${usePathname().split("/")[1]}`;
 
   return (
-    <NavigationMenu>
+    <div className="block md:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="square-icon">
+            <HamburgerMenuIcon className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {Object.values(NavBarCopy).map((item) => {
+            return (
+              <DropdownMenuItem key={item.triggerName}>
+                {item.link && (
+                  <Link
+                    href={item.link.href}
+                    className="flex flex-row justify-between w-full align-middle items-center"
+                  >
+                    {item.triggerName}
+                    {`${pathName}` === item.link.href ? <CheckIcon /> : <></>}
+                  </Link>
+                )}
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+};
+
+export const TabNavigation = () => {
+  const pathName = `/${usePathname().split("/")[1]}`;
+
+  return (
+    <NavigationMenu className="hidden md:block">
       <NavigationMenuList>
-        {Object.values(NavBarCopy).map((item, index) => {
+        {Object.values(NavBarCopy).map((item) => {
           return (
             <NavigationMenuItem key={item.triggerName}>
               {item.link && (
@@ -48,6 +88,4 @@ function Navigation() {
       </NavigationMenuList>
     </NavigationMenu>
   );
-}
-
-export default Navigation;
+};

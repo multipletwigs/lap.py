@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import "./globals.css";
 import type { Metadata } from "next";
-import Navigation from "@/components/navigation/navigation";
-import { IconJarLogoIcon, SunIcon } from "@radix-ui/react-icons";
+import {
+  TabNavigation,
+  DropdownNavigation,
+} from "@/components/navigation/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import ModeToggle from "@/components/mode-toggle";
 
@@ -64,8 +66,8 @@ export default function RootLayout({
         >
           <div className="flex min-w-screen min-h-screen flex-col items-center px-5 py-12 sm:py-24">
             <main className="w-full max-w-[640px]">
-              <header className="flex justify-between flex-col sm:flex-row gap-4 items-center mb-10">
-                <div className="flex flex-col items-center sm:items-start">
+              <header className="flex justify-between flex-row gap-4 items-center mb-10">
+                <div className="flex flex-col items-start">
                   <h1 className="w-fit font-bold text-lg flex items-center justify-center">
                     邝立浩 / Zachary / Lappy
                   </h1>
@@ -76,7 +78,8 @@ export default function RootLayout({
                     <ModeToggle />
                   </div>
                 </div>
-                <Navigation />
+                <TabNavigation />
+                <DropdownNavigation />
               </header>
               {children}
               <Footer />
