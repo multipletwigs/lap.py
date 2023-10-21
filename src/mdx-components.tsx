@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import CodeBlock from "./components/ui/code-block";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -11,6 +12,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // Allows customizing built-in components, e.g. to add styling.
     h1: ({ children }) => (
       <h1 className="text-2xl font-bold my-5">{children}</h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-xl font-bold my-5">{children}</h2>
     ),
     p: ({ children }) => <p className="text-md">{children}</p>,
     a: ({ children, href }) => (
@@ -28,13 +32,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </blockquote>
     ),
-    img: ({ src, alt }) => (
-      <img
-        className="w-full rounded-md shadow-md my-10 grayscale hover:grayscale-0 transition-all duration-200"
-        src={src}
-        alt={alt}
-      ></img>
-    ),
+    code: ({ children }) => <CodeBlock>{children}</CodeBlock>,
     ...components,
   };
 }
