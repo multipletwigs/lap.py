@@ -19,8 +19,8 @@ const metadata: DirectoryMetadataWCat = {
       cdate: "19/09/2023",
     },
     "react-three-fiber-playground": {
-      title: "react-three-fiber",
-      displayTitle: "React Three Fiber Experimental Playground",
+      title: "react-three-fiber-playground",
+      displayTitle: "Experimental Playground",
       component: <ReactFibreExperiment key={"React-fibre"} />,
       description: "Playing with 3D designs using react-three-fiber.",
       cdate: "19/10/2023",
