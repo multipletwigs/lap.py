@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  transpilePackages: ["three"],
 };
 
 const withMDX = require("@next/mdx")();

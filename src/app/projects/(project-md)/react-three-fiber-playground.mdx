@@ -1,0 +1,59 @@
+import {
+  IntroScene,
+  IntroScene1,
+} from "@/app/projects/(components)/react-fiber-experiment";
+
+# Experimenting with React Fibre
+
+When I was working on my portfolio, I stumbled upon a neat looking [site](https://ui.gallery/) through some blogs called _The User Interface Gallery_. What caught my attention was a component called **Kinetic Carousel**, which features a series of nicely crafted gradient strips that move in a wave-like fashion, responding to the user's mouse movement.
+
+<br />
+
+At first, I thought the component was made with pure CSS, JS and HTML, but after inspecting the source code, I found out that it was made with a library called [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction). Which made more sense on how the component was able to achieve such a smooth animation.
+
+<br />
+
+Since I had a few photoshoots throughout the year, I wanted to create a similar component to showcase my photos. So this entry will highlight my journey of learning how to use React Three Fiber and how I was able to create a similar component to the one I saw on _The User Interface Gallery_.
+
+## Getting Started
+
+Obviously, the first step was to go through the documentation, but I soon was able to find a [neat reference](https://codesandbox.io/s/l4klb?file=/src/App.js) to what I sort of what to achieve. Using convenient plugins like `~@react/three/drei`, create a small rotating box that utilizes the `~Three.js` frame-loop.
+
+<IntroScene1 />
+
+Following the simple implementation where we rotate both the `~Edge` and `~Box` components, following the `~useFrame()` gameloop tick, and adding to the rotation through a `~ref`. Here `~Edge` also takes in an offset so it rotates faster than the `~Box` for a cool effect.
+
+```ts
+const RotatingBox = () => {
+  const boxRef = useRef<BoxGeometry>(null);
+  const edgeRef = useRef<any>(null);
+
+  const rotateBox = (delta: number) => {
+    if (boxRef) {
+      boxRef.current?.rotateX(delta);
+      boxRef.current?.rotateY(delta);
+    }
+  };
+
+  const rotateEdge = (delta: number, offset?: number) => {
+    if (edgeRef) {
+      edgeRef.current?.rotateX(delta + (offset || 0));
+      edgeRef.current?.rotateY(delta + (offset || 0));
+    }
+  };
+
+  useFrame((_, delta) => {
+    rotateBox(delta);
+    rotateEdge(delta, 0.02);
+  });
+
+  return (
+    <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+      <meshStandardMaterial color="dark purple" />
+      <boxGeometry args={[2, 2, 2]} ref={boxRef} />
+      <Edges ref={edgeRef} color={"white"} />
+    </mesh>
+  );
+};
+```
+

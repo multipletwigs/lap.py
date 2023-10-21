@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Beginning from "@/app/thoughts/(thoughts)/the-beginning.mdx";
 import IGraduated from "@/app/thoughts/(thoughts)/i-graduated.mdx";
+import Photoshoot from "@/app/thoughts/(thoughts)/photoshoot.mdx";
 
 type Title = string;
 
@@ -30,6 +31,13 @@ const metadata: ThoughtsDirectory = {
     cdate: "22/09/2023",
     description: "How I wish I didn't try so hard.",
   },
+  // photoshoot: {
+  //   title: "photoshoot",
+  //   displayTitle: "Photoshoot for myself",
+  //   component: <Photoshoot />,
+  //   cdate: "08/10/2023",
+  //   description: "I'm not a model, but I can pretend to be one.",
+  // },
 };
 
 export default metadata;
