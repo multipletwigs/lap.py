@@ -44,7 +44,7 @@ const RotatingBox = () => {
 const IntroScene1 = () => {
   return (
     <CanvasWrapper
-      height={200}
+      height={"small"}
       alertProps={{
         title: "Rotating Box",
         description:

@@ -1,4 +1,7 @@
-import { IntroScene1 } from "@/app/projects/(components)/react-fiber-experiment";
+import {
+  IntroScene1,
+  IntroScene2,
+} from "@/app/projects/(components)/react-fiber-experiment";
 
 # Experimenting with React Fibre
 
@@ -20,7 +23,7 @@ Obviously, the first step was to go through the documentation, but I soon was ab
 
 Following the simple implementation where we rotate both the `~Edge` and `~Box` components, following the `~useFrame()` gameloop tick, and adding to the rotation through a `~ref`. Here `~Edge` also takes in an offset so it rotates faster than the `~Box` for a cool effect.
 
-```ts
+```tsx
 const RotatingBox = () => {
   const boxRef = useRef<BoxGeometry>(null);
   const edgeRef = useRef<any>(null);
@@ -53,3 +56,9 @@ const RotatingBox = () => {
   );
 };
 ```
+
+## Adding in an image
+
+At first my idea was to span a `~planeGeometry` object and set the image as the texture of it using `~TextureLoader`. Unfortunately, this didn't work as I hoped, as the image is scretched out due to the texture behavior on geometry objects. Thankfully, `~drei` had pretty good support for images, and I was able to make a strip expand from the center of the screen.
+
+<IntroScene2 />

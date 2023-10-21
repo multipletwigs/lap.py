@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Image, ImageProps } from "@react-three/drei";
 import { easing } from "maath";
+import CanvasWrapper from "./canvas-wrapper";
+import { HeartIcon } from "@radix-ui/react-icons";
 
 interface ImageMeshProp {
   position?: [number, number, number];
@@ -15,16 +17,15 @@ const ImageMesh = (prop: ImageMeshProp) => {
   const [hovered, sethovered] = useState(false);
 
   useFrame((_, delta) => {
-    easing.damp3(
-      imageRef.current.scale,
-      [clicked ? 4 : 1, clicked ? 4 : 4, 1],
-      0.15,
-      delta
-    );
+    // Animates the expansion of the image
+    easing.damp3(imageRef.current.scale, [clicked ? 10 : 1, 8, 1], 0.15, delta);
     imageRef.current.material.scale[0] = imageRef.current.scale.x;
     imageRef.current.material.scale[1] = imageRef.current.scale.y;
+
+    // Animates the hover y scretch of the image
     easing.damp(imageRef.current.scale, "y", hovered ? 6 : 5, 0.15, delta);
 
+    // Only scale the image to the needed size when clicked due to hover
     if (!clicked) imageRef.current.material.scale[1] = imageRef.current.scale.y;
   });
 
@@ -38,23 +39,26 @@ const ImageMesh = (prop: ImageMeshProp) => {
         scale={[1, 5]}
         position={prop.position || [0, 0, 0]}
         url="/monga-photoshoot/image-1.jpeg"
-      ></Image>
+      />
     </>
   );
 };
 
-const IntroScene = () => {
+const IntroScene2 = () => {
   return (
-    <div className="h-[400px] w-full">
+    <CanvasWrapper
+      height={"medium"}
+      alertProps={{
+        title: "Image Mesh",
+        description: "Try clicking on the image or hovering over it!",
+        icon: <HeartIcon className="h-4 w-4" />,
+      }}
+    >
       <Canvas>
-        <ambientLight intensity={10} />
-        <directionalLight />
         <ImageMesh />
-        <ImageMesh position={[1.25, 0, 0]} />
-        {/* <OrbitControls /> */}
       </Canvas>
-    </div>
+    </CanvasWrapper>
   );
 };
 
-export default IntroScene;
+export default IntroScene2;
