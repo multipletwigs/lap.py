@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Image, ImageProps } from "@react-three/drei";
+import { Image } from "@react-three/drei";
 import { easing } from "maath";
 import CanvasWrapper from "./canvas-wrapper";
 import { HeartIcon } from "@radix-ui/react-icons";

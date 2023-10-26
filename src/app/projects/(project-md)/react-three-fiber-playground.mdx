@@ -62,3 +62,44 @@ const RotatingBox = () => {
 At first my idea was to span a `~planeGeometry` object and set the image as the texture of it using `~TextureLoader`. Unfortunately, this didn't work as I hoped, as the image is scretched out due to the texture behavior on geometry objects. Thankfully, `~drei` had pretty good support for images, and I was able to make a strip expand from the center of the screen.
 
 <IntroScene2 />
+
+The below shows 
+
+```tsx
+interface ImageMeshProp {
+  position?: [number, number, number];
+}
+
+const ImageMesh = (prop: ImageMeshProp) => {
+  const imageRef = useRef<any>(null);
+  const [clicked, setclicked] = useState(false);
+  const [hovered, sethovered] = useState(false);
+
+  useFrame((_, delta) => {
+    // Animates the expansion of the image
+    easing.damp3(imageRef.current.scale, [clicked ? 10 : 1, 8, 1], 0.15, delta);
+    imageRef.current.material.scale[0] = imageRef.current.scale.x;
+    imageRef.current.material.scale[1] = imageRef.current.scale.y;
+
+    // Animates the hover y scretch of the image
+    easing.damp(imageRef.current.scale, "y", hovered ? 6 : 5, 0.15, delta);
+
+    // Only scale the image to the needed size when clicked due to hover
+    if (!clicked) imageRef.current.material.scale[1] = imageRef.current.scale.y;
+  });
+
+  return (
+    <>
+      <Image
+        ref={imageRef}
+        onClick={() => setclicked(!clicked)}
+        onPointerOver={() => sethovered(true)}
+        onPointerOut={() => sethovered(false)}
+        scale={[1, 5]}
+        position={prop.position || [0, 0, 0]}
+        url="/monga-photoshoot/image-1.jpeg"
+      />
+    </>
+  );
+};
+```
