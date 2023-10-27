@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface CanvasWrapperProps {
-  height: "small" | "medium" | "large" | "xlarge";
+  height: "small" | "medium" | "large" | "xlarge" | string;
   background?: string;
   children: React.ReactNode;
   alertProps?: {
@@ -25,7 +25,7 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
       case "xlarge":
         return "h-[1000px]";
       default:
-        return "h-[500px]";
+        return props.height;
     }
   };
 
