@@ -1,3 +1,5 @@
+import ImageGrid from "../(components)/photoshoot";
+
 # A photoshoot for myself
 
 I could never really pinpoint what I felt about myself. Early this year, I had a rather unpleasant experience involving several life-changing events that left me feeling lost. But I wanted to commemorate this moment in my life, where I felt liberated from all my responsibilities and expectations all because I went on an impromptu photoshoot with a stranger.
@@ -7,3 +9,7 @@ I could never really pinpoint what I felt about myself. Early this year, I had a
 > I started to notice things I never did before. Well, I mean I did see them, just never paid attention to them. For some reason, everything has became a metaphor.
 
 <br />
+
+At first I wanted to showcase them using fancy `~ThreeJS` animations. The only problem I had was the `~Image` wrapper from `~@drei` is it uses native image fetching strategies. This causes the LCP value to go crazy, as the client tries to download MBs worth of content. So I have decided to stick to simple implementations where we can utilize the full NextJS Image optimization stack.
+
+<ImageGrid />
