@@ -6,6 +6,9 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { easing } from "maath";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Probably not in use anymore, maybe for pure threejs styles
+ */
 interface ImageItemProps {
   index: number;
   position: [number, number, number];
