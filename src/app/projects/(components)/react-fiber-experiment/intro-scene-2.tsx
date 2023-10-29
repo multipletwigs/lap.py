@@ -38,7 +38,7 @@ const ImageMesh = (prop: ImageMeshProp) => {
         onPointerOut={() => sethovered(false)}
         scale={[1, 5]}
         position={prop.position || [0, 0, 0]}
-        url="/monga-photoshoot/image-1.jpeg"
+        url="/monga-photoshoot/image-1.jpg"
       />
     </>
   );
