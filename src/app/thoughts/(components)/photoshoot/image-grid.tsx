@@ -18,13 +18,7 @@ interface ImageItemProps {
 
 const ImageItem = (props: ImageItemProps) => {
   return (
-    <Image
-      src={props.src}
-      alt={props.alt}
-      width={500}
-      height={500}
-      placeholder="blur"
-    />
+    <Image src={props.src} alt={props.alt} placeholder="blur" fill={false} />
   );
 };
 
