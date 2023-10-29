@@ -36,7 +36,12 @@ const ImageItem = (props: ImageItemProps) => {
         <DialogHeader>
           <DialogTitle>{props.dialog.title}</DialogTitle>
           <div className="my-4">
-            <Image fill={false} src={props.src} alt={props.alt} />
+            <Image
+              fill={false}
+              placeholder={"blur"}
+              src={props.src}
+              alt={props.alt}
+            />
           </div>
           <DialogDescription>{props.dialog.description}</DialogDescription>
         </DialogHeader>
