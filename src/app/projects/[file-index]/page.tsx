@@ -1,6 +1,6 @@
 import React from "react";
 import fs from "fs";
-import metadata from "../(project-md)/directory";
+import metadata, { Category } from "../(project-md)/directory";
 
 export async function generateStaticParams() {
   const projects = fs
@@ -18,7 +18,9 @@ const ProjectsContent = ({ params }: { params: { "file-index": string } }) => {
   return (
     <div>
       {Object.keys(metadata).map((category) => {
-        return metadata[category][params["file-index"]].component;
+        // ignore if undefined
+        if (metadata[category as Category][params["file-index"]])
+          return metadata[category as Category][params["file-index"]].component;
       })}
     </div>
   );

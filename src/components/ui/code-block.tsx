@@ -6,6 +6,9 @@ import type { ComponentProps, ReactElement } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+/**
+ * Not really sure how mdx-components parse MDX files but I need to add custom markers to differentiate between code blocks and inline code. And that kinda sucks
+ */
 export const CodeBlock = ({
   children,
   className,
