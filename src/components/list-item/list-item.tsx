@@ -44,7 +44,9 @@ export const ListItem = (props: ListItemProp) => {
             className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
             href={`/${props.route}/${props.MDXMetadata.title}`}
           >
-            <h2>{props.MDXMetadata.displayTitle}</h2>
+            <h2 className="text-sm md:text-lg">
+              {props.MDXMetadata.displayTitle}
+            </h2>
             <p className="text-sm">{props.MDXMetadata.cdate}</p>
           </a>
         </TooltipTrigger>
