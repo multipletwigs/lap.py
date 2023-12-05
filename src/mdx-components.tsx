@@ -16,6 +16,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h2: ({ children }) => (
       <h2 className="text-xl font-bold my-5">{children}</h2>
     ),
+    li: ({ children }) => (
+      <li className="list-inside my-2 list-decimal">{children}</li>
+    ),
     p: ({ children }) => <p className="text-md">{children}</p>,
     a: ({ children, href }) => (
       <a
@@ -33,6 +36,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </blockquote>
     ),
     code: ({ children }) => <CodeBlock>{children}</CodeBlock>,
+    br: () => <br />,
     ...components,
   };
 }
