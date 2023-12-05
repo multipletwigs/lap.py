@@ -4,6 +4,7 @@ import React from "react";
 import metadata, { Category } from "./(project-md)/directory";
 import ListItem from "@/components/list-item";
 import { Separator } from "@/components/ui/separator";
+import dayjs from "dayjs";
 
 const Projects = () => {
   return Object.keys(metadata).map((catTitle, idx) => {
@@ -13,15 +14,21 @@ const Projects = () => {
         {idx !== 0 && <Separator className="my-4" />}
         <div className="mb-2">{catTitle}</div>
         {/* Temporary fix to reduce layout shift */}
-        {Object.keys(metadata[catTitle as Category]).map((mdxTitle, idx) => {
-          return (
-            <ListItem
-              key={mdxTitle + idx}
-              MDXMetadata={metadata[catTitle as Category][mdxTitle]}
-              route={"projects"}
-            />
-          );
-        })}
+        {Object.keys(metadata[catTitle as Category])
+          .sort((article1, article2) => {
+            const date1 = dayjs(metadata[catTitle as Category][article1].cdate);
+            const date2 = dayjs(metadata[catTitle as Category][article2].cdate);
+            return date1.isAfter(date2) ? -1 : 1;
+          })
+          .map((mdxTitle, idx) => {
+            return (
+              <ListItem
+                key={mdxTitle + idx}
+                MDXMetadata={metadata[catTitle as Category][mdxTitle]}
+                route={"projects"}
+              />
+            );
+          })}
       </h1>
     );
   });

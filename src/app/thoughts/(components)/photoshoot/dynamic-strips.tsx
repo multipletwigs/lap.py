@@ -2,9 +2,8 @@
 
 import CanvasWrapper from "@/app/projects/(components)/react-fiber-experiment/canvas-wrapper";
 import { useScroll, Image, ScrollControls, Scroll } from "@react-three/drei";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { easing } from "maath";
-import { useEffect, useRef, useState } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { useRef, useState } from "react";
 
 /**
  * Probably not in use anymore, maybe for pure threejs styles

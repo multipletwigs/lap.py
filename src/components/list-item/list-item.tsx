@@ -11,7 +11,7 @@ import { MDXDirMetadata } from "@/app/thoughts/(thoughts)/directory";
 
 export interface ListItemProp {
   MDXMetadata: MDXDirMetadata;
-  route: "projects" | "thoughts"; 
+  route: "projects" | "thoughts";
 }
 
 export const ListItem = (props: ListItemProp) => {
@@ -44,9 +44,7 @@ export const ListItem = (props: ListItemProp) => {
             className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
             href={`/${props.route}/${props.MDXMetadata.title}`}
           >
-            <h2 className="text-lg font-bold">
-              {props.MDXMetadata.displayTitle}
-            </h2>
+            <h2>{props.MDXMetadata.displayTitle}</h2>
             <p className="text-sm">{props.MDXMetadata.cdate}</p>
           </a>
         </TooltipTrigger>
