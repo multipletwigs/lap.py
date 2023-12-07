@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import Image from "next/image";
 import CodeBlock from "./components/ui/code-block";
 
 // This file allows you to provide custom React components
@@ -18,6 +19,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     li: ({ children }) => (
       <li className="list-inside my-2 list-decimal">{children}</li>
+    ),
+    img: ({ src, alt }) => (
+      <Image src={src ? src : ""} 
+      alt={alt as string} 
+      placeholder="blur"
+      fill={false} />
     ),
     p: ({ children }) => <p className="text-md">{children}</p>,
     a: ({ children, href }) => (

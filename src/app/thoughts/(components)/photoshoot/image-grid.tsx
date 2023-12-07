@@ -11,7 +11,6 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import PHOTO_ITEMS from "./labels";
 
 interface ImageItemProps {
