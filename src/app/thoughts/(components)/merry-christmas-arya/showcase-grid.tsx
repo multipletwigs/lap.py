@@ -13,7 +13,12 @@ const ImageGrid = () => {
     <div className="flex flex-col gap-4">
       {Images.map((image, index) => (
         <div key={index}>
-          <Image src={image} alt="Flower plants" fill={false} />
+          <Image
+            placeholder="blur"
+            src={image}
+            alt="Flower plants"
+            fill={false}
+          />
         </div>
       ))}
     </div>
