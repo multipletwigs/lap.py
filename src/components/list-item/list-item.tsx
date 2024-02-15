@@ -15,6 +15,10 @@ export interface ListItemProp {
 }
 
 export const ListItem = (props: ListItemProp) => {
+
+  // return null if no mdx metadata is provided
+  if (!props.MDXMetadata) return null;
+
   // get current mouse position
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const itemRef = useRef<HTMLAnchorElement>(null);

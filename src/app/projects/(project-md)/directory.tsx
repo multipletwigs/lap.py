@@ -36,13 +36,6 @@ const metadata: DirectoryMetadataWCat = {
       description: "A simple card component with an arc gradient background.",
       cdate: "2023-09-19",
     },
-    "react-three-fiber-playground": {
-      title: "react-three-fiber-playground",
-      displayTitle: "Experimental Playground",
-      component: <ReactFibreExperiment key={"React-fibre"} />,
-      description: "Playing with 3D designs using react-three-fiber.",
-      cdate: "2023-10-19",
-    },
   },
   Hackathons: {
     "dell-hackathon": {
