@@ -58,7 +58,7 @@ const metadata: DirectoryMetadataWCat = {
       displayTitle: "Open Source!? Me?",
       component: <OSS key={"Satori"} />,
       description: "RAHHHH WHAT IS OPEN SOURCE?!?!?",
-      cdate: "2023-04-11",
+      cdate: "2024-02-15",
     },
   },
   // "Academics and School": {
