@@ -1,1 +1,33 @@
-# Sprintmaster, a Jira AI Assistant for a client
+# 🤖 Sprintmaster, AI Jira Helper
+
+Last year, I was scouted on Twitter by a ex-Vercel Engineer, [Gui Bibeau](https://twitter.com/GuiBibeau), (currently Metamask) to work on one of his side ideas that he had, but never had the time to work on. He funded the whole entire project, though it never launched in the end 🥹 but I managed to create a functioning POC that was really ready to sell within a few weeks!
+
+<br/>
+
+<video loop autoPlay muted>
+  <source src="/projects/sprintmaster/sprintmaster_demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<br/>
+
+_Feel free to visit the [Sprintmaster](https://sprintmaster.typedream.app/)! Thanks to [@GuiBibeau](https://twitter.com/GuiBibeau) and [@Dan](https://twitter.com/crypto_danky) for the opportunity and guidance!_
+
+## 🤓 The idea is simple...
+
+We aimed to develop a [Retrieval Augmented Generation](https://www.promptingguide.ai/techniques/rag) (RAG) model that can help Jira scrum masters formulate better Sprint Goals! Having to work with [Atlassian Forge](https://developer.atlassian.com/platform/forge/) to build Jira Apps was challenging, especially when it is a whole new architecture, though they do still use React under the hood.
+
+<br/>
+
+Throughout the whole project, we spent weeks formulating architecture plans, thinking how to store metadata that could help GPT come up with better inferences based on context injection. We had the following ideas...
+
+1. **Jira Board API** - We could collect data from tickets, such as severity, issue type and priority, and use that as context for GPT. This involves periodically fetching data from Jira and storing in an external database, or utilize Jira's webhooks to push data to our server.
+2. **Prompt Engineering** - One article that particularly intrigued me during that time was [What is Prompt Engineering?](https://prmpts.ai/blog/what-is-prompt-engineering) by Greg Richardson. Afterall, he's one of the first people to utilize prompt injection into GPT-3 to create a chattable interface over documents way over the OpenAI token limits back in 2023. We heavily took inspiration from this [blog post](https://supabase.com/blog/chatgpt-supabase-docs), and thought of ways to inject context into GPT-3 to make it more relevant to the user's needs.
+
+## 🤔 What went wrong?
+
+Though I thought the project was at a good pace, I think towards the end of the project, we just lost interest surrounding the application which led to the project being abandoned due to personal reasons and other commitments. Nonetheless, it felt super cool to be able to work with brilliant minds and learn from them!
+
+## 🚀 Footnote - What's next in 2024?
+
+Well... we're trying something new now! Stay tuned! Gui remained as a really great mentor, and we often catch up on Discord to discuss about anything at all! Really thankful for Twitter's algorithm! 😄

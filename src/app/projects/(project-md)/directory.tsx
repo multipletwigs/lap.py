@@ -19,7 +19,7 @@ import OSS from "@/projects/open-source-work.mdx";
 export type Category =
   | "Design Experiments"
   | "Hackathons"
-  | "Open Source Work and Projects"
+  | "Open Source and Projects"
   | "Academics and School";
 type Title = string;
 export type DirectoryMetadataWCat = Record<
@@ -44,7 +44,7 @@ const metadata: DirectoryMetadataWCat = {
       component: <DellHackathon key={"Dell-Hackathon"} />,
       description:
         "A 24HR hackathon to build a dashboard to manage internal events for Dell",
-      cdate: "2023-06-11",
+      cdate: "2022-11-28",
     },
     "taylor-hackathon": {
       title: "taylor-hackathon",
@@ -54,20 +54,20 @@ const metadata: DirectoryMetadataWCat = {
       cdate: "2023-07-11",
     },
   },
-  "Open Source Work and Projects": {
+  "Open Source and Projects": {
     sprintmaster: {
       title: "sprintmaster",
       displayTitle: "SprintMaster, AI Jira Helper",
       component: <SprintMaster key={"SprintMaster"} />,
       description: "An AI Jira helper to write sprints",
-      cdate: "2023-06-11",
+      cdate: "2023-02-01",
     },
     "open-source-work": {
       title: "open-source-work",
-      displayTitle: "OSS!? Me?",
+      displayTitle: "Open Source!? Me?",
       component: <OSS key={"Satori"} />,
       description: "RAHHHH WHAT IS OPEN SOURCE?!?!?",
-      cdate: "2023-06-11",
+      cdate: "2023-04-11",
     },
     "zach-khong-info": {
       title: "zach-khong-info",
@@ -80,17 +80,17 @@ const metadata: DirectoryMetadataWCat = {
   "Academics and School": {
     "final-year-project": {
       title: "final-year-project",
-      displayTitle: "Getting the highest for my FYP",
+      displayTitle: "FYP - Label Studio",
       component: <FYP key={"final-year-project"} />,
       description: "Final grade of 92, highest in my cohort.",
-      cdate: "2023-07-10",
+      cdate: "2023-08-10",
     },
     ureview: {
       title: "ureview",
       displayTitle: "UReview and University",
       component: <UReview key={"ureview"} />,
       description: "Managing unit feedback for Monash.",
-      cdate: "2023-07-10",
+      cdate: "2022-06-10",
     },
   },
 };
