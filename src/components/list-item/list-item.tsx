@@ -16,9 +16,6 @@ export interface ListItemProp {
 
 export const ListItem = (props: ListItemProp) => {
 
-  // return null if no mdx metadata is provided
-  if (!props.MDXMetadata) return null;
-
   // get current mouse position
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const itemRef = useRef<HTMLAnchorElement>(null);
@@ -38,6 +35,9 @@ export const ListItem = (props: ListItemProp) => {
     return () => window.removeEventListener("mousemove", updateMousePosition);
   });
 
+  // return null if no mdx metadata is provided
+  if (!props.MDXMetadata) return null;
+
   return (
     <TooltipProvider>
       <Tooltip delayDuration={0}>
@@ -45,7 +45,7 @@ export const ListItem = (props: ListItemProp) => {
           <a
             ref={itemRef}
             key={props.MDXMetadata.title}
-            className="flex flex-row justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
+            className="flex flex-row items-center justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
             href={`/${props.route}/${props.MDXMetadata.title}`}
           >
             <h2 className="text-lg font-semibold">
