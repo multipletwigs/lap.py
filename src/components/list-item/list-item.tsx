@@ -55,7 +55,7 @@ export const ListItem = (props: ListItemProp) => {
             <h2 className="text-lg font-semibold hover:text-slate-500 transition-colors duration-150">
               {props.MDXMetadata.displayTitle}
             </h2>
-            <p className="text-sm">{dayjs(props.MDXMetadata.cdate, "YYYY-MM-DD").format("LL")}</p>
+            <p className="text-sm whitespace-nowrap">{dayjs(props.MDXMetadata.cdate, "YYYY-MM-DD").format("ll")}</p>
           </a>
         </TooltipTrigger>
         <TooltipContent

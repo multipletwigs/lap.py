@@ -2,10 +2,16 @@ import ArcGradientCard from "../(components)/arc-gradient-card";
 
 # Gradient Cards
 
-Hi. This kinda sucks TT. But you can test it out by uploading a photo and seeing the gradient change. I need to do so many improvements to my site to make sure I render stuff properly. If not there's too many custom code. Tech debt is real!
-
-<br />
-
-Now this kinda works ok-ish if the colours in the photo uploaded are rich enough.
+Experiment number 1! IMO, this doesn't look TOO bad for a 2 hr prototype! What intrigued me was how the [User Interface Gallery](https://ui.gallery/) was able to create [dynamic cards](https://ui.gallery/#dynamic-cards). I was absolutely fascinated by the motion and soft colours!\
+\
+Hmm...Maybe I could recreate it? Well... yes and no ahah ~ here's a quick demo of what I managed to create.
 
 <ArcGradientCard />
+
+As highlighted in the blog, the trick is to use blurs and blend mix mode, and a quick inspection of the source code inspection tool reveals that two of the same images where positioned in an `~absolute` container, with a `~linear-gradient` background. The `~mix-blend-mode` was set to `~screen` to create the soft overlay effect. Add in a little differently timed `~transform` and `~scale` and you get a nice blob gradient effect!
+
+<br/>
+
+Much experimentation is still needed to come up with the correct timing and angling of the gradient cards! Vercel designers are really on a different level to be able to think about design intuitively. I want to reach them someday. Till next time!\
+\
+:-)

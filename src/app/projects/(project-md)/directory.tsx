@@ -2,7 +2,7 @@ import { MDXDirMetadata } from "@/app/thoughts/(thoughts)/directory";
 
 // Design Experiments
 import ArcGradientCards from "@/projects/arc-gradient-cards.mdx";
-import ReactFibreExperiment from "@/projects/react-three-fiber-playground.mdx";
+// import ReactFibreExperiment from "@/projects/react-three-fiber-playground.mdx";
 
 // Hackathons
 import DellHackathon from "@/projects/dell-hackathon.mdx";
@@ -14,7 +14,7 @@ import UReview from "@/projects/ureview.mdx";
 
 // Open source work and projects
 import SprintMaster from "@/projects/sprintmaster.mdx";
-import Satori from "@/projects/satori.mdx";
+import OSS from "@/projects/open-source-work.mdx";
 
 export type Category =
   | "Design Experiments"
@@ -62,17 +62,17 @@ const metadata: DirectoryMetadataWCat = {
       description: "An AI Jira helper to write sprints",
       cdate: "2023-06-11",
     },
-    satori: {
-      title: "satori",
-      displayTitle: "Satori and Vercel OG",
-      component: <Satori key={"Satori"} />,
-      description: "A small contribution to a beautifully written library.",
+    "open-source-work": {
+      title: "open-source-work",
+      displayTitle: "OSS!? Me?",
+      component: <OSS key={"Satori"} />,
+      description: "RAHHHH WHAT IS OPEN SOURCE?!?!?",
       cdate: "2023-06-11",
     },
     "zach-khong-info": {
       title: "zach-khong-info",
       displayTitle: "Portfolio site v1",
-      component: <Satori key={"zach-khong-info"} />,
+      component: <OSS key={"zach-khong-info"} />,
       description: "my old portfolio site using Notion API with Next JS.",
       cdate: "2022-11-30",
     },
@@ -87,15 +87,8 @@ const metadata: DirectoryMetadataWCat = {
     },
     ureview: {
       title: "ureview",
-      displayTitle: "Managing UReview and University",
+      displayTitle: "UReview and University",
       component: <UReview key={"ureview"} />,
-      description: "Managing unit feedback for Monash.",
-      cdate: "2023-07-10",
-    },
-    "about-monash": {
-      title: "about-monash",
-      displayTitle: "Thoughts on Monash Malaysia",
-      component: <UReview key={"about-monash"} />,
       description: "Managing unit feedback for Monash.",
       cdate: "2023-07-10",
     },

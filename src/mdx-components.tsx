@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import CodeBlock from "./components/ui/code-block";
+import { codeToHtml } from 'shiki'
 
 // This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -24,7 +25,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     p: ({ children }) => <p className="text-sm md:text-base leading-relaxed text-primary">{children}</p>,
     a: ({ children, href }) => (
       <a
-        className="text-slate-800 font-medium border-b border-primary border-dashed hover:text-slate-600 transition-colors"
+        className="text-slate-800 dark:text-slate-100 font-medium border-b border-primary border-dashed hover:text-slate-600 transition-colors"
         href={href}
         target="_blank"
         rel="noopener noreferrer"
