@@ -38,14 +38,6 @@ const metadata: DirectoryMetadataWCat = {
     },
   },
   Hackathons: {
-    "dell-hackathon": {
-      title: "dell-hackathon",
-      displayTitle: "🥉 Dell Hack2Hire",
-      component: <DellHackathon key={"Dell-Hackathon"} />,
-      description:
-        "A 24HR hackathon to build a dashboard to manage internal events for Dell",
-      cdate: "2022-11-28",
-    },
     "taylor-hackathon": {
       title: "taylor-hackathon",
       displayTitle: "🥈 ImpactHack",
@@ -69,30 +61,23 @@ const metadata: DirectoryMetadataWCat = {
       description: "RAHHHH WHAT IS OPEN SOURCE?!?!?",
       cdate: "2023-04-11",
     },
-    "zach-khong-info": {
-      title: "zach-khong-info",
-      displayTitle: "Portfolio site v1",
-      component: <OSS key={"zach-khong-info"} />,
-      description: "my old portfolio site using Notion API with Next JS.",
-      cdate: "2022-11-30",
-    },
   },
-  "Academics and School": {
-    "final-year-project": {
-      title: "final-year-project",
-      displayTitle: "FYP - Label Studio",
-      component: <FYP key={"final-year-project"} />,
-      description: "Final grade of 92, highest in my cohort.",
-      cdate: "2023-08-10",
-    },
-    ureview: {
-      title: "ureview",
-      displayTitle: "UReview and University",
-      component: <UReview key={"ureview"} />,
-      description: "Managing unit feedback for Monash.",
-      cdate: "2022-06-10",
-    },
-  },
+  // "Academics and School": {
+  //   "final-year-project": {
+  //     title: "final-year-project",
+  //     displayTitle: "FYP - Label Studio",
+  //     component: <FYP key={"final-year-project"} />,
+  //     description: "Final grade of 92, highest in my cohort.",
+  //     cdate: "2023-08-10",
+  //   },
+  //   ureview: {
+  //     title: "ureview",
+  //     displayTitle: "UReview and University",
+  //     component: <UReview key={"ureview"} />,
+  //     description: "Managing unit feedback for Monash.",
+  //     cdate: "2022-06-10",
+  //   },
+  // },
 };
 
 export default metadata;

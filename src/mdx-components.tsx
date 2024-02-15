@@ -14,7 +14,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h2 className="text-xl font-bold my-5">{children}</h2>
     ),
     li: ({ children }) => (
-      <li className="list-inside my-2 list-decimal">{children}</li>
+      <li className="prose-sm md:prose-base list-inside my-2 list-decimal">{children}</li>
     ),
     img: ({ src, alt }) => (
       <Image src={src ? src : ""}
@@ -22,10 +22,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         placeholder="blur"
         fill={false} />
     ),
-    p: ({ children }) => <p className="text-sm md:text-base leading-relaxed text-primary">{children}</p>,
+    p: ({ children }) => <p className="prose-sm md:prose-base leading-relaxed text-primary text-balance">{children}</p>,
     a: ({ children, href }) => (
       <a
-        className="text-slate-800 dark:text-slate-100 font-medium border-b border-primary border-dashed hover:text-slate-600 transition-colors"
+        className="prose-sm md:prose-base text-slate-800 dark:text-slate-100 font-medium border-b border-primary border-dashed hover:text-slate-600 transition-colors"
         href={href}
         target="_blank"
         rel="noopener noreferrer"
