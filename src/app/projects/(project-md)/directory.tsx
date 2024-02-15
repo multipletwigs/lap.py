@@ -47,7 +47,7 @@ const metadata: DirectoryMetadataWCat = {
   Hackathons: {
     "dell-hackathon": {
       title: "dell-hackathon",
-      displayTitle: "🥉 Event Dashboard - Dell Hack2Hire",
+      displayTitle: "🥉 Dell Hack2Hire",
       component: <DellHackathon key={"Dell-Hackathon"} />,
       description:
         "A 24HR hackathon to build a dashboard to manage internal events for Dell",
@@ -55,7 +55,7 @@ const metadata: DirectoryMetadataWCat = {
     },
     "taylor-hackathon": {
       title: "taylor-hackathon",
-      displayTitle: "🥈 Resumetry - ImpactHack",
+      displayTitle: "🥈 ImpactHack",
       component: <TaylorsHackathon key={"Taylors-Hackathon"} />,
       description: "How Vercel and OpenAI won me a brief two day competition.",
       cdate: "2023-07-11",

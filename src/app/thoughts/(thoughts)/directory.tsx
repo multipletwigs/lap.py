@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import Beginning from "@/app/thoughts/(thoughts)/the-beginning.mdx";
 import IGraduated from "@/app/thoughts/(thoughts)/i-graduated.mdx";
 import Photoshoot from "@/app/thoughts/(thoughts)/photoshoot.mdx";
-import MerryChristmas from "@/app/thoughts/(thoughts)/merry-christmas-arya.mdx";
 
 type Title = string;
 
@@ -38,13 +37,6 @@ const metadata: ThoughtsDirectory = {
     displayTitle: "Photoshoot for myself",
     component: <Photoshoot />,
     cdate: "2023-10-08",
-    description: "I'm not a model, but I can pretend to be one.",
-  },
-  "merry-christmas-arya": {
-    title: "merry-christmas-arya",
-    displayTitle: "Merry Christmas Arya",
-    component: <MerryChristmas />,
-    cdate: "2023-12-25",
     description: "I'm not a model, but I can pretend to be one.",
   },
 };

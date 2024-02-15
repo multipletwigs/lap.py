@@ -6,7 +6,7 @@ import { getArticle } from "../(lib)/utils";
 
 const Thoughts = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       {getArticle("./src/app/thoughts/(thoughts)")
         .filter((thought) => thought.title !== "directory.tsx")
         .sort((article1, article2) => {

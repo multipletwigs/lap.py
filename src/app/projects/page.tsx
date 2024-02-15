@@ -12,23 +12,25 @@ const Projects = () => {
       <h1 key={catTitle + idx}>
         {/* Temporary fix to reduce layout shift */}
         {idx !== 0 && <Separator className="my-4" />}
-        <div className="mb-2">{catTitle}</div>
+        <div className="mb-4">{catTitle}</div>
         {/* Temporary fix to reduce layout shift */}
-        {Object.keys(metadata[catTitle as Category])
-          .sort((article1, article2) => {
-            const date1 = dayjs(metadata[catTitle as Category][article1].cdate);
-            const date2 = dayjs(metadata[catTitle as Category][article2].cdate);
-            return date1.isAfter(date2) ? -1 : 1;
-          })
-          .map((mdxTitle, idx) => {
-            return (
-              <ListItem
-                key={mdxTitle + idx}
-                MDXMetadata={metadata[catTitle as Category][mdxTitle]}
-                route={"projects"}
-              />
-            );
-          })}
+        <div className="flex flex-col gap-2">
+          {Object.keys(metadata[catTitle as Category])
+            .sort((article1, article2) => {
+              const date1 = dayjs(metadata[catTitle as Category][article1].cdate);
+              const date2 = dayjs(metadata[catTitle as Category][article2].cdate);
+              return date1.isAfter(date2) ? -1 : 1;
+            })
+            .map((mdxTitle, idx) => {
+              return (
+                <ListItem
+                  key={mdxTitle + idx}
+                  MDXMetadata={metadata[catTitle as Category][mdxTitle]}
+                  route={"projects"}
+                />
+              );
+            })}
+        </div>
       </h1>
     );
   });
