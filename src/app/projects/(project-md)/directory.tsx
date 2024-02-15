@@ -20,7 +20,6 @@ export type Category =
   | "Design Experiments"
   | "Hackathons"
   | "Open Source and Projects"
-  | "Academics and School";
 type Title = string;
 export type DirectoryMetadataWCat = Record<
   Category,
