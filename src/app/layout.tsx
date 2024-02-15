@@ -8,6 +8,7 @@ import {
 import { ThemeProvider } from "@/components/theme-provider";
 import ModeToggle from "@/components/mode-toggle";
 import { Analytics } from "@vercel/analytics/react";
+import dayjs from "dayjs";
 
 export const metadata: Metadata = {
   title: "Lappy",
@@ -46,7 +47,7 @@ const Footer = () => {
       <nav className="flex gap-2">
         {Object.values(links).map((linkProps) => link(linkProps))}
       </nav>
-      <p>2023 © Thoughts by Zach Khong</p>
+      <p>{dayjs().year()} © Thoughts by Zach Khong</p>
     </footer>
   );
 };
