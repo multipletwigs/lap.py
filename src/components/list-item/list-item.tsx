@@ -8,6 +8,10 @@ import {
 } from "@/components/ui/tooltip";
 import { useLayoutEffect, useRef, useState } from "react";
 import { MDXDirMetadata } from "@/app/thoughts/(thoughts)/directory";
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
+
+dayjs.extend(LocalizedFormat)
 
 export interface ListItemProp {
   MDXMetadata: MDXDirMetadata;
@@ -45,13 +49,13 @@ export const ListItem = (props: ListItemProp) => {
           <a
             ref={itemRef}
             key={props.MDXMetadata.title}
-            className="flex flex-row items-center justify-between hover:text-slate-500 transition-colors duration-300 hover:cursor-pointer"
+            className="flex flex-row items-center justify-between hover:text-slate-500 transition-colors duration-150 hover:cursor-pointer"
             href={`/${props.route}/${props.MDXMetadata.title}`}
           >
-            <h2 className="text-lg font-semibold">
+            <h2 className="text-lg font-semibold hover:text-slate-500 transition-colors duration-150">
               {props.MDXMetadata.displayTitle}
             </h2>
-            <p className="text-sm">{props.MDXMetadata.cdate}</p>
+            <p className="text-sm">{dayjs(props.MDXMetadata.cdate, "YYYY-MM-DD").format("LL")}</p>
           </a>
         </TooltipTrigger>
         <TooltipContent
