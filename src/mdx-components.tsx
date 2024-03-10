@@ -7,9 +7,16 @@ import { codeToHtml } from 'shiki'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
-    h1: ({ children }) => (
-      <h1 className="text-2xl font-semibold my-5">{children}</h1>
-    ),
+    h1: ({ children }) => {
+      const content = children?.toString()
+      const contentArr = content?.split("~") || []
+      return (
+        <div className="my-5 flex gap-2 flex-col">
+          <h1 className="text-2xl font-bold">{contentArr[0]}</h1>
+          <code>{contentArr[1]}</code>
+        </div>
+      );
+    },
     h2: ({ children }) => (
       <h2 className="text-xl font-bold my-5">{children}</h2>
     ),
