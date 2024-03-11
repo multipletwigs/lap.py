@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import Beginning from "@/app/thoughts/(thoughts)/the-beginning.mdx";
 import IGraduated from "@/app/thoughts/(thoughts)/i-graduated.mdx";
-import Photoshoot from "@/app/thoughts/(thoughts)/frustrated.mdx";
+import Photoshoot from "@/app/thoughts/(thoughts)/photoshoot.mdx";
+import Frustrated from "@/app/thoughts/(thoughts)/frustrated.mdx";
 
 type Title = string;
 
@@ -42,7 +43,7 @@ const metadata: ThoughtsDirectory = {
   "frustrated":{
     title: "frustrated",
     displayTitle: "Frustrations",
-    component: <Photoshoot />,
+    component: <Frustrated />,
     cdate: "2024-03-07",
     description: "A beginning of the year retrospect",
   }
