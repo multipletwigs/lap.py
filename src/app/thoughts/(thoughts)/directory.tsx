@@ -3,6 +3,7 @@ import Beginning from "@/app/thoughts/(thoughts)/the-beginning.mdx";
 import IGraduated from "@/app/thoughts/(thoughts)/i-graduated.mdx";
 import Photoshoot from "@/app/thoughts/(thoughts)/photoshoot.mdx";
 import Frustrated from "@/app/thoughts/(thoughts)/frustrated.mdx";
+import Summer from "@/app/thoughts/(thoughts)/500-days-of-summer.mdx";
 
 type Title = string;
 
@@ -25,6 +26,14 @@ const metadata: ThoughtsDirectory = {
     cdate: "2023-09-18",
     description:
       "Some of the reasons on why I started building this again? Maybe it's time for me to start writing again.",
+  },
+  "500-days-of-summer": {
+    title: "500-days-of-summer",
+    displayTitle: "(500) Days of Summer thoughts",
+    component: <Summer />,
+    cdate: "2024-05-19",
+    description:
+      "An honest review about a story about love (not a love story)",
   },
   "i-graduated": {
     title: "i-graduated",
