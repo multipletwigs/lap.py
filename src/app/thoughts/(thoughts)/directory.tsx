@@ -4,6 +4,7 @@ import IGraduated from "@/app/thoughts/(thoughts)/i-graduated.mdx";
 import Photoshoot from "@/app/thoughts/(thoughts)/photoshoot.mdx";
 import Frustrated from "@/app/thoughts/(thoughts)/frustrated.mdx";
 import Summer from "@/app/thoughts/(thoughts)/500-days-of-summer.mdx";
+import FailedBlogs from "@/app/thoughts/(thoughts)/why-i-failed-at-building-blogs.mdx";
 
 type Title = string;
 
@@ -19,6 +20,13 @@ export interface MDXDirMetadata {
 export type ThoughtsDirectory = Record<Title, MDXDirMetadata>;
 
 const metadata: ThoughtsDirectory = {
+  "why-i-failed-at-building-blogs": {
+    title: "why-i-failed-at-building-blogs",
+    displayTitle: "Why I failed at building blogs",
+    component: <FailedBlogs />,
+    cdate: "2024-08-24",
+    description: "Scope creep is a horrible thing to see.",
+  },
   "the-beginning": {
     title: "the-beginning",
     displayTitle: "第 N 個開始",
@@ -32,8 +40,7 @@ const metadata: ThoughtsDirectory = {
     displayTitle: "(500) Days of Summer thoughts",
     component: <Summer />,
     cdate: "2024-05-19",
-    description:
-      "An honest review about a story about love (not a love story)",
+    description: "An honest review about a story about love (not a love story)",
   },
   "i-graduated": {
     title: "i-graduated",
@@ -49,13 +56,13 @@ const metadata: ThoughtsDirectory = {
     cdate: "2023-10-08",
     description: "I'm not a model, but I can pretend to be one.",
   },
-  "frustrated":{
+  frustrated: {
     title: "frustrated",
     displayTitle: "Frustrations",
     component: <Frustrated />,
     cdate: "2024-03-07",
     description: "A beginning of the year retrospect",
-  }
+  },
 };
 
 export default metadata;
