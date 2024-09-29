@@ -11,6 +11,7 @@ interface CanvasWrapperProps {
     description: string;
     icon: React.ReactNode;
   };
+  caption?: string;
 }
 
 const CanvasWrapper = (props: CanvasWrapperProps) => {
@@ -25,7 +26,7 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
       case "xlarge":
         return "h-[1000px]";
       default:
-        return props.height;
+        return `h-[${props.height}]`;
     }
   };
 
@@ -43,11 +44,16 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
         className={cn(
           height(),
           "w-full rounded-lg",
-          props.background ? props.background : "bg-slate-600/20"
+          props.background ? props.background : "bg-slate-600/20",
         )}
       >
         {props.children}
       </div>
+      {props.caption && (
+        <p className="mx-auto mt-6 px-4 py-1 text-xs text-center bg-gray-700/40 text-slate-300 rounded-full">
+          {props.caption}
+        </p>
+      )}
     </div>
   );
 };

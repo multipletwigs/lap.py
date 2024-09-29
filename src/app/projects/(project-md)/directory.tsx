@@ -2,6 +2,7 @@ import { MDXDirMetadata } from "@/app/thoughts/(thoughts)/directory";
 
 // Design Experiments
 import ArcGradientCards from "@/projects/arc-gradient-cards.mdx";
+import DynamicIsland from "@/projects/dynamic-island.mdx";
 // import ReactFibreExperiment from "@/projects/react-three-fiber-playground.mdx";
 
 // Hackathons
@@ -19,7 +20,7 @@ import OSS from "@/projects/open-source-work.mdx";
 export type Category =
   | "Design Experiments"
   | "Hackathons"
-  | "Open Source and Projects"
+  | "Open Source and Projects";
 type Title = string;
 export type DirectoryMetadataWCat = Record<
   Category,
@@ -34,6 +35,13 @@ const metadata: DirectoryMetadataWCat = {
       component: <ArcGradientCards key={"arc-gradient-cards"} />,
       description: "A simple card component with an arc gradient background.",
       cdate: "2023-09-19",
+    },
+    "dynamic-island": {
+      title: "dynamic-island",
+      displayTitle: "Dynamic Island",
+      component: <DynamicIsland key={"dynamic-island"} />,
+      description: "Recreating the Dynamic Island component on the web",
+      cdate: "2024-09-28",
     },
   },
   Hackathons: {
