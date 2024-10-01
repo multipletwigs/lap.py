@@ -68,16 +68,16 @@ function MusicPlayer(props: PlaylistItem & { index: number }) {
         <div className="flex h-full w-full items-center align-center justify-center">
           <motion.div
             layoutId="playlist-selected"
-            className=" bg-slate-950 p-6"
+            className=" bg-slate-950 p-6 rounded-md"
           >
             <div className="flex gap-4 h-full">
               <motion.img
                 src={props.cover_url}
-                className="h-36 w-36 rounded-md"
+                className="h-24 w-24 rounded-md"
                 alt="Album cover"
                 layoutId={`cover_img-${props.name}`}
               />
-              <div className="h-full flex flex-col">
+              <div className="flex flex-col">
                 <div>
                   <motion.p
                     layoutId={`playlist-item-name-${props.name}`}
