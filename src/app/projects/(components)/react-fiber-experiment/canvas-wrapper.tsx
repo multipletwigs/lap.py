@@ -19,6 +19,8 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
     switch (props.height) {
       case "small":
         return "h-[200px]";
+      case "fit":
+        return "h-fit";
       case "medium":
         return "h-[500px]";
       case "large":
