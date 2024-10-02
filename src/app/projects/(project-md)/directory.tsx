@@ -36,13 +36,13 @@ const metadata: DirectoryMetadataWCat = {
       description: "A simple card component with an arc gradient background.",
       cdate: "2023-09-19",
     },
-    "dynamic-island": {
-      title: "dynamic-island",
-      displayTitle: "Dynamic Island",
-      component: <DynamicIsland key={"dynamic-island"} />,
-      description: "Recreating the Dynamic Island component on the web",
-      cdate: "2024-09-28",
-    },
+    // "dynamic-island": {
+    //   title: "dynamic-island",
+    //   displayTitle: "Dynamic Island",
+    //   component: <DynamicIsland key={"dynamic-island"} />,
+    //   description: "Recreating the Dynamic Island component on the web",
+    //   cdate: "2024-09-28",
+    // },
   },
   Hackathons: {
     "taylor-hackathon": {
