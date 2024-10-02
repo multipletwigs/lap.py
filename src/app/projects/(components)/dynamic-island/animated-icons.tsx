@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import CanvasWrapper from "../react-fiber-experiment/canvas-wrapper";
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
+import MusicPlayer from "./ai-player";
 
 const AnimationRichButton = () => {
   const [copied, setCopied] = useState<boolean>(false);
