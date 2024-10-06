@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ModeToggle from "@/components/mode-toggle";
 import { Analytics } from "@vercel/analytics/react";
 import dayjs from "dayjs";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Lappy",
@@ -85,6 +86,7 @@ export default function RootLayout({
               </header>
               {children}
               <Footer />
+              <SpeedInsights />
             </main>
           </div>
         </ThemeProvider>

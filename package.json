@@ -26,6 +26,7 @@
     "@types/react-syntax-highlighter": "^15.5.9",
     "@types/three": "^0.157.2",
     "@vercel/analytics": "^1.1.0",
+    "@vercel/speed-insights": "^1.0.12",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
