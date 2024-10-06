@@ -76,7 +76,7 @@ export default function RootLayout({
                   </h1>
                   <div className="flex flex-row gap-2 items-center mt-2">
                     <Badge variant={"secondary"} className="w-fit">
-                      Design Engineer
+                      k8s enthusiast
                     </Badge>
                     <ModeToggle />
                   </div>
