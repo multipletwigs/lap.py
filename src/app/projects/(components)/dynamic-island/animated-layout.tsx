@@ -10,7 +10,6 @@ import {
   Repeat2,
   Shuffle,
   PlayIcon,
-  AlignJustify,
 } from "lucide-react";
 import { useOnClickOutside } from "usehooks-ts";
 
