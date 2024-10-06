@@ -52,7 +52,16 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
         {props.children}
       </div>
       {props.caption && (
-        <p className="mx-auto mt-6 px-4 py-1 text-xs text-center dark:bg-gray-700/40 dark:text-slate-300 rounded-full">
+        <p
+          className="mx-auto mt-6 px-4 py-1 max-w-md text-xs text-center 
+                  bg-gradient-to-r from-blue-50 to-indigo-50 
+                  dark:from-gray-800 dark:to-gray-700
+                  text-gray-700 dark:text-gray-300 
+                  border border-gray-200 dark:border-gray-600 
+                  rounded-full shadow-sm 
+                  transition-all duration-300 ease-in-out
+                  "
+        >
           {props.caption}
         </p>
       )}
