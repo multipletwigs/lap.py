@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import CanvasWrapper from "../react-fiber-experiment/canvas-wrapper";
 import { DotsHorizontalIcon, StackIcon } from "@radix-ui/react-icons";
+import { Progress } from "@/components/ui/progress";
 import {
   SkipBack,
   SkipForward,
@@ -10,8 +11,10 @@ import {
   Repeat2,
   Shuffle,
   PlayIcon,
+  ExternalLink,
 } from "lucide-react";
 import { useOnClickOutside } from "usehooks-ts";
+import SpotifyExternalLink from "./external-spotify";
 
 interface PlaylistItem {
   name: string;
@@ -20,15 +23,18 @@ interface PlaylistItem {
   playlist: string;
   description: string;
   duration: string;
+  spotify_link: string;
 }
 
-const PLAYLIST_ITEMS = [
+const PLAYLIST_ITEMS: PlaylistItem = [
   {
     name: "帶你飛",
     artist: "告五人",
     cover_url: "https://i.kfs.io/album/global/224955642,2v1/fit/500x500.jpg",
     description: "I like the melody of this song!",
     playlist: "帶你飛",
+    spotify_link:
+      "https://open.spotify.com/track/0jnDl8pm20nRBkXzMgL5Fv?si=51d2210c82db42c7",
     duration: "4:30",
   },
   {
@@ -38,6 +44,8 @@ const PLAYLIST_ITEMS = [
     description: "I like the melody of this song!",
     playlist: "在幾百年前就說過愛你",
     duration: "5:50",
+    spotify_link:
+      "https://open.spotify.com/track/7tgzj2IqzSgUpxUhjmcF5m?si=9d1b6edbfc8b482e",
   },
   {
     name: "tlit21c",
@@ -47,6 +55,8 @@ const PLAYLIST_ITEMS = [
     description: "I like the melody of this song!",
     playlist: "to love in the 21st century",
     duration: "1:06",
+    spotify_link:
+      "https://open.spotify.com/track/0etGeOL33kfAw2iuTKPF3z?si=5dd1970e8e2b49a8",
   },
   {
     name: "如果愛忘了",
@@ -55,6 +65,8 @@ const PLAYLIST_ITEMS = [
     description: "I like the melody of this song!",
     playlist: "中國好聲音",
     duration: "4:05",
+    spotify_link:
+      "https://open.spotify.com/track/4JBZuPALOvU2PC8E7t02vY?si=f56d3356756c4ec9",
   },
   {
     name: "感謝你曾來過",
@@ -63,6 +75,8 @@ const PLAYLIST_ITEMS = [
     description: "I like the melody of this song!",
     playlist: "感謝你曾來過",
     duration: "4:10",
+    spotify_link:
+      "https://open.spotify.com/track/1JLtvvPsHwLyd2ufASdkWV?si=d1385482960547af",
   },
   {
     name: "Champagne Shots",
@@ -71,6 +85,8 @@ const PLAYLIST_ITEMS = [
       "https://i.scdn.co/image/ab67616d0000b273c8eaf2ad9b478ea68c0370a5",
     description: "i like the melody of this song!",
     playlist: "Local Mvp",
+    spotify_link:
+      "https://open.spotify.com/track/7dbyaRWWFvB9UG2vcwTd3J?si=84cc385ca82b43b7",
     duration: "2:24",
   },
   {
@@ -80,6 +96,8 @@ const PLAYLIST_ITEMS = [
       "https://i.scdn.co/image/ab67616d0000b2734125c81788ae43053829ceb0",
     description: "i like the melody of this song!",
     playlist: "Tip Toe",
+    spotify_link:
+      "https://open.spotify.com/track/0jnDl8pm20nRBkXzMgL5Fv?si=51d2210c82db42c7",
     duration: "3:44",
   },
   {
@@ -89,6 +107,8 @@ const PLAYLIST_ITEMS = [
       "https://i.scdn.co/image/ab67616d0000b273416574586c08a29c3a492a64",
     description: "i like the melody of this song!",
     playlist: "if i weren't me",
+    spotify_link:
+      "https://open.spotify.com/track/0jnDl8pm20nRBkXzMgL5Fv?si=51d2210c82db42c7",
     duration: "2:32",
   },
 ];
@@ -107,7 +127,8 @@ function MusicPlayer(
     coverImg: `cover_img-${name}`,
     artist: `playlist-item-artist-${artist}-${index}`,
     name: `playlist-item-name-${name}`,
-    playlist: `playlist-item-playlist-${playlist}-${index}`,
+    playlist: `playlist-item-playlist-${props.playlist}-${props.index}`,
+    playlist_mobile: `playlist-item-playlist-mobile-${props.playlist}-${props.index}`,
     duration: `playlist-item-duration-${name}-${index}`,
   };
 
@@ -124,10 +145,10 @@ function MusicPlayer(
             key={`music-player-item-${props.name}-${props.index}`}
             layoutId={`playlist-item-${props.name}-${props.index}`}
             ref={outsideRef}
-            className="bg-slate-100 dark:bg-slate-950 p-8 pt-6 px-6 rounded-lg relative h-[400px] sm:h-72 z-30 shadow"
+            className="bg-slate-100 dark:bg-slate-950 p-8 pt-6 px-6 rounded-lg relative h-[410px] sm:h-72 z-30 shadow"
           >
-            <div className="flex sm:justify-between gap:2 sm:gap-4 h-full flex-col max-w-64">
-              <div className="inline-flex justify-between align-center items-center">
+            <div className="flex sm:justify-between gap-2 h-full flex-col max-w-64">
+              <div className="hidden sm:inline-flex justify-between align-center items-center">
                 <motion.p
                   key={`playlist-item-index-${props.index}`}
                   layoutId={`music-player-item-index-${props.index}`}
@@ -135,13 +156,15 @@ function MusicPlayer(
                 >
                   {props.index + 1}
                 </motion.p>
-                <div className="rounded-full inline-flex items-center justify-center w-8 h-8 bg-slate-700">
-                  <Heart className="w-3 h-3 fill-slate-200 text-slate-200" />
-                </div>
+                <SpotifyExternalLink href={props.spotify_link} />
               </div>
 
-              <div className="flex sm:flex-row flex-col gap-4 sm:mt-auto justify-start">
-                <motion.p className="sm:hidden block text-xs text-center">
+              <div className="flex sm:flex-row sm:h-44 h-full flex-col gap-4 sm:mt-8 justify-start">
+                <motion.p
+                  layoutId={layoutIds["playlist_mobile"]}
+                  key={`mobile-player-${props.playlist}-${props.index}`}
+                  className="sm:hidden block text-xs text-center"
+                >
                   {playlist}
                 </motion.p>
                 <motion.img
@@ -150,7 +173,7 @@ function MusicPlayer(
                   alt="Album cover"
                   layoutId={layoutIds.coverImg}
                 />
-                <div className="flex flex-row sm:flex-col sm:text-left text-left">
+                <div className="flex flex-row sm:flex-col sm:text-left text-left sm:mt-2 mt-10">
                   <div className="max-w-64 flex flex-col">
                     <motion.p
                       layoutId={layoutIds.artist}
@@ -165,8 +188,9 @@ function MusicPlayer(
                       {name}
                     </motion.p>
                     <motion.p
+                      key={`web-player-${props.playlist}-${props.index}`}
                       layoutId={layoutIds["playlist"]}
-                      className="sm:block hidden text-xs text-slate-300"
+                      className="text-xs text-slate-300 sm:block hidden"
                     >
                       {playlist}
                     </motion.p>
@@ -181,11 +205,14 @@ function MusicPlayer(
                     <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-slate-700">
                       <SkipForward className="w-3 h-3 fill-slate-200 text-slate-200" />
                     </div>
+                    <div className="sm:hidden block ml-1">
+                      <SpotifyExternalLink href={props.spotify_link} />
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-gray-600 h-1 mt-4 sm:mt-1 sm:w-96 w-72 rounded-full"></div>
+                <div className="bg-gray-600 h-1 mt-3 sm:mt-6 sm:w-96 w-72 rounded-full"></div>
                 <div className="flex justify-between mt-3 text-slate-600">
                   <div className="text-xs">0:00</div>
                   <div className="flex gap-2">
@@ -197,7 +224,7 @@ function MusicPlayer(
               </div>
             </div>
             <div className="absolute inset-0 h-full -z-10 w-full rounded-lg">
-              <div className="sm:h-[65%] h-[60%] relative overflow-clip rounded-t-lg">
+              <div className="h-[65%] sm:h-[66%] relative overflow-clip rounded-t-lg">
                 <img
                   className="absolute blur-3xl inset-0 bg-cover bg-center opacity-30"
                   src={cover_url}
@@ -220,6 +247,7 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
     artist: `playlist-item-artist-${props.artist}-${props.index}`,
     name: `playlist-item-name-${props.name}`,
     playlist: `playlist-item-playlist-${props.playlist}-${props.index}`,
+    playlist_mobile: `playlist-item-playlist-mobile-${props.playlist}-${props.index}`,
     duration: `playlist-item-duration-${props.name}-${props.index}`,
   };
 
@@ -252,7 +280,7 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
             layoutId={`playlist-item-${props.name}-${props.index}`}
             className="inset-0 absolute bg-transparent -z-50 h-full w-full"
           />
-          <motion.div className="grid grid-cols-2 sm:grid-cols-[auto,1fr,1fr,auto] gap-4 items-center w-full z-10">
+          <motion.div className="grid grid-cols-custom-3 sm:grid-cols-custom-4 gap-4 items-center w-full z-10">
             <motion.p
               key={`playlist-item-index-${props.index}`}
               layoutId={`music-player-item-index-${props.index}`}
@@ -284,16 +312,22 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
               </div>
             </div>
             <motion.p
+              layoutId={layoutIds["playlist_mobile"]}
+              className="sm:hidden block text-xs text-slate-500 text-left"
+            >
+              {props.playlist}
+            </motion.p>
+            <motion.p
               layoutId={layoutIds["playlist"]}
-              className="text-xs text-slate-500 text-left"
+              className="sm:block hidden text-xs text-slate-500 text-left"
             >
               {props.playlist}
             </motion.p>
             {!isSelected && (
               <>
-                <div className="sm:flex hidden items-center gap-6">
+                <div className="flex items-center gap-6">
                   <motion.p className="text-xs">{props.duration}</motion.p>
-                  <DotsHorizontalIcon className="h-5 w-5" />
+                  <DotsHorizontalIcon className="h-5 w-5 sm:block hidden" />
                 </div>
               </>
             )}{" "}

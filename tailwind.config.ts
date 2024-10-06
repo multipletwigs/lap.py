@@ -18,6 +18,13 @@ const config: Config = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        // Custom grid configuration for mobile (3 columns)
+        "custom-3": "1fr 1fr auto",
+
+        // Custom grid configuration for larger screens (4 columns)
+        "custom-4": "auto 1fr 1fr auto",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -92,6 +99,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
 export default config;

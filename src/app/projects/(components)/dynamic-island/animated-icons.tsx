@@ -7,12 +7,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
 interface AnimationRichButtonProps {
-  beforeIcon: LucideIcon;
-  afterIcon: LucideIcon;
-  loopIcons: boolean;
+  beforeIcon: LucideIcon; // Icon before action (default: CopyIcon)
+  afterIcon: LucideIcon; // Icon after action (default: CheckIcon)
+  loopIcons: boolean; // If true, loop the icon change
+  customClassName?: string; // Custom class name for the button
+  customStyle?: React.CSSProperties; // Custom inline styles for the button
+  customBeforeIcon?: JSX.Element; // Custom before-action icon
+  customAfterIcon?: JSX.Element; // Custom after-action icon
+  onClick: any;
 }
 
-const AnimationRichButton = (props: Partial<AnimationRichButtonProps>) => {
+export const AnimationRichButton = (
+  props: Partial<AnimationRichButtonProps>,
+) => {
   const [copied, setCopied] = useState<boolean>(false);
   const variants = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -27,10 +34,19 @@ const AnimationRichButton = (props: Partial<AnimationRichButtonProps>) => {
     }
   }, [copied]);
 
+  const BeforeIcon = props.customBeforeIcon || <CopyIcon />;
+  const AfterIcon = props.customAfterIcon || <CheckIcon />;
+
   return (
     <button
-      onClick={() => setCopied((prev) => !prev)}
-      className="h-8 w-8 flex items-center justify-center rounded-lg dark:bg-slate-900 bg-slate-200 border-slate-300 text-slate-400 dark:border-slate-800 border"
+      onClick={() => {
+        setCopied((prev) => !prev);
+        if (props.onClick) props.onClick();
+      }}
+      className={`h-8 w-8 flex items-center justify-center rounded-lg dark:bg-slate-900 bg-slate-200 border-slate-300 text-slate-400 dark:border-slate-800 border ${
+        props.customClassName || ""
+      }`}
+      style={props.customStyle}
     >
       <AnimatePresence mode={"wait"} initial={false}>
         {copied ? (
@@ -41,7 +57,7 @@ const AnimationRichButton = (props: Partial<AnimationRichButtonProps>) => {
             animate={"visible"}
             exit={"hidden"}
           >
-            <CheckIcon />
+            {AfterIcon}
           </motion.span>
         ) : (
           <motion.span
@@ -51,13 +67,14 @@ const AnimationRichButton = (props: Partial<AnimationRichButtonProps>) => {
             animate={"visible"}
             exit={"hidden"}
           >
-            <CopyIcon />
+            {BeforeIcon}
           </motion.span>
         )}
       </AnimatePresence>
     </button>
   );
 };
+
 const AnimatedIcons = () => {
   return (
     <CanvasWrapper
