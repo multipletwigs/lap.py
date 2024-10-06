@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import CanvasWrapper from "../react-fiber-experiment/canvas-wrapper";
 import { DotsHorizontalIcon, StackIcon } from "@radix-ui/react-icons";
 import {
@@ -66,12 +66,30 @@ const PLAYLIST_ITEMS = [
     duration: "4:10",
   },
   {
-    name: "If I Weren't Me",
-    artist: "Katherine Li",
+    name: "Champagne Shots",
+    artist: "Sainte",
+    cover_url:
+      "https://i.scdn.co/image/ab67616d0000b273c8eaf2ad9b478ea68c0370a5",
+    description: "i like the melody of this song!",
+    playlist: "Local Mvp",
+    duration: "2:24",
+  },
+  {
+    name: "tip toe",
+    artist: "HYBS",
+    cover_url:
+      "https://i.scdn.co/image/ab67616d0000b2734125c81788ae43053829ceb0",
+    description: "i like the melody of this song!",
+    playlist: "Tip Toe",
+    duration: "3:44",
+  },
+  {
+    name: "if i weren't me",
+    artist: "katherine li",
     cover_url:
       "https://i.scdn.co/image/ab67616d0000b273416574586c08a29c3a492a64",
-    description: "I like the melody of this song!",
-    playlist: "If I Weren't Me",
+    description: "i like the melody of this song!",
+    playlist: "if i weren't me",
     duration: "2:32",
   },
 ];
@@ -97,60 +115,69 @@ function MusicPlayer(
   return (
     <>
       <motion.div
-        className="z-10 w-full h-full inset-0 absolute bg-slate-900/70 rounded-lg overflow-clip"
+        className="z-20 w-full h-full inset-0 absolute bg-slate-300/50 dark:bg-slate-900/70 rounded-lg overflow-clip"
         id="player-overlay"
       />
 
       <motion.div className="absolute inset-0 w-full h-full z-20 rounded-lg">
         <div className="flex h-full w-full items-center justify-center rounded-lg">
           <motion.div
-            key={`playlist-item-${props.name}-${props.index}`}
+            key={`music-player-item-${props.name}-${props.index}`}
             layoutId={`playlist-item-${props.name}-${props.index}`}
             ref={outsideRef}
-            className="bg-slate-950 p-8 pt-6 px-6 rounded-lg relative h-72 z-30 shadow"
+            className="bg-slate-100 dark:bg-slate-950 p-8 pt-6 px-6 rounded-lg relative h-[400px] sm:h-72 z-30 shadow"
           >
-            <div className="flex justify-between gap-4 h-full flex-col max-w-64">
+            <div className="flex sm:justify-between gap:2 sm:gap-4 h-full flex-col max-w-64">
               <div className="inline-flex justify-between align-center items-center">
+                <motion.p
+                  key={`playlist-item-index-${props.index}`}
+                  layoutId={`music-player-item-index-${props.index}`}
+                  className="text-sm"
+                >
+                  {props.index + 1}
+                </motion.p>
                 <div className="rounded-full inline-flex items-center justify-center w-8 h-8 bg-slate-700">
                   <Heart className="w-3 h-3 fill-slate-200 text-slate-200" />
                 </div>
-                <AlignJustify fill="white" className="w-4 h-4" />
               </div>
 
-              <div className="flex gap-4 mt-auto">
+              <div className="flex sm:flex-row flex-col gap-4 sm:mt-auto justify-start">
+                <motion.p className="sm:hidden block text-xs text-center">
+                  {playlist}
+                </motion.p>
                 <motion.img
                   src={cover_url}
-                  className="w-28 h-28 aspect-square rounded-lg shadow-2xl"
+                  className="sm:w-28 sm:h-28 w-44 h-44 aspect-square mx-auto sm:mx-0 rounded-lg shadow-2xl"
                   alt="Album cover"
                   layoutId={layoutIds.coverImg}
                 />
-                <div className="flex flex-col">
-                  <div className="max-w-64">
+                <div className="flex flex-row sm:flex-col sm:text-left text-left">
+                  <div className="max-w-64 flex flex-col">
                     <motion.p
                       layoutId={layoutIds.artist}
-                      className="text-md text-slate-400"
+                      className="text-xs sm:text-md text-slate-300"
                     >
                       {artist}
                     </motion.p>
                     <motion.p
                       layoutId={layoutIds.name}
-                      className="text-2xl font-medium text-wrap"
+                      className="text-xl font-medium text-wrap sm:text-2xl"
                     >
                       {name}
                     </motion.p>
                     <motion.p
-                      layoutId={layoutIds.playlist}
-                      className="text-xs text-slate-400"
+                      layoutId={layoutIds["playlist"]}
+                      className="sm:block hidden text-xs text-slate-300"
                     >
                       {playlist}
                     </motion.p>
                   </div>
-                  <div className="mt-auto gap-1 flex flex-row items-center">
-                    <div className="rounded-full inline-flex items-center justify-center w-8 h-8 bg-slate-700">
-                      <PlayIcon className="w-3 h-3 fill-slate-200 text-slate-200" />
-                    </div>
+                  <div className="mt-auto gap-1 flex flex-row ml-auto sm:ml-0 items-center">
                     <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-slate-700">
                       <SkipBack className="w-3 h-3 fill-slate-200 text-slate-200" />
+                    </div>
+                    <div className="rounded-full inline-flex items-center justify-center w-8 h-8 bg-slate-700">
+                      <PlayIcon className="w-3 h-3 fill-slate-200 text-slate-200" />
                     </div>
                     <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-slate-700">
                       <SkipForward className="w-3 h-3 fill-slate-200 text-slate-200" />
@@ -158,25 +185,20 @@ function MusicPlayer(
                   </div>
                 </div>
               </div>
-              <div>
-                <div className="bg-gray-600 h-1 mt-1 w-96 rounded-full"></div>
+              <div className="relative">
+                <div className="bg-gray-600 h-1 mt-4 sm:mt-1 sm:w-96 w-72 rounded-full"></div>
                 <div className="flex justify-between mt-3 text-slate-600">
                   <div className="text-xs">0:00</div>
                   <div className="flex gap-2">
                     <Repeat2 className="h-4 w-4" />
                     <Shuffle className="h-4 w-4" />
                   </div>
-                  <motion.p
-                    layoutId={layoutIds["duration"]}
-                    className="text-xs"
-                  >
-                    {duration}
-                  </motion.p>
+                  <motion.p className="text-xs">{duration}</motion.p>
                 </div>
               </div>
             </div>
             <div className="absolute inset-0 h-full -z-10 w-full rounded-lg">
-              <div className="h-[65%] relative overflow-clip rounded-t-lg">
+              <div className="sm:h-[65%] h-[60%] relative overflow-clip rounded-t-lg">
                 <img
                   className="absolute blur-3xl inset-0 bg-cover bg-center opacity-30"
                   src={cover_url}
@@ -203,7 +225,7 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
   };
 
   return (
-    <>
+    <LayoutGroup>
       {isSelected && (
         <MusicPlayer
           {...props}
@@ -229,61 +251,68 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
           )}
           <motion.div
             layoutId={`playlist-item-${props.name}-${props.index}`}
-            className="grid grid-cols-[1fr,1fr,auto] gap-4 items-center w-full z-10"
-          >
+            className="inset-0 absolute bg-transparent -z-50 h-full w-full"
+          />
+          <motion.div className="grid grid-cols-2 sm:grid-cols-[auto,1fr,1fr,auto] gap-4 items-center w-full z-10">
+            <motion.p
+              key={`playlist-item-index-${props.index}`}
+              layoutId={`music-player-item-index-${props.index}`}
+              className="hidden sm:block sm:text-sm"
+            >
+              {props.index + 1}
+            </motion.p>
             <div className="flex items-center gap-4">
               <motion.img
                 src={props.cover_url}
                 className="h-10 w-10 rounded-md"
                 alt="Album cover"
                 layoutId={layoutIds["coverImg"]}
-              />
+              />{" "}
               <div>
                 <motion.p
                   layout
                   layoutId={layoutIds["name"]}
-                  className="text-sm font-medium"
+                  className="text-xs sm:text-sm font-medium"
                 >
                   {props.name}
                 </motion.p>
                 <motion.p
                   layoutId={layoutIds["artist"]}
-                  layout
                   className="text-xs text-gray-600"
                 >
                   {props.artist}
                 </motion.p>
               </div>
             </div>
-
             <motion.p
               layoutId={layoutIds["playlist"]}
               className="text-xs text-slate-500 text-left"
             >
               {props.playlist}
             </motion.p>
-
-            <div className="flex items-center gap-4">
-              <motion.p layoutId={layoutIds["duration"]} className="text-xs">
-                {props.duration}
-              </motion.p>
-              <DotsHorizontalIcon className="h-5 w-5" />
-            </div>
+            {!isSelected && (
+              <>
+                <div className="sm:flex hidden items-center gap-6">
+                  <motion.p className="text-xs">{props.duration}</motion.p>
+                  <DotsHorizontalIcon className="h-5 w-5" />
+                </div>
+              </>
+            )}{" "}
           </motion.div>
         </motion.div>
       </AnimatePresence>
-    </>
+    </LayoutGroup>
   );
 }
 
 export default function AnimatedLayout() {
   return (
     <CanvasWrapper
-      background="bg-slate-900/50"
+      background="bg-slate-100 dark:bg-slate-900/50"
       height="fit"
       caption="Framer Motion Magic ✨ Powerful Illusions"
     >
-      <div className="w-full h-full sm:p-4 flex flex-col relative">
+      <div className="w-full h-full px-4 py-2 sm:p-4 flex flex-col relative">
         {PLAYLIST_ITEMS.map((item, index) => (
           <PlaylistItem
             key={`playlist-item-${index}`}

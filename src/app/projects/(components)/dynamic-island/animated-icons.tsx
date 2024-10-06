@@ -4,9 +4,15 @@ import React, { useEffect, useState } from "react";
 import CanvasWrapper from "../react-fiber-experiment/canvas-wrapper";
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
+import { LucideIcon } from "lucide-react";
 
+interface AnimationRichButtonProps {
+  beforeIcon: LucideIcon;
+  afterIcon: LucideIcon;
+  loopIcons: boolean;
+}
 
-const AnimationRichButton = () => {
+const AnimationRichButton = (props: Partial<AnimationRichButtonProps>) => {
   const [copied, setCopied] = useState<boolean>(false);
   const variants = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -14,7 +20,7 @@ const AnimationRichButton = () => {
   };
 
   useEffect(() => {
-    if (copied) {
+    if (props.loopIcons && copied) {
       setTimeout(() => {
         setCopied(false);
       }, 3000);
@@ -23,7 +29,7 @@ const AnimationRichButton = () => {
 
   return (
     <button
-      onClick={() => setCopied(true)}
+      onClick={() => setCopied((prev) => !prev)}
       className="h-8 w-8 flex items-center justify-center rounded-lg dark:bg-slate-900 bg-slate-200 border-slate-300 text-slate-400 dark:border-slate-800 border"
     >
       <AnimatePresence mode={"wait"} initial={false}>
@@ -57,7 +63,7 @@ const AnimatedIcons = () => {
     <CanvasWrapper
       caption="Animated Copy Buttons"
       height="100px"
-      background="bg-transparent"
+      background="bg-transparent dark:bg-transparent"
     >
       <div className="flex flex-row h-full gap-2 justify-center items-center">
         <AnimationRichButton />
