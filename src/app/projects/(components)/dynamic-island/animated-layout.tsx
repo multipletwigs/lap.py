@@ -26,7 +26,7 @@ interface PlaylistItem {
   spotify_link: string;
 }
 
-const PLAYLIST_ITEMS: PlaylistItem = [
+const PLAYLIST_ITEMS: PlaylistItem[] = [
   {
     name: "帶你飛",
     artist: "告五人",
