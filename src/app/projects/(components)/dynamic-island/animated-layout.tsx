@@ -177,7 +177,7 @@ function MusicPlayer(
                   <div className="max-w-64 flex flex-col">
                     <motion.p
                       layoutId={layoutIds.artist}
-                      className="text-xs sm:text-md text-slate-300"
+                      className="text-xs sm:text-md dark:text-slate-300"
                     >
                       {artist}
                     </motion.p>
@@ -190,7 +190,7 @@ function MusicPlayer(
                     <motion.p
                       key={`web-player-${props.playlist}-${props.index}`}
                       layoutId={layoutIds["playlist"]}
-                      className="text-xs text-slate-300 sm:block hidden"
+                      className="text-xs dark:text-slate-300 sm:block hidden"
                     >
                       {playlist}
                     </motion.p>
