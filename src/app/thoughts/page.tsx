@@ -13,9 +13,6 @@ const Thoughts = () => {
           const cdate1 = metadata[article1.title];
           const cdate2 = metadata[article2.title];
 
-          if (!cdate1) console.log("MISSING 1", article1.title);
-          if (!cdate2) console.log("MISSING 2", article2.title);
-
           const date1 = dayjs(cdate1.cdate);
           const date2 = dayjs(cdate2.cdate);
           return date1.isAfter(date2) ? -1 : 1;
