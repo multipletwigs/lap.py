@@ -1,11 +1,17 @@
-"use client";
-
 import React from "react";
 import metadata, { Category } from "./(project-md)/directory";
 import ListItem from "@/components/list-item";
 import { Separator } from "@/components/ui/separator";
 import dayjs from "dayjs";
+import { Metadata, ResolvingMetadata } from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+  // Now fetch the correct metadata based on the found category
+  return {
+    title: `>ᴗ< Nightly | Experimentations and Showcases`,
+    description: `Let me show off some of the things I like to do...`,
+  };
+}
 const Projects = () => {
   return Object.keys(metadata).map((catTitle, idx) => {
     return (
@@ -17,8 +23,12 @@ const Projects = () => {
         <div className="flex flex-col gap-2">
           {Object.keys(metadata[catTitle as Category])
             .sort((article1, article2) => {
-              const date1 = dayjs(metadata[catTitle as Category][article1].cdate);
-              const date2 = dayjs(metadata[catTitle as Category][article2].cdate);
+              const date1 = dayjs(
+                metadata[catTitle as Category][article1].cdate,
+              );
+              const date2 = dayjs(
+                metadata[catTitle as Category][article2].cdate,
+              );
               return date1.isAfter(date2) ? -1 : 1;
             })
             .map((mdxTitle, idx) => {

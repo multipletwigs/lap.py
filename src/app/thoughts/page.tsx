@@ -3,6 +3,15 @@ import dayjs from "dayjs";
 import ListItem from "../../components/list-item";
 import metadata from "./(thoughts)/directory";
 import { getArticle } from "../(lib)/utils";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  // Now fetch the correct metadata based on the found category
+  return {
+    title: `>ᴗ< Nightly | Not Very Smart Thoughts`,
+    description: `Thoughts by me that is also largely false.`,
+  };
+}
 
 const Thoughts = () => {
   return (
