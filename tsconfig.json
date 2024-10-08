@@ -22,8 +22,16 @@
       "@/*": ["./src/*"],
       "@/projects/*": ["./src/app/projects/(project-md)/*"],
       "@/thoughts/*": ["./src/app/thoughts/(thought-md)/*"],
+      "public/*": ["./public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
