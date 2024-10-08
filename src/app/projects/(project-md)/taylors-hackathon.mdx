@@ -1,81 +1,95 @@
 import { AlertItem } from "@/components/alert";
-import { RocketIcon } from "@radix-ui/react-icons"
+import { RocketIcon } from "@radix-ui/react-icons";
+import Image, { StaticImageData } from "next/image";
+import photo11 from "public/projects/taylors-hackathon/resumetry-demo.gif";
 
 # 🎉 Resumetry! A Smarter Way to Screen Candidates
 
 <AlertItem
-title={"What I've learnt during this hackathon"}
-description={"This article includes the lessons I've learnt during this hackathon, both technical and design-wise. Feel free to skip around!"}
-icon={<RocketIcon/>}/>
+  title={"What I've learnt during this hackathon"}
+  description={
+    "This article includes the lessons I've learnt during this hackathon, both technical and design-wise. Feel free to skip around!"
+  }
+  icon={<RocketIcon />}
+/>
 
+<Image
+  src={photo11}
+  alt="Resumetry Demo"
+  fill={false}
+  className={"hover:cursor-pointer"}
+/>
 
-<img src="/projects/taylors-hackathon/resumetry-demo.gif" alt="Resumetry Demo"/>
-
-<br/>
-_We won second place - Thank you [Xin Le](https://www.linkedin.com/in/xin-le-lam), [Roy](https://www.linkedin.com/in/roy-ng-55ab58207) and Dylan for being such amazing teammates! 🎉 Here's the demo of [Resumetry](https://resumetry.vercel.app), along with its [GitHub Repo](https://github.com/multipletwigs/resumetry)!_
+<br />
+_We won second place - Thank you [Xin
+Le](https://www.linkedin.com/in/xin-le-lam),
+[Roy](https://www.linkedin.com/in/roy-ng-55ab58207) and Dylan for being such
+amazing teammates! 🎉 Here's the demo of
+[Resumetry](https://resumetry.vercel.app), along with its [GitHub
+Repo](https://github.com/multipletwigs/resumetry)!_
 
 ## 📝 Stop asking me boring questions!
 
 I still can't wrap my head around how job apps ask questions that should really be answered face-to-face. They end up so basic, right? Like, "Tell us about yourself" or "What are your strengths and weaknesses?" And don't get me started on the "Why do you want to work here?" bit. In this AI-driven world, who'd actually write those answers themselves?
 
-<br/>
+<br />
 
 I shared my frustration with my group, and we all felt the same way. We figured, why not ask more meaningful stuff? Like behavioral questions related to what's on your resume. That's where the hackathon idea came in. Here's the lowdown:...
 
-<br/>
+<br />
 
 ## 🤔 What's the process?
+
 1. **Submit your resume:** Begin by uploading your resume.
 2. **Automatic resume parsing:** The system will analyze your resume and extract pertinent information.
 3. **Receive tailored behavioral questions:** Resumetry will generate a series of behavioral questions derived from the extracted data!
 
-<br/>
+<br />
 
 The question goes from...
 
-<br/>
+<br />
 
 > "What are your strengths and weaknessess?"
 
-<br/>
+<br />
 
 to something more substantial, that can showcase your technical prowress as well.
 
-<br/>
+<br />
 
 > "Based on your resume, you worked at XXX Company before using XXX technology. Could you elaborate on how you used XXX technology to solve a problem at XXX Company?"
 
-<br/>
+<br />
 
 ## 🤖 Why this?
 
 The hackathon went down smack in the middle of ChatGPT's prime time. GPT-4 had just dropped, and hey, not jumping on that bandwagon would've been plain silly. We had to map out our route to victory. The options? Solve an existing problem with top-notch technical wizardry or craft a killer product using quick and dirty solutions. We went all-in on product design 'cause, you guessed it, GPT-4 was our golden ticket to winning.
 
-
-<br/>
+<br />
 
 Now, here's the thing: newbies often fixate on code quality and being super original, but truth is, judges don't give a hoot about your code per se. It's all about the idea and how you pull it off. That's why we were all about grabbing any open-source library we could lay our hands on to get the job done. Which leads me to my next point—always pick the right tool for the gig.
 
-<br/>
+<br />
 
 The techstack I used for the hackathon is as follows:
 
-<br/>
+<br />
 
 1. Chakra UI for the design system
 2. Next.js for the absurdly convenient intergration with Vercel for demo purposes
 3. Flask for the backend API as Python posesses the best document processing libraries and its seamless intergration with OpenAI-API.
-<br/>
+   <br />
 
 **Note, I do care about code quality and structure, but when it comes to winning hackathons, the focus needs to be on the product rather than the code.**
 
-<br/>
+<br />
 
 ## 💸 Creating a selling point
 
 The idea is awesome, but how does it stack up against the competition right now? We can't just whip up something in 24 hours and pass it off as a brand-new invention. That's when I really started appreciating the business students. They're always scouting for the next big thing. Their pitch? Market this as an integration for popular job application platforms like Indeed and LinkedIn instead! Pure genius!
 
-<br/>
+<br />
 
 ## ✨ Outcome of the competition
 
