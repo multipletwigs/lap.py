@@ -10,6 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `>ᴗ< Nightly | Experimentations and Showcases`,
     description: `Let me show off some of the things I like to do...`,
+    openGraph: {
+      images:
+        "https://pinata.nightly.ink/api/get-og?cid=bafybeif7bnf4zu2jfg2nzwdnhlp6ky66c3wg3jm5woj3yv7cpxwvyjnzgu",
+    },
   };
 }
 const Projects = () => {

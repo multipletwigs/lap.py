@@ -32,11 +32,16 @@ export default async function Image() {
         }}
       >
         <div>👋 Hello! This is nightly.ink 🌙✨</div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <div>📄 Welcome to my thoughts!</div>
           <div style={{ fontSize: 18, color: "#666" }}>
             Maybe you'll find rambling, don't think there's a lot of wisdom
-            there{" "}
+            there
           </div>
         </div>
       </div>
