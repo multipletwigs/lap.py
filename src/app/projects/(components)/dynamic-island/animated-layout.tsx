@@ -3,15 +3,12 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import CanvasWrapper from "../react-fiber-experiment/canvas-wrapper";
 import { DotsHorizontalIcon, StackIcon } from "@radix-ui/react-icons";
-import { Progress } from "@/components/ui/progress";
 import {
   SkipBack,
   SkipForward,
-  Heart,
   Repeat2,
   Shuffle,
   PlayIcon,
-  ExternalLink,
 } from "lucide-react";
 import { useOnClickOutside } from "usehooks-ts";
 import SpotifyExternalLink from "./external-spotify";
@@ -119,7 +116,7 @@ function MusicPlayer(
   const { artist, name, cover_url, duration, playlist, index, setIsSelected } =
     props;
   const outsideRef = useRef(null);
-  useOnClickOutside(outsideRef, () => {
+  useOnClickOutside(outsideRef as any, () => {
     setIsSelected(false);
   });
 
