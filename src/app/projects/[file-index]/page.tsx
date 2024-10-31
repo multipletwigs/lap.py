@@ -4,14 +4,12 @@ import metadata, { Category } from "../(project-md)/directory";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: { "file-index": string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ "file-index": string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   // Use find() to stop at the first match
   const page_metadata: any = Object.keys(metadata).find(
     (category) => metadata[category as Category][params["file-index"]],
@@ -45,7 +43,8 @@ export async function generateStaticParams() {
   }));
 }
 
-const ProjectsContent = ({ params }: { params: { "file-index": string } }) => {
+const ProjectsContent = async (props: { params: Promise<{ "file-index": string }> }) => {
+  const params = await props.params;
   return (
     <div>
       {Object.keys(metadata).map((category) => {

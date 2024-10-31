@@ -4,14 +4,12 @@ import metadata from "../(thoughts)/directory";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: { "file-index": string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ "file-index": string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   // Now fetch the correct metadata based on the found category
   const metadataDetails = metadata[params["file-index"]];
   if (!metadataDetails) {
@@ -37,7 +35,8 @@ export async function generateStaticParams() {
   }));
 }
 
-const ThoughtsContent = ({ params }: { params: { "file-index": string } }) => {
+const ThoughtsContent = async (props: { params: Promise<{ "file-index": string }> }) => {
+  const params = await props.params;
   return <div>{metadata[params["file-index"]].component}</div>;
 };
 

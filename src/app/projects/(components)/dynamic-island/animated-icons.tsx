@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, type JSX } from "react";
 import CanvasWrapper from "../react-fiber-experiment/canvas-wrapper";
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
