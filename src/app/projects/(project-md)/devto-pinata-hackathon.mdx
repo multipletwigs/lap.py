@@ -1,0 +1,22 @@
+import Image, { StaticImageData } from "next/image";
+import photo11 from "public/projects/pinata-hackathon/pinata-hackathon.gif";
+import { AlertItem } from "@/components/alert";
+import { RocketIcon } from "@radix-ui/react-icons";
+
+# DEVto Pinata Hackathon
+
+<AlertItem
+  title={"What I've learnt during this hackathon"}
+  description={
+    "This article includes the lessons I've learnt during this hackathon, both technical and design-wise. Feel free to skip around!"
+  }
+  icon={<RocketIcon />}
+/>
+
+<Image
+  src={photo11}
+  alt="Dell Hack2Hire Demo"
+  fill={false}
+  className={"hover:cursor-pointer"}
+  key={"dell hack2hire hackathon demo"}
+/>

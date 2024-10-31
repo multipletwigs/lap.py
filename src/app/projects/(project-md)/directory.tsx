@@ -8,10 +8,11 @@ import MusicPlayer from "@/projects/music-player.mdx";
 // Hackathons
 import DellHackathon from "@/projects/dell-hackathon.mdx";
 import TaylorsHackathon from "@/projects/taylors-hackathon.mdx";
+import PinataHackathon from "@/projects/devto-pinata-hackathon.mdx";
 
 // Academic and School
-import FYP from "@/projects/final-year-project.mdx";
-import UReview from "@/projects/ureview.mdx";
+// import FYP from "@/projects/final-year-project.mdx";
+// import UReview from "@/projects/ureview.mdx";
 
 // Open source work and projects
 import SprintMaster from "@/projects/sprintmaster.mdx";
@@ -47,10 +48,24 @@ const metadata: DirectoryMetadataWCat = {
   Hackathons: {
     "taylor-hackathon": {
       title: "taylor-hackathon",
-      displayTitle: "🥈 ImpactHack",
+      displayTitle: "🥈 Taylors ImpactHack",
       component: <TaylorsHackathon key={"Taylors-Hackathon"} />,
       description: "How Vercel and OpenAI won me a brief two day competition.",
       cdate: "2023-07-11",
+    },
+    "dell-hackathon": {
+      title: "dell-hackathon",
+      displayTitle: "🥉 Dell Hack2Hire",
+      component: <DellHackathon key={"Dell-Hackathon"} />,
+      description: "How Vercel and OpenAI won me a brief two day competition.",
+      cdate: "2022-11-05",
+    },
+    "devto-pinata-hackathon": {
+      title: "devto-pinata-hackathon",
+      displayTitle: "🥇 Dev.to Pinata Hackathon",
+      component: <PinataHackathon key={"Pinata-Hackathon"} />,
+      description: "How Vercel and OpenAI won me a brief two day competition.",
+      cdate: "2024-10-12",
     },
   },
   "Open Source and Projects": {

@@ -38,6 +38,7 @@ const Footer = () => {
       href={linkProps.href}
       target="_blank"
       rel="noopener noreferrer"
+      key={linkProps.href + linkProps.text}
     >
       {linkProps.text}
     </a>
@@ -68,7 +69,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex min-w-screen min-h-screen flex-col items-center px-5 py-12 sm:py-24">
-            <main className="w-full max-w-[640px]">
+            <main className="w-full max-w-[640px] lg:max-w-[680px]">
               <header className="flex justify-between flex-row gap-4 items-center mb-10">
                 <div className="flex flex-col items-start">
                   <h1 className="w-fit font-bold text-lg flex items-center justify-center">
