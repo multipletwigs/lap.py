@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const Footer = () => {
   const links = {
     twitter: {
-      href: "https://twitter.com/multipletwigs",
+      href: "https://twitter.com/bashtwigs",
       text: "Twitter",
     },
     github: {
