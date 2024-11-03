@@ -57,14 +57,16 @@ const metadata: DirectoryMetadataWCat = {
       title: "dell-hackathon",
       displayTitle: "🥉 Dell Hack2Hire",
       component: <DellHackathon key={"Dell-Hackathon"} />,
-      description: "How Vercel and OpenAI won me a brief two day competition.",
+      description:
+        "How Vercel, Prisma, Supabase and Chakra UI won me a brief two day competition.",
       cdate: "2022-11-05",
     },
     "devto-pinata-hackathon": {
       title: "devto-pinata-hackathon",
       displayTitle: "🥇 Dev.to Pinata Hackathon",
       component: <PinataHackathon key={"Pinata-Hackathon"} />,
-      description: "How Vercel and OpenAI won me a brief two day competition.",
+      description:
+        "How Vercel, Supabase, ShadcnUI and Pinata won me a brief two day competition.",
       cdate: "2024-10-12",
     },
   },
