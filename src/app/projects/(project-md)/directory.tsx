@@ -46,8 +46,8 @@ const metadata: DirectoryMetadataWCat = {
     },
   },
   Hackathons: {
-    "taylor-hackathon": {
-      title: "taylor-hackathon",
+    "taylors-hackathon": {
+      title: "taylors-hackathon",
       displayTitle: "🥈 Taylors ImpactHack",
       component: <TaylorsHackathon key={"Taylors-Hackathon"} />,
       description: "How Vercel and OpenAI won me a brief two day competition.",
