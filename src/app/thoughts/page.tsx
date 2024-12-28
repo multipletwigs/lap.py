@@ -8,8 +8,8 @@ import { Metadata, ResolvingMetadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   // Now fetch the correct metadata based on the found category
   return {
-    title: `>ᴗ< Nightly | Not Very Smart Thoughts`,
-    description: `Thoughts by me that is also largely false.`,
+    title: `Small peek into my life`,
+    description: `Random thoughts and view on things.`,
   };
 }
 

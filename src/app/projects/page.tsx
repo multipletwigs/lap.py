@@ -3,17 +3,13 @@ import metadata, { Category } from "./(project-md)/directory";
 import ListItem from "@/components/list-item";
 import { Separator } from "@/components/ui/separator";
 import dayjs from "dayjs";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   // Now fetch the correct metadata based on the found category
   return {
-    title: `>ᴗ< Nightly | Experimentations and Showcases`,
+    title: `Experimentations and Showcases`,
     description: `Let me show off some of the things I like to do...`,
-    openGraph: {
-      images:
-        "https://pinata.nightly.ink/api/get-og?cid=bafybeif7bnf4zu2jfg2nzwdnhlp6ky66c3wg3jm5woj3yv7cpxwvyjnzgu",
-    },
   };
 }
 const Projects = () => {

@@ -8,12 +8,15 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
   // Now fetch the correct metadata based on the found category
   const metadataDetails = metadata[params["file-index"]];
   if (!metadataDetails) {
-    return { title: ">ᴗ< Nightly | Does not exist :(" };
+    return { title: "Does not exist :(" };
   }
 
   // Now fetch the correct metadata based on the found category
@@ -35,7 +38,9 @@ export async function generateStaticParams() {
   }));
 }
 
-const ThoughtsContent = async (props: { params: Promise<{ "file-index": string }> }) => {
+const ThoughtsContent = async (props: {
+  params: Promise<{ "file-index": string }>;
+}) => {
   const params = await props.params;
   return <div>{metadata[params["file-index"]].component}</div>;
 };
