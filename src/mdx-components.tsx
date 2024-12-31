@@ -54,6 +54,34 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     code: ({ children }) => <CodeBlock>{children}</CodeBlock>,
     br: () => <br />,
+    table: ({ children }) => (
+      <div className="w-full overflow-x-auto my-4 scrollbar-hidden">
+        <table className="min-w-full border-collapse">{children}</table>
+      </div>
+    ),
+    thead: ({ children }) => (
+      <thead className="bg-slate-50 dark:bg-slate-800">{children}</thead>
+    ),
+    tbody: ({ children }) => (
+      <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+        {children}
+      </tbody>
+    ),
+    tr: ({ children }) => (
+      <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+        {children}
+      </tr>
+    ),
+    th: ({ children }) => (
+      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td className="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
+        {children}
+      </td>
+    ),
     ...components,
   };
 }

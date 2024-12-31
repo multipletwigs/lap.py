@@ -9,6 +9,7 @@ import MusicPlayer from "@/projects/music-player.mdx";
 import DellHackathon from "@/projects/dell-hackathon.mdx";
 import TaylorsHackathon from "@/projects/taylors-hackathon.mdx";
 import PinataHackathon from "@/projects/devto-pinata-hackathon.mdx";
+import SupabaseCTF from "@/projects/supabase-ctf.mdx";
 
 // Academic and School
 // import FYP from "@/projects/final-year-project.mdx";
@@ -68,6 +69,13 @@ const metadata: DirectoryMetadataWCat = {
       description:
         "How Vercel, Supabase, ShadcnUI and Pinata won me a brief two day competition.",
       cdate: "2024-10-12",
+    },
+    "supabase-ctf": {
+      title: "supabase-ctf",
+      displayTitle: "Supabase 2024 CTF Writeup",
+      component: <SupabaseCTF key={"supabase-ctf-writeup"} />,
+      description: "My first ever CTF, it was kinda fun",
+      cdate: "2024-12-28",
     },
   },
   "Open Source and Projects": {

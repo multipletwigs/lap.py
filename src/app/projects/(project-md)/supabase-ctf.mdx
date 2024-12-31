@@ -1,0 +1,95 @@
+import photo11 from "public/projects/supabase-ctf/ctf-flags.png";
+import { AlertItem } from "@/components/alert";
+import { RocketIcon } from "@radix-ui/react-icons";
+import Image, { StaticImageData } from "next/image";
+
+# Supabase CTF Writeup 2024~Saturday, 28 December 2024
+
+<AlertItem
+  title={"Detailed methods to solve each flag"}
+  description={
+    "It's my first time in a CTF and it was pretty fun but I think I can do better. Here's a detaled writeup for each flag and how I got them!"
+  }
+  icon={<RocketIcon />}
+/>
+
+Supabase recently launched a Capture The Flag (CTF) challenge as part of their Week 13 Mega Launch Week, I was bored so I decided to participate in this CTF because I had nothing better to do and I have been a long time user of Supabase. Although I was REALLY close to getting all 9 flags within the first few days, I was defeated by 3 flags that I didn't know could be found like that. But lets take a look at my scoreboard!
+
+<br />
+
+| description            | flag                                                         | score | found at         |
+| ---------------------- | ------------------------------------------------------------ | ----- | ---------------- |
+| scoped bulletins       | flag::easy::68e4b805974b53e322e52382e5ce387d1b13f325         | 50    | 12/09/2024 6:09  |
+| client side validation | flag::easy::4a7314c446cfb28b31118bc606a82627ac18779e         | 50    | 12/09/2024 7:36  |
+| hidden in html         | flag::easy::aecd9d79901a1251f845897b310c74b7e71d2531         | 50    | 12/09/2024 17:45 |
+| robots.txt             | flag::easy::456e4cf23533dafd6533c4d24d2599adb5e72583         | 50    | 12/10/2024 17:00 |
+| open schema            | flag::intermediate::602c6d77e8294687ceb9608f3df5d2f89adc31ae | 100   | 12/09/2024 18:04 |
+| sigma flag             | flag::expert::31d2750c77d11e0e629e633f872a688085e2d82f       | 200   | 12/10/2024 21:27 |
+
+## `~hidden in html::easy`
+
+Hitting F12 Inspect Element and a search for `~flag::` will get you the first flag! Here's a good [tweet](https://x.com/tristanbob/status/1865967563622220015) about it by Tristan Rhodes that explains some basic searching that you could do.
+
+## `~robots.txt::easy`
+
+They really do be hiding flags everywhere. `~robots.txt` is special file to inform web crawlers that are scanning your site on what they can see. Visiting `~/robots.txt` will get you the following.
+
+```
+User-agent: *
+Disallow: /api/
+Disallow: /super-private-do-not-enter/
+Allow: /
+```
+
+Visiting the `~/super-do-not-enter` path will get you the next flag you need.
+
+## `~client side validation::easy`
+
+If you try to sign up for an account through the web ui, you'll realize that you need a `~@miskatonicuniversity.us` email domain for it to work. It is very common for simple supabase projects to only have a proper frontend setup, after all with RLS and supabase-js clients, there's really no need for any server side code... right?
+
+<br />{" "}
+
+I did most of my hacking on this CTF by writing simple nice UI and using the _public_ supabase anon keys and project URL. Digging through the network tab and source files, you can get the following `~.env`'s.
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://ubssibzsnwtwbbvbhbvb.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+Just use these credentials to sign-up with a _personal_ email and you'll get to login! It has to be a personal email because you'll soon realize that they turned on email confirmation. So you must validate your email. This was annoying to solve due to rate limiting issues.
+
+```
+const { data, error } = await supabase.auth.signUp({
+  email: "anyemail@gmail.com",
+  password,
+});
+```
+
+After signing up, you can then go back to the UI and login, and viola! The flag will be in front of you!
+
+## `~scoped bulletins::easy`
+
+Honestly, everything is pretty easy once you got the Supabase URL and Anon key, from here you can discover so much information. Inspecting the network tab will let you see that they have requested their bulletin assets from a supabase storage bucket with the name `~university-news` scoped between a `~.gt` and `~.lt` date.
+
+```
+  const { data, error } = await supabase.storage
+    .from("university-news")
+    .list("");
+```
+
+Running this will get you everything from the bucket which also contains an `~easy::flag`. Along with a (misleading) `~README.md` that you can use for the expert flag hint!
+
+## `~open schema::intermediate`
+
+Supabase offers three default database schemas that you can access through the supabase-js clients. These three schemas are `~public`, `~information-schema`, and `~storage`.
+
+```
+const information = await supabase
+  .schema("information_schema")
+  .from("*")
+  .select();
+```
+
+Running this code will get you a HUGE json response about the underlying database. Remember that Supabase is really just postgresql underneath.
+
+<br />~ To be continued
