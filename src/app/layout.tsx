@@ -28,7 +28,7 @@ const Footer = () => {
     },
     instagram: {
       href: "https://instagram.com/its._.lapp",
-      text: "Instagram",
+      text: "Insta",
     },
   };
 
