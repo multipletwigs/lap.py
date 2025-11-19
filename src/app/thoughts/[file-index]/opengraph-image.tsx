@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
-import metadata from "../(thoughts)/directory";
+import { getMDXData } from "@/lib/mdx";
 
 // Route segment config
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 // Image metadata
 export const alt = "About Acme";
@@ -43,38 +43,44 @@ function NotFound() {
 export default async function Image({
   params,
 }: {
-  params: { "file-index": string };
+  params: Promise<{ "file-index": string }>;
 }) {
-  // Now fetch the correct metadata based on the found category
-  const metadataDetails = metadata[params["file-index"]];
-  if (!metadataDetails) {
-    return <NotFound />;
-  }
+  const { "file-index": fileIndex } = await params;
 
-  return new ImageResponse(
-    (
-      // ImageResponse JSX element
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100vh",
-          width: "100%",
-          padding: "10px 20px",
-          justifyContent: "space-between",
-          fontFamily: 'Inter, "Material Icons"',
-          fontSize: 28,
-          backgroundColor: "white",
-        }}
-      >
-        <div>👋 Hello! This is nightly.ink 🌙✨</div>
-        <div>
-          <div>📄 {metadataDetails.title}</div>
-          <div style={{ fontSize: 18, color: "#666" }}>
-            {metadataDetails.description}{" "}
+  try {
+    // Now fetch the correct metadata based on the found category
+    const { metadata: metadataDetails } = getMDXData(
+      "src/app/thoughts/(thoughts)",
+      fileIndex,
+    );
+
+    return new ImageResponse(
+      (
+        // ImageResponse JSX element
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100vh",
+            width: "100%",
+            padding: "10px 20px",
+            justifyContent: "space-between",
+            fontFamily: 'Inter, "Material Icons"',
+            fontSize: 28,
+            backgroundColor: "white",
+          }}
+        >
+          <div>👋 Hello! This is nightly.ink 🌙✨</div>
+          <div>
+            <div>📄 {metadataDetails.displayTitle}</div>
+            <div style={{ fontSize: 18, color: "#666" }}>
+              {metadataDetails.description}{" "}
+            </div>
           </div>
         </div>
-      </div>
-    ),
-  );
+      ),
+    );
+  } catch (e) {
+    return new ImageResponse(<NotFound />);
+  }
 }

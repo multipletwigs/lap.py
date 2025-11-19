@@ -1,7 +1,10 @@
-import { AlertItem } from "@/components/alert";
-import { RocketIcon } from "@radix-ui/react-icons";
-import Image, { StaticImageData } from "next/image";
-import photo11 from "public/projects/taylors-hackathon/resumetry-demo.gif";
+---
+title: "taylors-hackathon"
+displayTitle: "🥈 Taylors ImpactHack"
+description: "How Vercel and OpenAI won me a brief two day competition."
+cdate: "2023-07-11"
+category: "Hackathons"
+---
 
 # 🎉 Resumetry! A Smarter Way to Screen Candidates
 
@@ -14,11 +17,11 @@ import photo11 from "public/projects/taylors-hackathon/resumetry-demo.gif";
 />
 
 <Image
-  src={photo11}
+  src="/projects/taylors-hackathon/resumetry-demo.gif"
   alt="Resumetry Demo"
-  fill={false}
+  width={800}
+  height={450}
   className={"hover:cursor-pointer"}
-  key={"resumetry demo"}
 />
 
 <br />
