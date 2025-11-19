@@ -66,26 +66,29 @@ export const TabNavigation = () => {
   const pathName = `/${usePathname().split("/")[1]}`;
 
   return (
-    <NavigationMenu className="hidden md:block">
-      <NavigationMenuList>
-        {Object.values(NavBarCopy).map((item) => {
-          return (
-            <NavigationMenuItem key={item.triggerName}>
-              {item.link && (
-                <Link href={item.link.href} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={navigationMenuTriggerStyle({
-                      selected: pathName === item.link.href,
-                    })}
-                  >
-                    {item.link.text}
-                  </NavigationMenuLink>
-                </Link>
-              )}
-            </NavigationMenuItem>
-          );
-        })}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="flex flex-col gap-1">
+      {Object.values(NavBarCopy).map((item) => {
+        if (!item.link) return null;
+        const isActive = pathName === item.link.href;
+        return (
+          <Link
+            key={item.triggerName}
+            href={item.link.href}
+            className={`px-3 py-2 rounded-lg transition-all duration-200 ${
+              isActive
+                ? "text-foreground bg-foreground/5"
+                : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
+            }`}
+            style={{ 
+              fontSize: 'clamp(14px, 1.3vw, 15px)',
+              fontWeight: isActive ? 500 : 400,
+              letterSpacing: '-0.01em'
+            }}
+          >
+            {item.link.text}
+          </Link>
+        );
+      })}
+    </div>
   );
 };

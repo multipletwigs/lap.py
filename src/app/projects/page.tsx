@@ -4,46 +4,55 @@ import ListItem from "@/components/list-item";
 import { Separator } from "@/components/ui/separator";
 import dayjs from "dayjs";
 import { Metadata } from "next";
+import { AutoBreadcrumbs } from "@/components/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
-  // Now fetch the correct metadata based on the found category
   return {
     title: `Experimentations and Showcases`,
     description: `Let me show off some of the things I like to do...`,
   };
 }
+
 const Projects = () => {
-  return Object.keys(metadata).map((catTitle, idx) => {
-    return (
-      <h1 key={catTitle + idx}>
-        {/* Temporary fix to reduce layout shift */}
-        {idx !== 0 && <Separator className="my-4" />}
-        <div className="mb-4">{catTitle}</div>
-        {/* Temporary fix to reduce layout shift */}
-        <div className="flex flex-col gap-2">
-          {Object.keys(metadata[catTitle as Category])
-            .sort((article1, article2) => {
-              const date1 = dayjs(
-                metadata[catTitle as Category][article1].cdate,
-              );
-              const date2 = dayjs(
-                metadata[catTitle as Category][article2].cdate,
-              );
-              return date1.isAfter(date2) ? -1 : 1;
-            })
-            .map((mdxTitle, idx) => {
-              return (
-                <ListItem
-                  key={mdxTitle + idx}
-                  MDXMetadata={metadata[catTitle as Category][mdxTitle]}
-                  route={"projects"}
-                />
-              );
-            })}
-        </div>
-      </h1>
-    );
-  });
+  return (
+    <div className="flex flex-col gap-8">
+      <AutoBreadcrumbs 
+        customTitle="Projects"
+        customDescription="Experimentations and showcases of things I like to do."
+      />
+      <div className="flex flex-col">
+        {Object.keys(metadata).map((catTitle, idx) => {
+          return (
+            <div key={catTitle + idx}>
+              {idx !== 0 && <Separator className="my-4" />}
+              <h1 className="mb-4">{catTitle}</h1>
+              <div className="flex flex-col gap-2">
+                {Object.keys(metadata[catTitle as Category])
+                  .sort((article1, article2) => {
+                    const date1 = dayjs(
+                      metadata[catTitle as Category][article1].cdate,
+                    );
+                    const date2 = dayjs(
+                      metadata[catTitle as Category][article2].cdate,
+                    );
+                    return date1.isAfter(date2) ? -1 : 1;
+                  })
+                  .map((mdxTitle, idx) => {
+                    return (
+                      <ListItem
+                        key={mdxTitle + idx}
+                        MDXMetadata={metadata[catTitle as Category][mdxTitle]}
+                        route={"projects"}
+                      />
+                    );
+                  })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Projects;

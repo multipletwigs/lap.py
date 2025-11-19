@@ -1,14 +1,15 @@
 import React from "react";
 import fs from "fs";
 import metadata, { Category } from "../(project-md)/directory";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
+import { ContentRailNavigation, AutoBreadcrumbs } from "@/components/navigation";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ "file-index": string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   // Use find() to stop at the first match
   const page_metadata: any = Object.keys(metadata).find(
@@ -43,16 +44,36 @@ export async function generateStaticParams() {
   }));
 }
 
-const ProjectsContent = async (props: { params: Promise<{ "file-index": string }> }) => {
-  const params = await props.params;
+const ProjectsContent = async ({ params }: Props) => {
+  const resolvedParams = await params;
+  const slug = resolvedParams["file-index"];
+
+  // Find the project across all categories
+  let project = null;
+  let projectCategory = null;
+
+  for (const category of Object.keys(metadata)) {
+    const found = metadata[category as Category][slug];
+    if (found) {
+      project = found;
+      projectCategory = category;
+      break;
+    }
+  }
+
+  if (!project) {
+    notFound();
+  }
+
   return (
-    <div>
-      {Object.keys(metadata).map((category) => {
-        // ignore if undefined
-        if (metadata[category as Category][params["file-index"]])
-          return metadata[category as Category][params["file-index"]].component;
-      })}
-    </div>
+    <article className="flex flex-col gap-8">
+      <AutoBreadcrumbs
+        customTitle={project.displayTitle}
+        customDescription={project.description}
+      />
+      <ContentRailNavigation label="Navigate" />
+      <div className="space-y-6">{project.component}</div>
+    </article>
   );
 };
 

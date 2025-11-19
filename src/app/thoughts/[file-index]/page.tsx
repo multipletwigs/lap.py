@@ -1,25 +1,21 @@
 import React from "react";
 import fs from "fs";
 import metadata from "../(thoughts)/directory";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
+import { ContentRailNavigation, AutoBreadcrumbs } from "@/components/navigation";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ "file-index": string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-  props: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  // Now fetch the correct metadata based on the found category
   const metadataDetails = metadata[params["file-index"]];
   if (!metadataDetails) {
     return { title: "Does not exist :(" };
   }
 
-  // Now fetch the correct metadata based on the found category
   return {
     title: `>ᴗ< Nightly | ${metadataDetails.displayTitle}`,
     description: `${metadataDetails.description}`,
@@ -38,11 +34,25 @@ export async function generateStaticParams() {
   }));
 }
 
-const ThoughtsContent = async (props: {
-  params: Promise<{ "file-index": string }>;
-}) => {
-  const params = await props.params;
-  return <div>{metadata[params["file-index"]].component}</div>;
+const ThoughtsContent = async ({ params }: Props) => {
+  const resolvedParams = await params;
+  const slug = resolvedParams["file-index"];
+  const thought = metadata[slug];
+
+  if (!thought) {
+    notFound();
+  }
+
+  return (
+    <article className="flex flex-col gap-8">
+      <AutoBreadcrumbs
+        customTitle={thought.displayTitle}
+        customDescription={thought.description}
+      />
+      <ContentRailNavigation label="Navigate" />
+      <div className="space-y-6">{thought.component}</div>
+    </article>
+  );
 };
 
 export default ThoughtsContent;

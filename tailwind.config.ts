@@ -18,6 +18,9 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        playfair: ["var(--font-playfair)"],
+      },
       gridTemplateColumns: {
         // Custom grid configuration for mobile (3 columns)
         "custom-3": "1fr 1fr auto",
@@ -43,6 +46,7 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "secondary-bg": "hsl(var(--secondary-bg))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

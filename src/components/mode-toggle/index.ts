@@ -1,3 +1,4 @@
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle, SimpleToggle } from "./mode-toggle";
 
 export default ModeToggle;
+export { SimpleToggle };

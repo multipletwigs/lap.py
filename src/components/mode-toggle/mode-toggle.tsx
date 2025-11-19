@@ -66,3 +66,44 @@ export function ModeToggle() {
     </DropdownMenu>
   );
 }
+
+export function SimpleToggle() {
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === "dark";
+
+  return (
+    <button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
+      style={{ fontSize: 'clamp(12px, 1.1vw, 13px)', fontWeight: 400 }}
+    >
+      <div className="flex items-center gap-1.5">
+        <SunIcon className="h-3.5 w-3.5 text-muted-foreground" />
+        <span className="text-muted-foreground">Light</span>
+      </div>
+      <div 
+        className={`relative w-9 h-5 rounded-full transition-colors ${
+          isDark ? 'bg-foreground/20' : 'bg-foreground/10'
+        }`}
+      >
+        <div 
+          className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-foreground transition-transform ${
+            isDark ? 'translate-x-4' : 'translate-x-0'
+          }`}
+        />
+      </div>
+      <div className="flex items-center gap-1.5">
+        <span className="text-muted-foreground">Dark</span>
+        <MoonIcon className="h-3.5 w-3.5 text-muted-foreground" />
+      </div>
+    </button>
+  );
+}
