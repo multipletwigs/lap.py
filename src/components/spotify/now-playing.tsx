@@ -93,7 +93,7 @@ export function NowPlaying() {
         damping: 20,
       }}
       style={{ borderRadius: 12 }}
-      className="bg-foreground/5 border border-border/40 overflow-hidden"
+      className="border border-border/40 overflow-hidden bg-background"
     >
       {!data.isPlaying ? (
         <a

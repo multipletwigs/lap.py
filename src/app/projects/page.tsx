@@ -15,8 +15,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const Projects = () => {
   return (
-    <div className="flex flex-col gap-8">
-      <AutoBreadcrumbs 
+    <div className="flex flex-col gap-2 lg:gap-8">
+      <AutoBreadcrumbs
         customTitle="Projects"
         customDescription="Experimentations and showcases of things I like to do."
       />

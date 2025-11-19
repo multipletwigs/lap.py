@@ -2,20 +2,21 @@
 
 import { usePathname } from "next/navigation";
 import { ContentRailNavigation } from "../components/navigation/content-rail";
-import { TimeWidget } from "../components/widgets/user-info";
+import { ThemeSwitcher, TimeWidget } from "../components/widgets/user-info";
 
 export function LayoutNavigation() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   return (
-    <nav className={isHomePage ? "" : "mb-8"}>
+    <nav className={isHomePage ? "" : "m-4 lg:m-0 lg:mb-8"}>
       <div className="flex items-center justify-between gap-4">
-        <div className="max-w-fit">
+        <div className="max-w-fit overflow-x-auto scrollbar-hidden -mx-4 px-4 lg:mx-0 lg:px-0">
           <ContentRailNavigation label="Navigate" />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2">
           <TimeWidget />
+          <ThemeSwitcher />
         </div>
       </div>
     </nav>

@@ -66,7 +66,7 @@ const ProjectsContent = async ({ params }: Props) => {
   }
 
   return (
-    <article className="flex flex-col gap-4">
+    <article className="flex flex-col lg:gap-4">
       <AutoBreadcrumbs
         customTitle={project.displayTitle}
         customDescription={project.description}

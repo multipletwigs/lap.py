@@ -97,11 +97,11 @@ export function Sidebar() {
       </div>
 
       {/* Spotify Now Playing - Absolutely positioned at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 pb-20 z-10 bg-background">
+      <div className="absolute bottom-0 left-0 right-0 pb-20 z-10">
         <NowPlaying />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 pt-6 border-t border-border/40 bg-background z-20">
+      <div className="absolute bottom-0 left-0 right-0 pt-6 border-t border-border/40 z-20">
         <p
           className="text-muted-foreground/60"
           style={{ fontSize: 'clamp(11px, 1vw, 12px)', fontWeight: 400 }}

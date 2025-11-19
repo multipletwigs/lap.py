@@ -10,10 +10,10 @@ interface AutoBreadcrumbsProps {
   customDescription?: string;
 }
 
-export function AutoBreadcrumbs({ 
-  className, 
+export function AutoBreadcrumbs({
+  className,
   customTitle,
-  customDescription 
+  customDescription
 }: AutoBreadcrumbsProps) {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
@@ -49,7 +49,7 @@ export function AutoBreadcrumbs({
       // Fallback: capitalize the segment
       breadcrumbItems.push({
         ...(isLast ? {} : { href }),
-        label: segment.split("-").map(word => 
+        label: segment.split("-").map(word =>
           word.charAt(0).toUpperCase() + word.slice(1)
         ).join(" "),
       });
@@ -57,7 +57,7 @@ export function AutoBreadcrumbs({
   });
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1 lg:space-y-2 my-4 lg:my-0">
       <ContentBreadcrumbs items={breadcrumbItems} className={className} />
       {customDescription && (
         <p className="text-muted-foreground/90 text-sm leading-relaxed max-w-2xl">

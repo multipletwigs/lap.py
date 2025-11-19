@@ -12,6 +12,8 @@ import { Playfair_Display } from "next/font/google";
 import { Sidebar } from "./sidebar";
 import { LayoutNavigation } from "./layout-navigation";
 import { ViewTransitions } from "next-view-transitions";
+import { MobileSidebar } from "@/components/mobile-sidebar";
+import { TimeWidget } from "@/components/widgets/user-info";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
@@ -37,35 +39,40 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <header className="lg:hidden fixed top-0 left-0 right-0 bg-background border-b border-border z-50 px-5 py-4">
+            <MobileSidebar />
+            <header className="lg:hidden fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50 px-4 py-3">
               <div className="flex justify-between items-center">
-                <h1 className="font-bold text-lg">Zachary</h1>
+                <div className="flex items-center gap-2">
+                  <h1 className="font-playfair font-bold text-xl tracking-tight">nightly.ink</h1>
+                </div>
                 <div className="flex gap-2 items-center">
-                  <ModeToggle />
+                  <div className="scale-90 origin-right">
+                    <TimeWidget />
+                  </div>
                   <DropdownNavigation />
+                  <ModeToggle />
                 </div>
               </div>
             </header>
 
-            <div className="min-h-screen flex items-center justify-center px-4 py-4 lg:py-8">
-              <div className="w-full max-w-6xl flex gap-8 h-[calc(100vh-2rem)] lg:h-[calc(100vh-4rem)]">
+            <div className="min-h-screen flex items-center justify-center px-0 py-16 lg:px-4 lg:py-8">
+              <div className="w-full max-w-6xl flex gap-8 h-[calc(100vh-6rem)] lg:h-[calc(100vh-4rem)]">
                 <aside className="hidden lg:flex lg:flex-col lg:w-72 flex-shrink-0">
                   <Sidebar />
                 </aside>
-                <main className="flex-1 bg-secondary-bg grid-background rounded-xl overflow-hidden flex flex-col mt-16 lg:mt-0">
+                <main className="flex-1 lg:bg-secondary-bg lg:grid-background lg:rounded-xl lg:overflow-hidden flex flex-col mt-0 lg:mt-0">
                   <div className="flex-1 overflow-y-auto relative z-10">
-                    <div className="px-6 py-6 lg:px-12 lg:py-8 relative">
-                      {/* Navigation */}
-                      <div className="hidden lg:block">
+                    <div className="px-5 py-1 lg:px-12 lg:py-8 relative">
+                      {/* Navigation - Visible on all screens now for content rail */}
+                      <div className="hidden lg:block mb-6">
                         <LayoutNavigation />
                       </div>
-                      <div style={{ viewTransitionName: 'page-content' }}>
+                      <div className="page-content-wrapper">
                         {children}
                       </div>
                     </div>
                   </div>
                 </main>
-
               </div>
             </div>
 
@@ -77,3 +84,8 @@ export default function RootLayout({
     </ViewTransitions>
   );
 }
+
+
+
+
+

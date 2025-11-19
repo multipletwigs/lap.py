@@ -20,9 +20,9 @@
   }
 
   :root {
-    --background: 0 0% 100%;
+    --background: 36 100% 99%;
     --foreground: 222.2 84% 4.9%;
-    --secondary-bg: 0 0% 96%;
+    --secondary-bg: 36 30% 96%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -157,6 +157,15 @@
   }
 
   /* View transitions - only animate page content */
+  .page-content-wrapper {
+    view-transition-name: page-content;
+  }
+
+  /* Disable specific view transition for content during theme switch so it's included in the root wipe */
+  .theme-transition .page-content-wrapper {
+    view-transition-name: none;
+  }
+
   ::view-transition-old(page-content),
   ::view-transition-new(page-content) {
     animation-duration: 0.3s;
@@ -194,6 +203,31 @@
     }
     100% {
       transform: translateX(100%);
+    }
+  }
+
+  /* Theme transition styles */
+  .theme-transition::view-transition-old(root),
+  .theme-transition::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  .theme-transition::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  .theme-transition::view-transition-new(root) {
+    z-index: 9999;
+    animation: wipe-in 1s cubic-bezier(0.87, 0, 0.13, 1) forwards;
+  }
+
+  @keyframes wipe-in {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
     }
   }
 }

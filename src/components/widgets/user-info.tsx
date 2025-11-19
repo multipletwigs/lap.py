@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Clock, CloudRain, CloudSun, Cloud, Sun, CloudSnow } from "lucide-react";
+import { flushSync } from "react-dom";
+import { Clock, CloudRain, CloudSun, Cloud, Sun, CloudSnow, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function TimeWidget() {
   const [time, setTime] = useState<string>("");
@@ -94,5 +96,54 @@ export function WeatherWidget() {
       {getWeatherIcon(weather.condition)}
       <span>{weather.temp}°F</span>
     </div>
+  );
+}
+
+export function ThemeSwitcher() {
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const toggleTheme = () => {
+    const isDark = resolvedTheme === "dark";
+    const newTheme = isDark ? "light" : "dark";
+
+    // @ts-ignore
+    if (!document.startViewTransition) {
+      setTheme(newTheme);
+      return;
+    }
+
+    document.documentElement.classList.add("theme-transition");
+
+    // @ts-ignore
+    const transition = document.startViewTransition(() => {
+      flushSync(() => {
+        setTheme(newTheme);
+      });
+    });
+
+    transition.finished.then(() => {
+      document.documentElement.classList.remove("theme-transition");
+    });
+  };
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="inline-flex items-center justify-center rounded-lg w-9 h-9 bg-background/60 border border-border/50 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors animate-in fade-in slide-in-from-right-2 duration-500 delay-200"
+    >
+      {resolvedTheme === "dark" ? (
+        <Moon className="w-4 h-4" />
+      ) : (
+        <Sun className="w-4 h-4" />
+      )}
+      <span className="sr-only">Toggle theme</span>
+    </button>
   );
 }

@@ -18,7 +18,8 @@ import { ReactNode } from "react";
 import NavBarCopy from "./labels";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CheckIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { CheckIcon } from "@radix-ui/react-icons";
+import { MoreHorizontal } from "lucide-react";
 
 export interface NavigationItemProps {
   triggerName: string;
@@ -33,11 +34,11 @@ export const DropdownNavigation = () => {
   const pathName = `/${usePathname().split("/")[1]}`;
 
   return (
-    <div className="block md:hidden">
+    <div className="block">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="square-icon">
-            <HamburgerMenuIcon className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-9 w-9">
+            <MoreHorizontal className="h-5 w-5 text-muted-foreground" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
