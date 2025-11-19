@@ -1,35 +1,42 @@
 import React from "react";
-import ListItem from "@/components/list-item";
 import dayjs from "dayjs";
-import { getAllMDXData } from "@/lib/mdx";
-import { Metadata } from "next";
+import ListItem from "../../components/list-item";
+import metadata from "./(thoughts)/directory";
+import { getArticle } from "../(lib)/utils";
+import { Metadata, ResolvingMetadata } from "next";
 
-export const metadata: Metadata = {
-  title: `Small peek into my life`,
-  description: `Random thoughts and view on things.`,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  // Now fetch the correct metadata based on the found category
+  return {
+    title: `Small peek into my life`,
+    description: `Random thoughts and view on things.`,
+  };
+}
 
-export default function Thoughts() {
-  const allThoughts = getAllMDXData("src/app/thoughts/(thoughts)");
-
-  const sortedThoughts = allThoughts.sort((a, b) => {
-    const date1 = dayjs(a.metadata.cdate);
-    const date2 = dayjs(b.metadata.cdate);
-    return date1.isAfter(date2) ? -1 : 1;
-  });
-
+const Thoughts = () => {
   return (
     <div className="flex flex-col gap-4">
-      {sortedThoughts.map((thought) => (
-        <ListItem
-          key={thought.slug}
-          MDXMetadata={{
-            ...thought.metadata,
-            title: thought.slug,
-          }}
-          route={"thoughts"}
-        />
-      ))}
+      {getArticle("./src/app/thoughts/(thoughts)")
+        .filter((thought) => thought.title !== "directory.tsx")
+        .sort((article1, article2) => {
+          const cdate1 = metadata[article1.title];
+          const cdate2 = metadata[article2.title];
+
+          const date1 = dayjs(cdate1.cdate);
+          const date2 = dayjs(cdate2.cdate);
+          return date1.isAfter(date2) ? -1 : 1;
+        })
+        .map((thought) => {
+          return (
+            <ListItem
+              key={thought.title}
+              MDXMetadata={metadata[thought.title]}
+              route={"thoughts"}
+            />
+          );
+        })}
     </div>
   );
-}
+};
+
+export default Thoughts;

@@ -6,22 +6,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useLayoutEffect, useRef, useState, ReactNode } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { MDXDirMetadata } from "@/app/thoughts/(thoughts)/directory";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 dayjs.extend(LocalizedFormat)
 
-export interface ListItemMetadata {
-  title: string;
-  displayTitle: string;
-  cdate: string;
-  description?: string;
-  // component is no longer needed for the list item itself
-}
-
 export interface ListItemProp {
-  MDXMetadata: ListItemMetadata;
+  MDXMetadata: MDXDirMetadata;
   route: "projects" | "thoughts";
 }
 

@@ -1,10 +1,7 @@
----
-title: "dell-hackathon"
-displayTitle: "🥉 Dell Hack2Hire"
-description: "How Vercel, Prisma, Supabase and Chakra UI won me a brief two day competition."
-cdate: "2022-11-05"
-category: "Hackathons"
----
+import Image, { StaticImageData } from "next/image";
+import photo11 from "public/projects/dell-hackathon/demo.png";
+import { AlertItem } from "@/components/alert";
+import { RocketIcon } from "@radix-ui/react-icons";
 
 # 🥉 Dell Hack2Hire Hackathon
 
@@ -17,11 +14,11 @@ category: "Hackathons"
 />
 
 <Image
-  src="/projects/dell-hackathon/demo.png"
+  src={photo11}
   alt="Dell Hack2Hire Demo"
-  width={800}
-  height={450}
+  fill={false}
   className={"hover:cursor-pointer"}
+  key={"dell hack2hire hackathon demo"}
 />
 
 <br />

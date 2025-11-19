@@ -1,68 +1,59 @@
 import React from "react";
-import { getMDXData, getMDXFiles } from "@/lib/mdx";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
-
-// Components used in MDX
-import ArcGradientCard from "@/app/projects/(components)/arc-gradient-card";
-import {
-  AnimatedIcons,
-  AnimatedLayout,
-} from "@/app/projects/(components)/dynamic-island";
-import { AlertItem } from "@/components/alert";
-import { RocketIcon } from "@radix-ui/react-icons";
-import Image from "next/image";
-
-const components = {
-  ArcGradientCard,
-  AnimatedIcons,
-  AnimatedLayout,
-  AlertItem,
-  RocketIcon,
-  Image,
-};
+import fs from "fs";
+import metadata, { Category } from "../(project-md)/directory";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: Promise<{ "file-index": string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const slug = params["file-index"];
-  
-  try {
-    const { metadata } = getMDXData("src/app/projects/(project-md)", slug);
-    return {
-      title: `>ᴗ< Nightly | ${metadata.displayTitle}`,
-      description: metadata.description,
-    };
-  } catch (e) {
+  // Use find() to stop at the first match
+  const page_metadata: any = Object.keys(metadata).find(
+    (category) => metadata[category as Category][params["file-index"]],
+  );
+
+  if (!page_metadata) {
     return {
       title: ">ᴗ< Nightly | Does not exist :(",
     };
   }
+
+  // Now fetch the correct metadata based on the found category
+  const metadataDetails =
+    metadata[page_metadata as Category][params["file-index"]];
+
+  return {
+    title: `>ᴗ< Nightly | ${metadataDetails.displayTitle}`,
+    description: `${metadataDetails.description}`,
+  };
 }
 
 export async function generateStaticParams() {
-  const files = getMDXFiles("src/app/projects/(project-md)");
-  return files.map((file) => ({
-    "file-index": file.replace(".mdx", ""),
+  const projects = fs
+    .readdirSync("./src/app/projects/(project-md)")
+    .filter((project) => {
+      return project.includes(".mdx");
+    });
+
+  return projects.map((project) => ({
+    "file-index": project.replace(".mdx", ""),
   }));
 }
 
-export default async function ProjectPage(props: Props) {
+const ProjectsContent = async (props: { params: Promise<{ "file-index": string }> }) => {
   const params = await props.params;
-  const slug = params["file-index"];
+  return (
+    <div>
+      {Object.keys(metadata).map((category) => {
+        // ignore if undefined
+        if (metadata[category as Category][params["file-index"]])
+          return metadata[category as Category][params["file-index"]].component;
+      })}
+    </div>
+  );
+};
 
-  try {
-    const { content } = getMDXData("src/app/projects/(project-md)", slug);
-    return (
-      <div>
-        <MDXRemote source={content} components={components} />
-      </div>
-    );
-  } catch (e) {
-    notFound();
-  }
-}
+export default ProjectsContent;

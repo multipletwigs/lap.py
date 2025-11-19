@@ -1,55 +1,48 @@
 import React from "react";
-import { getMDXData, getMDXFiles } from "@/lib/mdx";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
-
-import ImageGrid from "@/app/thoughts/(components)/photoshoot";
-
-const components = {
-  ImageGrid,
-};
+import fs from "fs";
+import metadata from "../(thoughts)/directory";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: Promise<{ "file-index": string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
-  const slug = params["file-index"];
-  
-  try {
-    const { metadata } = getMDXData("src/app/thoughts/(thoughts)", slug);
-    return {
-      title: `>ᴗ< Nightly | ${metadata.displayTitle}`,
-      description: metadata.description,
-    };
-  } catch (e) {
-    return {
-      title: ">ᴗ< Nightly | Does not exist :(",
-    };
+  // Now fetch the correct metadata based on the found category
+  const metadataDetails = metadata[params["file-index"]];
+  if (!metadataDetails) {
+    return { title: "Does not exist :(" };
   }
+
+  // Now fetch the correct metadata based on the found category
+  return {
+    title: `>ᴗ< Nightly | ${metadataDetails.displayTitle}`,
+    description: `${metadataDetails.description}`,
+  };
 }
 
 export async function generateStaticParams() {
-  const files = getMDXFiles("src/app/thoughts/(thoughts)");
-  return files.map((file) => ({
-    "file-index": file.replace(".mdx", ""),
+  const thoughts = fs
+    .readdirSync("./src/app/thoughts/(thoughts)")
+    .filter((thought) => {
+      return thought.includes(".mdx");
+    });
+
+  return thoughts.map((thought) => ({
+    "file-index": thought.replace(".mdx", ""),
   }));
 }
 
-export default async function ThoughtPage(props: Props) {
+const ThoughtsContent = async (props: {
+  params: Promise<{ "file-index": string }>;
+}) => {
   const params = await props.params;
-  const slug = params["file-index"];
+  return <div>{metadata[params["file-index"]].component}</div>;
+};
 
-  try {
-    const { content } = getMDXData("src/app/thoughts/(thoughts)", slug);
-    return (
-      <div>
-        <MDXRemote source={content} components={components} />
-      </div>
-    );
-  } catch (e) {
-    notFound();
-  }
-}
+export default ThoughtsContent;
