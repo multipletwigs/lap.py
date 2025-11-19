@@ -18,7 +18,7 @@ export function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col h-full relative">
+    <div className="flex flex-col min-h-full relative">
       <div className="mb-8 -mx-2">
         <div className="relative w-full h-32 overflow-hidden rounded-xl">
           <Image
@@ -92,24 +92,26 @@ export function Sidebar() {
         </p>
       </div>
 
-      <div className="flex-1 mb-32">
+      <div className="flex-1">
         <EmploymentTimeline />
       </div>
 
-      {/* Spotify Now Playing - Absolutely positioned at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 pb-20 z-10">
-        <NowPlaying />
+      {/* Footer section - Pinned to bottom on desktop, flow naturally on mobile */}
+      <div className="mt-auto pt-8 sticky bottom-0 bg-background pb-6 z-20 flex flex-col gap-6">
+        <div className="relative">
+          {/* NowPlaying has its own absolute positioning when expanded to prevent layout shift */}
+          <NowPlaying />
+        </div>
+        
+        <div className="pt-6 border-t border-border/40">
+          <p
+            className="text-muted-foreground/60"
+            style={{ fontSize: 'clamp(11px, 1vw, 12px)', fontWeight: 400 }}
+          >
+            {dayjs().year()} © Zach Khong
+          </p>
+        </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 pt-6 border-t border-border/40 z-20">
-        <p
-          className="text-muted-foreground/60"
-          style={{ fontSize: 'clamp(11px, 1vw, 12px)', fontWeight: 400 }}
-        >
-          {dayjs().year()} © Zach Khong
-        </p>
-      </div>
-
     </div>
   )
 }
