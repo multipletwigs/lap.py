@@ -106,4 +106,94 @@
   table, [data-tabular] {
     font-variant-numeric: tabular-nums;
   }
+
+  /* Fluid typography for MDX content */
+  .mdx-h1 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mdx-h2 {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mdx-paragraph {
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .mdx-link {
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .mdx-blockquote {
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  /* Subtle grid background */
+  .grid-background {
+    position: relative;
+  }
+
+  .grid-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, hsl(var(--border) / 0.2) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+    mask-image: radial-gradient(ellipse at center, transparent 0%, black 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, black 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* View transitions - only animate page content */
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.3s;
+  }
+
+  ::view-transition-old(page-content) {
+    animation-name: fade-out;
+  }
+
+  ::view-transition-new(page-content) {
+    animation-name: fade-in;
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes wave-slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }

@@ -43,7 +43,7 @@ export const AnimationRichButton = (
         setCopied((prev) => !prev);
         if (props.onClick) props.onClick();
       }}
-      className={`h-8 w-8 flex items-center justify-center rounded-lg dark:bg-slate-900 bg-slate-200 border-slate-300 text-slate-400 dark:border-slate-800 border ${
+      className={`h-8 w-8 flex items-center justify-center rounded-lg bg-secondary border-border text-muted-foreground border ${
         props.customClassName || ""
       }`}
       style={props.customStyle}

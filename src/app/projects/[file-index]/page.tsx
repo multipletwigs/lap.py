@@ -66,13 +66,12 @@ const ProjectsContent = async ({ params }: Props) => {
   }
 
   return (
-    <article className="flex flex-col gap-8">
+    <article className="flex flex-col gap-4">
       <AutoBreadcrumbs
         customTitle={project.displayTitle}
         customDescription={project.description}
       />
-      <ContentRailNavigation label="Navigate" />
-      <div className="space-y-6">{project.component}</div>
+      <div className="space-y-4">{project.component}</div>
     </article>
   );
 };

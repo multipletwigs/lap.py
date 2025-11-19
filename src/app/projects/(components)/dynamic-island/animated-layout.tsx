@@ -132,7 +132,7 @@ function MusicPlayer(
   return (
     <>
       <motion.div
-        className="z-20 w-full h-full inset-0 absolute bg-slate-300/50 dark:bg-slate-900/70 rounded-lg overflow-clip"
+        className="z-20 w-full h-full inset-0 absolute bg-background/50 rounded-lg overflow-clip"
         id="player-overlay"
       />
 
@@ -142,7 +142,7 @@ function MusicPlayer(
             key={`music-player-item-${props.name}-${props.index}`}
             layoutId={`playlist-item-${props.name}-${props.index}`}
             ref={outsideRef}
-            className="bg-slate-100 dark:bg-slate-950 p-8 pt-6 px-6 rounded-lg relative h-[410px] sm:h-72 z-30 shadow"
+            className="bg-secondary-bg p-8 pt-6 px-6 rounded-lg relative h-[410px] sm:h-72 z-30 shadow"
           >
             <div className="flex sm:justify-between gap-2 h-full flex-col max-w-64">
               <div className="hidden sm:inline-flex justify-between align-center items-center">
@@ -174,33 +174,33 @@ function MusicPlayer(
                   <div className="max-w-64 flex flex-col">
                     <motion.p
                       layoutId={layoutIds.artist}
-                      className="text-xs sm:text-md dark:text-slate-300"
+                      className="text-xs sm:text-md text-muted-foreground"
                     >
                       {artist}
                     </motion.p>
                     <motion.p
                       layoutId={layoutIds.name}
-                      className="text-xl font-medium text-wrap sm:text-2xl"
+                      className="text-xl font-medium text-wrap sm:text-2xl text-foreground"
                     >
                       {name}
                     </motion.p>
                     <motion.p
                       key={`web-player-${props.playlist}-${props.index}`}
                       layoutId={layoutIds["playlist"]}
-                      className="text-xs dark:text-slate-300 sm:block hidden"
+                      className="text-xs text-muted-foreground sm:block hidden"
                     >
                       {playlist}
                     </motion.p>
                   </div>
                   <div className="mt-auto gap-1 flex flex-row ml-auto sm:ml-0 items-center">
-                    <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-slate-700">
-                      <SkipBack className="w-3 h-3 fill-slate-200 text-slate-200" />
+                    <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-foreground">
+                      <SkipBack className="w-3 h-3 fill-background text-background" />
                     </div>
-                    <div className="rounded-full inline-flex items-center justify-center w-8 h-8 bg-slate-700">
-                      <PlayIcon className="w-3 h-3 fill-slate-200 text-slate-200" />
+                    <div className="rounded-full inline-flex items-center justify-center w-8 h-8 bg-foreground">
+                      <PlayIcon className="w-3 h-3 fill-background text-background" />
                     </div>
-                    <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-slate-700">
-                      <SkipForward className="w-3 h-3 fill-slate-200 text-slate-200" />
+                    <div className="rounded-full inline-flex items-center justify-center w-6 h-6 bg-foreground">
+                      <SkipForward className="w-3 h-3 fill-background text-background" />
                     </div>
                     <div className="sm:hidden block ml-1">
                       <SpotifyExternalLink href={props.spotify_link} />
@@ -209,8 +209,8 @@ function MusicPlayer(
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-gray-600 h-1 mt-3 sm:mt-6 sm:w-96 w-72 rounded-full"></div>
-                <div className="flex justify-between mt-3 text-slate-600">
+                <div className="bg-muted-foreground/40 h-1 mt-3 sm:mt-6 sm:w-96 w-72 rounded-full"></div>
+                <div className="flex justify-between mt-3 text-muted-foreground">
                   <div className="text-xs">0:00</div>
                   <div className="flex gap-2">
                     <Repeat2 className="h-4 w-4" />
@@ -269,7 +269,7 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
           {isHover && (
             <motion.div
               key={`highlight-${props.name}-${props.index}`}
-              className="inset-0 bg-slate-700/30 hidden sm:block absolute"
+              className="inset-0 bg-foreground/10 hidden sm:block absolute"
               layoutId="playlist-hover"
             />
           )}
@@ -296,13 +296,13 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
                 <motion.p
                   layout
                   layoutId={layoutIds["name"]}
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs sm:text-sm font-medium text-foreground"
                 >
                   {props.name}
                 </motion.p>
                 <motion.p
                   layoutId={layoutIds["artist"]}
-                  className="text-xs text-gray-600"
+                  className="text-xs text-muted-foreground"
                 >
                   {props.artist}
                 </motion.p>
@@ -310,13 +310,13 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
             </div>
             <motion.p
               layoutId={layoutIds["playlist_mobile"]}
-              className="sm:hidden block text-xs text-slate-500 text-left"
+              className="sm:hidden block text-xs text-muted-foreground text-left"
             >
               {props.playlist}
             </motion.p>
             <motion.p
               layoutId={layoutIds["playlist"]}
-              className="sm:block hidden text-xs text-slate-500 text-left"
+              className="sm:block hidden text-xs text-muted-foreground text-left"
             >
               {props.playlist}
             </motion.p>
@@ -338,7 +338,7 @@ function PlaylistItem(props: PlaylistItem & { index: number }) {
 export default function AnimatedLayout() {
   return (
     <CanvasWrapper
-      background="bg-slate-100 dark:bg-slate-900/50"
+      background="bg-background"
       height="fit"
       caption="Framer Motion Magic ✨ Powerful Illusions"
     >

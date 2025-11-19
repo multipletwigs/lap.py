@@ -10,7 +10,7 @@ const ArcGradientCards = () => {
     <div className="flex flex-col items-center justify-center my-16 gap-6">
       <div
         className={
-          "w-[320px] h-[320px] flex items-center justify-center bg-slate-100 relative overflow-clip"
+          "w-[320px] h-[320px] flex items-center justify-center bg-secondary relative overflow-clip"
         }
       >
         <Image

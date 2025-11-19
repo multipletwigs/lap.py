@@ -6,21 +6,14 @@ import CodeBlock from "./components/ui/code-block";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
-    h1: ({ children }) => {
-      const content = children?.toString();
-      const contentArr = content?.split("~") || [];
-      return (
-        <div className="my-5 flex gap-2 flex-col">
-          <h1 className="text-2xl font-bold">{contentArr[0]}</h1>
-          <code>{contentArr[1]}</code>
-        </div>
-      );
-    },
+    h1: ({ children }) => (
+      <h1 className="mdx-h1 font-playfair">{children}</h1>
+    ),
     h2: ({ children }) => (
-      <h2 className="text-xl font-bold my-5">{children}</h2>
+      <h2 className="mdx-h2 font-playfair">{children}</h2>
     ),
     li: ({ children }) => (
-      <li className="prose-sm md:prose-base list-inside my-2 list-decimal">
+      <li className="list-inside my-2 list-decimal font-normal">
         {children}
       </li>
     ),
@@ -33,13 +26,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     p: ({ children }) => (
-      <p className="prose-sm md:prose-base leading-relaxed text-primary text-balance">
+      <p className="mdx-paragraph text-primary text-balance">
         {children}
       </p>
     ),
     a: ({ children, href }) => (
       <a
-        className="prose-sm md:prose-base text-slate-800 dark:text-slate-100 font-medium border-b border-primary border-dashed hover:text-slate-600 transition-colors"
+        className="mdx-link text-foreground border-b border-primary border-dashed hover:text-muted-foreground"
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -48,7 +41,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </a>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-slate-200 pl-4 italic font-serif text-slate-600">
+      <blockquote className="mdx-blockquote border-l-4 border-border pl-4 text-muted-foreground">
         {children}
       </blockquote>
     ),
@@ -60,25 +53,25 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </div>
     ),
     thead: ({ children }) => (
-      <thead className="bg-slate-50 dark:bg-slate-800">{children}</thead>
+      <thead className="bg-secondary">{children}</thead>
     ),
     tbody: ({ children }) => (
-      <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+      <tbody className="divide-y divide-border">
         {children}
       </tbody>
     ),
     tr: ({ children }) => (
-      <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+      <tr className="hover:bg-secondary/50">
         {children}
       </tr>
     ),
     th: ({ children }) => (
-      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">
+      <th className="px-4 py-3 text-left text-sm font-semibold text-foreground">
         {children}
       </th>
     ),
     td: ({ children }) => (
-      <td className="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
+      <td className="px-4 py-3 text-sm text-muted-foreground">
         {children}
       </td>
     ),

@@ -46,7 +46,7 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
         className={cn(
           height(),
           "w-full rounded-lg",
-          props.background ? props.background : "bg-slate-600/20",
+          props.background ? props.background : "bg-secondary/50",
         )}
       >
         {props.children}
@@ -54,10 +54,9 @@ const CanvasWrapper = (props: CanvasWrapperProps) => {
       {props.caption && (
         <p
           className="mx-auto mt-6 px-4 py-1 max-w-md text-xs text-center 
-                  bg-gradient-to-r from-blue-50 to-indigo-50 
-                  dark:from-gray-800 dark:to-gray-700
-                  text-gray-700 dark:text-gray-300 
-                  border border-gray-200 dark:border-gray-600 
+                  bg-secondary
+                  text-muted-foreground
+                  border border-border
                   rounded-full shadow-sm 
                   transition-all duration-300 ease-in-out
                   "

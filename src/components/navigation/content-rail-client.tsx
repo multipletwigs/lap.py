@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import NavBarCopy from "./labels";
@@ -19,7 +19,7 @@ interface ContentRailNavigationProps {
   className?: string;
 }
 
-export function ContentRailNavigation({
+export function ContentRailNavigationClient({
   label = "Browse",
   description = "Jump between the core spaces of this site without leaving the story.",
   items,
