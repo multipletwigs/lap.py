@@ -37,43 +37,43 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-          <header className="lg:hidden fixed top-0 left-0 right-0 bg-background border-b border-border z-50 px-5 py-4">
-            <div className="flex justify-between items-center">
-              <h1 className="font-bold text-lg">Zachary</h1>
-              <div className="flex gap-2 items-center">
-                <ModeToggle />
-                <DropdownNavigation />
+            <header className="lg:hidden fixed top-0 left-0 right-0 bg-background border-b border-border z-50 px-5 py-4">
+              <div className="flex justify-between items-center">
+                <h1 className="font-bold text-lg">Zachary</h1>
+                <div className="flex gap-2 items-center">
+                  <ModeToggle />
+                  <DropdownNavigation />
+                </div>
               </div>
-            </div>
-          </header>
+            </header>
 
-          <div className="min-h-screen flex items-center justify-center px-4 py-4 lg:py-8">
-            <div className="w-full max-w-7xl flex gap-8 h-[calc(100vh-2rem)] lg:h-[calc(100vh-4rem)]">
-              <aside className="hidden lg:flex lg:flex-col lg:w-72 flex-shrink-0">
-                <Sidebar />
-              </aside>
-              <main className="flex-1 bg-secondary-bg grid-background rounded-xl overflow-hidden flex flex-col mt-16 lg:mt-0">
-                <div className="flex-1 overflow-y-auto relative z-10">
-                  <div className="px-6 py-6 lg:px-12 lg:py-8 relative">
-                    {/* Navigation */}
-                    <div className="hidden lg:block">
-                      <LayoutNavigation />
-                    </div>
-                    <div style={{ viewTransitionName: 'page-content' }}>
-                      {children}
+            <div className="min-h-screen flex items-center justify-center px-4 py-4 lg:py-8">
+              <div className="w-full max-w-6xl flex gap-8 h-[calc(100vh-2rem)] lg:h-[calc(100vh-4rem)]">
+                <aside className="hidden lg:flex lg:flex-col lg:w-72 flex-shrink-0">
+                  <Sidebar />
+                </aside>
+                <main className="flex-1 bg-secondary-bg grid-background rounded-xl overflow-hidden flex flex-col mt-16 lg:mt-0">
+                  <div className="flex-1 overflow-y-auto relative z-10">
+                    <div className="px-6 py-6 lg:px-12 lg:py-8 relative">
+                      {/* Navigation */}
+                      <div className="hidden lg:block">
+                        <LayoutNavigation />
+                      </div>
+                      <div style={{ viewTransitionName: 'page-content' }}>
+                        {children}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </main>
+                </main>
 
+              </div>
             </div>
-          </div>
 
-          <SpeedInsights />
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
+            <SpeedInsights />
+          </ThemeProvider>
+          <Analytics />
+        </body>
+      </html>
     </ViewTransitions>
   );
 }
