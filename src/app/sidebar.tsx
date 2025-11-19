@@ -18,7 +18,7 @@ export function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full relative">
       <div className="mb-8 -mx-2">
         <div className="relative w-full h-32 overflow-hidden rounded-xl">
           <Image
@@ -92,16 +92,16 @@ export function Sidebar() {
         </p>
       </div>
 
-      <div className="flex-1 mb-8">
+      <div className="flex-1 mb-32">
         <EmploymentTimeline />
       </div>
 
-      {/* Spotify Now Playing */}
-      <div className="mb-6">
+      {/* Spotify Now Playing - Absolutely positioned at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 pb-20 z-10 bg-background">
         <NowPlaying />
       </div>
 
-      <div className="pt-6 border-t border-border/40">
+      <div className="absolute bottom-0 left-0 right-0 pt-6 border-t border-border/40 bg-background z-20">
         <p
           className="text-muted-foreground/60"
           style={{ fontSize: 'clamp(11px, 1vw, 12px)', fontWeight: 400 }}
