@@ -14,6 +14,7 @@ import { LayoutNavigation } from "./layout-navigation";
 import { ViewTransitions } from "next-view-transitions";
 import { MobileSidebar } from "@/components/mobile-sidebar";
 import { TimeWidget } from "@/components/widgets/user-info";
+import { SunlightWindow } from "@/components/widgets/sunlight-window";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
@@ -39,6 +40,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <SunlightWindow />
             <MobileSidebar />
             <header className="lg:hidden fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50 px-4 py-3">
               <div className="flex justify-between items-center">
@@ -57,10 +59,10 @@ export default function RootLayout({
 
             <div className="min-h-screen flex items-center justify-center px-0 py-16 lg:px-4 lg:py-8">
               <div className="w-full max-w-6xl flex gap-8 h-[calc(100vh-6rem)] lg:h-[calc(100vh-4rem)]">
-                <aside className="hidden lg:flex lg:flex-col lg:w-72 flex-shrink-0">
+                <aside className="hidden lg:flex lg:flex-col lg:w-72 flex-shrink-0 relative z-10">
                   <Sidebar />
                 </aside>
-                <main className="flex-1 lg:bg-secondary-bg lg:grid-background lg:rounded-xl lg:overflow-hidden flex flex-col mt-0 lg:mt-0">
+                <main className="flex-1 lg:grid-background lg:rounded-xl lg:overflow-hidden flex flex-col mt-0 lg:mt-0">
                   <div className="flex-1 overflow-y-auto relative z-10">
                     <div className="px-5 py-1 lg:px-12 lg:py-8 relative">
                       {/* Navigation - Visible on all screens now for content rail */}

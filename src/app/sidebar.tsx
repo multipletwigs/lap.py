@@ -1,5 +1,5 @@
 import { EmploymentTimeline } from "@/components/employment-timeline";
-import { NowPlaying } from "@/components/spotify";
+import { LofiPlayer } from "@/components/lofi-player";
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon, DiscordLogoIcon, EnvelopeClosedIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -97,12 +97,12 @@ export function Sidebar() {
       </div>
 
       {/* Footer section - Pinned to bottom on desktop, flow naturally on mobile */}
-      <div className="mt-auto pt-8 sticky bottom-0 bg-background pb-6 z-20 flex flex-col gap-6">
+      <div className="mt-auto pt-8 sticky bottom-0 pb-6 z-20 flex flex-col gap-6">
         <div className="relative">
           {/* NowPlaying has its own absolute positioning when expanded to prevent layout shift */}
-          <NowPlaying />
+          <LofiPlayer />
         </div>
-        
+
         <div className="pt-6 border-t border-border/40">
           <p
             className="text-muted-foreground/60"

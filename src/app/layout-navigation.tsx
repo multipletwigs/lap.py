@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { ContentRailNavigation } from "../components/navigation/content-rail";
-import { ThemeSwitcher, TimeWidget } from "../components/widgets/user-info";
+import { ThemeSwitcher, TimeWidget, SpotifyWidget } from "../components/widgets/user-info";
 
 export function LayoutNavigation() {
   const pathname = usePathname();
@@ -15,6 +15,7 @@ export function LayoutNavigation() {
           <ContentRailNavigation label="Navigate" />
         </div>
         <div className="hidden lg:flex items-center gap-2">
+          <SpotifyWidget />
           <TimeWidget />
           <ThemeSwitcher />
         </div>

@@ -3,14 +3,13 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* Chrome, Safari and Opera */
+  /* Hide scrollbar but keep functionality */
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
-
   .scrollbar-hidden {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
 
@@ -25,6 +24,7 @@
     --secondary-bg: 36 30% 96%;
 
     --card: 0 0% 100%;
+
     --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
@@ -161,6 +161,22 @@
     view-transition-name: page-content;
   }
 
+  /* Ensure sunlight overlay stays above the page content during transition */
+  /* We don't want the overlay to participate in the view transition snapshotting in a way that layers it on top of content */
+  /* Instead, we just want it to persist. The best way is often to NOT name it, but if we must... */
+  /* ::view-transition-group(sunlight-overlay) {
+    z-index: 5; */
+    /* Prevent any animation on the overlay itself, just keep it static on top */
+    /* animation: none !important;
+    mix-blend-mode: screen;
+  } */
+  
+  /* Ensure the root snapshot (which contains sidebar) stays below the overlay, but content stays above? */
+  /* Actually, typically root is z-index 0. */
+  ::view-transition-group(root) {
+    z-index: 0;
+  }
+
   /* Disable specific view transition for content during theme switch so it's included in the root wipe */
   .theme-transition .page-content-wrapper {
     view-transition-name: none;
@@ -229,5 +245,10 @@
     to {
       clip-path: inset(0 0 0 0);
     }
+  }
+
+  /* Add ease-spring utility for Tailwind if not already present */
+  .ease-spring {
+    transition-timing-function: cubic-bezier(0.35, 0, 0.65, 1);
   }
 }

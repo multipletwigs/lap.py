@@ -33,15 +33,15 @@ export function EmploymentTimeline() {
       >
         Places I've worked before!
       </h3>
-      <div className="space-y-6">
+      <div className="flex flex-row gap-4 overflow-x-auto pb-4 -mx-2 px-2 scrollbar-hidden snap-x snap-mandatory lg:flex-col lg:space-y-6 lg:overflow-visible lg:pb-0 lg:mx-0 lg:px-0 lg:snap-none">
         {employmentHistory.map((job, index) => {
           const Logo = job.logo;
           const isLast = index === employmentHistory.length - 1;
 
           return (
-            <div key={`${job.company}-${job.start}`} className="relative">
+            <div key={`${job.company}-${job.start}`} className="relative flex-shrink-0 w-[85vw] max-w-[300px] snap-center lg:w-auto lg:flex-shrink lg:max-w-none lg:snap-align-none">
               {!isLast && (
-                <div className="absolute left-[19px] top-10 w-px bg-border/40 -z-10" style={{ height: 'calc(100% + 1.5rem)' }} />
+                <div className="absolute left-[19px] top-10 w-px bg-border/40 -z-10 hidden lg:block" style={{ height: 'calc(100% + 1.5rem)' }} />
               )}
 
               <div className="flex gap-3 items-start">
