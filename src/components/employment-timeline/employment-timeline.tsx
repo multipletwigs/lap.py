@@ -33,30 +33,30 @@ export function EmploymentTimeline() {
       >
         Places I've worked before!
       </h3>
-      <div className="flex flex-row gap-4 overflow-x-auto pb-4 -mx-2 px-2 scrollbar-hidden snap-x snap-mandatory lg:flex-col lg:space-y-6 lg:overflow-visible lg:pb-0 lg:mx-0 lg:px-0 lg:snap-none">
+      <div className="flex flex-col space-y-6">
         {employmentHistory.map((job, index) => {
           const Logo = job.logo;
           const isLast = index === employmentHistory.length - 1;
 
           return (
-            <div key={`${job.company}-${job.start}`} className="relative flex-shrink-0 w-[85vw] max-w-[300px] snap-center lg:w-auto lg:flex-shrink lg:max-w-none lg:snap-align-none">
+            <div key={`${job.company}-${job.start}`} className="relative">
               {!isLast && (
-                <div className="absolute left-[19px] top-10 w-px bg-border/40 -z-10 hidden lg:block" style={{ height: 'calc(100% + 1.5rem)' }} />
+                <div className="absolute left-[31px] top-16 w-px bg-border/40 -z-10" style={{ height: 'calc(100% + 1.5rem)' }} />
               )}
 
-              <div className="flex gap-3 items-start">
-                <div className={`relative flex-shrink-0 w-10 h-10 rounded-lg bg-background flex items-center justify-center overflow-hidden z-10 border ${job.end === "Present" ? "border-green-500/60" : "border-border/40"}`}>
+              <div className="flex gap-4 items-start">
+                <div className={`relative flex-shrink-0 w-16 h-16 rounded-xl bg-background flex items-center justify-center overflow-hidden z-10 border ${job.end === "Present" ? "border-green-500/60" : "border-border/40"}`}>
                   {job.end === "Present" && (
-                    <div className="absolute inset-0 rounded-lg bg-green-500/5 animate-pulse" />
+                    <div className="absolute inset-0 rounded-xl bg-green-500/5 animate-pulse" />
                   )}
                   <Logo
-                    width={job.logoSize || 20}
-                    height={job.logoSize || 20}
-                    style={{ width: `${job.logoSize || 20}px`, height: `${job.logoSize || 20}px` }}
+                    width={32}
+                    height={32}
+                    style={{ width: '32px', height: '32px' }}
                   />
                 </div>
 
-                <div className="flex-1 min-w-0 pt-1">
+                <div className="flex-1 min-w-0 pt-1.5">
                   <div className="flex items-baseline justify-between gap-2 mb-1">
                     <div className="flex items-center gap-1.5 min-w-0">
                       <h4

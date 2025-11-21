@@ -19,11 +19,11 @@
   }
 
   :root {
-    --background: 36 100% 99%;
+    --background: 48 100% 97%; /* Warm yellowish daylight */
     --foreground: 222.2 84% 4.9%;
-    --secondary-bg: 36 30% 96%;
+    --secondary-bg: 45 100% 94%; /* Slightly darker warm yellow */
 
-    --card: 0 0% 100%;
+    --card: 48 100% 97%;
 
     --card-foreground: 222.2 84% 4.9%;
 
