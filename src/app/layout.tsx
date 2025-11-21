@@ -35,7 +35,6 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <SunlightWindow />
-            <MobileSidebar />
 
             <div className="min-h-screen flex items-center justify-center px-4 py-8">
               <div className="w-full max-w-6xl flex gap-8 h-[calc(100vh-4rem)]">
@@ -45,11 +44,14 @@ export default function RootLayout({
                 <main className="flex-1 lg:grid-background lg:rounded-xl lg:overflow-hidden flex flex-col mt-0 lg:mt-0">
                   <div className="flex-1 overflow-y-auto relative z-10">
                     <div className="px-0 py-0 lg:px-12 lg:py-8 relative">
-                      {/* Navigation - Visible on all screens now for content rail */}
-                      <div className="mb-6 px-4 pt-4 lg:px-0 lg:pt-0 sticky top-0 z-40 backdrop-blur-sm lg:static lg:bg-transparent">
+
+                      {/* Navigation */}
+                      {/* On desktop, it lives here. On mobile, it's fixed at bottom via CSS in component */}
+                      <div className="lg:mb-6">
                         <LayoutNavigation />
                       </div>
-                      <div className="page-content-wrapper px-4 lg:px-0 pb-20 lg:pb-0">
+
+                      <div className="page-content-wrapper lg:px-0 pb-18 lg:pb-0">
                         {children}
                       </div>
                     </div>

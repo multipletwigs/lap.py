@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { ContentRailNavigation } from "../components/navigation/content-rail";
 import { ThemeSwitcher, TimeWidget, SpotifyWidget } from "../components/widgets/user-info";
+import { MobileSidebar } from "@/components/mobile-sidebar";
 
 export function LayoutNavigation() {
   const pathname = usePathname();
@@ -10,29 +11,24 @@ export function LayoutNavigation() {
 
   return (
     <nav className={isHomePage ? "" : "mb-2 lg:mb-8"}>
-      {/* Mobile Header Row */}
-      <div className="flex lg:hidden items-center justify-between mb-4">
-        <h1 className="font-playfair font-bold text-xl tracking-tight">nightly.ink</h1>
-        <div className="flex items-center gap-2">
-          <div className="scale-90">
-            <ThemeSwitcher />
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-4">
+        <div className="fixed bottom-6 left-4 right-4 z-50 lg:static lg:w-full lg:shadow-none pointer-events-none">
+          <div className="pointer-events-auto shadow-2xl lg:shadow-none rounded-xl w-full">
+            <ContentRailNavigation
+              label="Navigate"
+              className="bg-background/80 backdrop-blur-md border-border/50 lg:bg-background/40 lg:backdrop-blur-none lg:border-border/40"
+            >
+              <div className="flex items-center gap-2 pl-2">
+                <SpotifyWidget />
+                <div className="hidden lg:block"><TimeWidget /></div>
+                <ThemeSwitcher />
+                <div className="lg:hidden"><MobileSidebar /></div>
+              </div>
+            </ContentRailNavigation>
           </div>
-        </div>
-      </div>
-
-      <div className="flex flex-row lg:items-center lg:justify-between gap-4 lg:gap-4">
-        {/* Content Rail - Order 2 on mobile (below spotify), Order 1 on desktop */}
-        <div className="w-fit overflow-x-auto scrollbar-hidden -mx-4 px-4 lg:mx-0 lg:px-0 order-2 lg:order-1">
-          <ContentRailNavigation label="Navigate" />
-        </div>
-
-        {/* Widgets - Order 1 on mobile (top), Order 2 on desktop */}
-        <div className="flex items-center gap-2 order-1 lg:order-2 min-w-0 overflow-hidden">
-          <SpotifyWidget />
-          <div className="hidden lg:block"><TimeWidget /></div>
-          <div className="hidden lg:block"><ThemeSwitcher /></div>
         </div>
       </div>
     </nav>
   );
 }
+

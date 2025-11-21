@@ -3,13 +3,26 @@
 import { Sidebar } from "../app/sidebar";
 import { Drawer } from "vaul";
 import { Button } from "./ui/button";
-import { Flower2 } from "lucide-react";
+import { Flower2, SmileIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-export function MobileSidebar() {
+interface MobileSidebarProps {
+  className?: string;
+}
+
+export function MobileSidebar({ className }: MobileSidebarProps) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
+  // Open drawer on first visit
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('hasVisitedBefore');
+    if (!hasVisited) {
+      setOpen(true);
+      localStorage.setItem('hasVisitedBefore', 'true');
+    }
+  }, []);
 
   // Close drawer when path changes
   useEffect(() => {
@@ -19,14 +32,12 @@ export function MobileSidebar() {
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
       <Drawer.Trigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="lg:hidden fixed bottom-6 right-6 h-14 w-14 rounded-2xl shadow-xl z-50 bg-background/80 backdrop-blur-sm border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-95"
+        <button
+          className="inline-flex items-center justify-center rounded-lg w-8 h-8 bg-background/60 border border-border/50 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
         >
-          <Flower2 className="w-6 h-6" />
+          <SmileIcon className="w-4 h-4" />
           <span className="sr-only">Open Menu</span>
-        </Button>
+        </button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 z-50" />
@@ -42,3 +53,4 @@ export function MobileSidebar() {
     </Drawer.Root>
   );
 }
+

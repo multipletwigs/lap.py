@@ -57,7 +57,7 @@ export function AutoBreadcrumbs({
   });
 
   return (
-    <div className="space-y-1 lg:space-y-2 my-4 lg:my-0">
+    <div className="space-y-1 lg:space-y-2 lg:my-0">
       <ContentBreadcrumbs items={breadcrumbItems} className={className} />
       {customDescription && (
         <p className="text-muted-foreground/90 text-sm leading-relaxed max-w-2xl">

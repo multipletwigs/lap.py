@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const Thoughts = () => {
   return (
-    <div className="flex flex-col gap-2 lg:gap-8">
+    <div className="flex flex-col gap-8">
       <AutoBreadcrumbs
         customTitle="Thoughts"
         customDescription="Random thoughts and views on things."

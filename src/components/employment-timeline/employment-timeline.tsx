@@ -41,18 +41,17 @@ export function EmploymentTimeline() {
           return (
             <div key={`${job.company}-${job.start}`} className="relative">
               {!isLast && (
-                <div className="absolute left-[31px] top-16 w-px bg-border/40 -z-10" style={{ height: 'calc(100% + 1.5rem)' }} />
+                <div className="absolute left-[26px] top-12 w-px bg-border/40 -z-10" style={{ height: 'calc(100% + 1.5rem)' }} />
               )}
 
               <div className="flex gap-4 items-start">
-                <div className={`relative flex-shrink-0 w-16 h-16 rounded-xl bg-background flex items-center justify-center overflow-hidden z-10 border ${job.end === "Present" ? "border-green-500/60" : "border-border/40"}`}>
+                <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl bg-background flex items-center justify-center overflow-hidden z-10 border ${job.end === "Present" ? "border-green-500/60" : "border-border/40"}`}>
                   {job.end === "Present" && (
                     <div className="absolute inset-0 rounded-xl bg-green-500/5 animate-pulse" />
                   )}
                   <Logo
-                    width={32}
-                    height={32}
-                    style={{ width: '32px', height: '32px' }}
+                    width={job.logoSize}
+                    height={job.logoSize}
                   />
                 </div>
 

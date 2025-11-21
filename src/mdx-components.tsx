@@ -13,7 +13,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h2 className="mdx-h2 font-playfair">{children}</h2>
     ),
     li: ({ children }) => (
-      <li className="list-inside my-2 list-decimal font-normal">
+      <li className="list-inside my-1.5 list-decimal font-normal text-sm lg:text-base">
         {children}
       </li>
     ),
@@ -66,12 +66,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </tr>
     ),
     th: ({ children }) => (
-      <th className="px-4 py-3 text-left text-sm font-semibold text-foreground">
+      <th className="px-2 py-2 lg:px-4 lg:py-3 text-left text-xs lg:text-sm font-semibold text-foreground">
         {children}
       </th>
     ),
     td: ({ children }) => (
-      <td className="px-4 py-3 text-sm text-muted-foreground">
+      <td className="px-2 py-2 lg:px-4 lg:py-3 text-xs lg:text-sm text-muted-foreground">
         {children}
       </td>
     ),

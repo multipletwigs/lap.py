@@ -20,7 +20,7 @@ export function Sidebar() {
   return (
     <div className="flex flex-col min-h-full relative">
       <div className="mb-8 -mx-2">
-        <div className="relative w-full h-32 overflow-hidden rounded-xl">
+        <div className="relative w-full h-16 lg:h-32 overflow-hidden rounded-xl">
           <Image
             src="/root-hero.png"
             alt="Hero"
@@ -92,7 +92,7 @@ export function Sidebar() {
         </p>
       </div>
 
-      <div className="flex-1">
+      <div className="lg:flex-1">
         <EmploymentTimeline />
       </div>
 
@@ -108,7 +108,7 @@ export function Sidebar() {
             className="text-muted-foreground/60"
             style={{ fontSize: 'clamp(11px, 1vw, 12px)', fontWeight: 400 }}
           >
-            {dayjs().year()} © Zach Khong
+            {dayjs().year()} © Thoughts by Zachary Khong
           </p>
         </div>
       </div>
