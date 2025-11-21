@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import CodeBlock from "./components/ui/code-block";
+import { LinkPreview } from "./components/link-preview";
 
 // This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -31,14 +32,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </p>
     ),
     a: ({ children, href }) => (
-      <a
+      <LinkPreview
         className="mdx-link text-foreground border-b border-primary border-dashed hover:text-muted-foreground"
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
       >
         {children}
-      </a>
+      </LinkPreview>
     ),
     blockquote: ({ children }) => (
       <blockquote className="mdx-blockquote border-l-4 border-border pl-4 text-muted-foreground">

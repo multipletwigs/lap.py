@@ -2,6 +2,7 @@
 
 import { employmentHistory } from "./config";
 import dayjs from "dayjs";
+import { LinkPreview } from "@/components/link-preview";
 
 export function EmploymentTimeline() {
   const formatDate = (date: string) => {
@@ -33,7 +34,7 @@ export function EmploymentTimeline() {
       >
         Places I've worked before!
       </h3>
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col space-y-3">
         {employmentHistory.map((job, index) => {
           const Logo = job.logo;
           const isLast = index === employmentHistory.length - 1;
@@ -58,12 +59,13 @@ export function EmploymentTimeline() {
                 <div className="flex-1 min-w-0 pt-1.5">
                   <div className="flex items-baseline justify-between gap-2 mb-1">
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <h4
-                        className="text-foreground font-medium truncate"
+                      <LinkPreview
+                        href={job.link}
+                        className="text-foreground font-medium truncate hover:text-muted-foreground transition-colors border-b border-dashed border-transparent hover:border-muted-foreground"
                         style={{ fontSize: 'clamp(13px, 1.2vw, 14px)', fontWeight: 500 }}
                       >
                         {job.company}
-                      </h4>
+                      </LinkPreview>
                       {job.end === "Present" && (
                         <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20 flex-shrink-0">
                           Current
