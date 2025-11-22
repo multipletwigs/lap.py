@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "next-view-transitions";
-import { useMemo, useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import NavBarCopy from "./labels";
@@ -20,10 +20,6 @@ interface ContentRailNavigationProps {
   className?: string;
   children?: React.ReactNode;
 }
-
-// Safe usage of useLayoutEffect to avoid SSR warnings
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export function ContentRailNavigation({
   items,
@@ -44,28 +40,31 @@ export function ContentRailNavigation({
       .filter((link): link is NonNullable<typeof link> => Boolean(link));
   }, [items]);
 
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const updateRect = () => {
-      if (!containerRef.current) return;
+      // Use requestAnimationFrame to avoid blocking navigation
+      requestAnimationFrame(() => {
+        if (!containerRef.current) return;
 
-      // Find the active element using the data attribute
-      const activeEl = containerRef.current.querySelector(`[data-active="true"]`) as HTMLElement;
+        // Find the active element using the data attribute
+        const activeEl = containerRef.current.querySelector(`[data-active="true"]`) as HTMLElement;
 
-      if (activeEl) {
-        // Calculate positions relative to the container
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const itemRect = activeEl.getBoundingClientRect();
+        if (activeEl) {
+          // Calculate positions relative to the container
+          const containerRect = containerRef.current.getBoundingClientRect();
+          const itemRect = activeEl.getBoundingClientRect();
 
-        setActiveRect({
-          x: itemRect.left - containerRect.left,
-          y: itemRect.top - containerRect.top,
-          width: itemRect.width,
-          height: itemRect.height,
-          opacity: 1
-        });
-      } else {
-        setActiveRect(prev => ({ ...prev, opacity: 0 }));
-      }
+          setActiveRect({
+            x: itemRect.left - containerRect.left,
+            y: itemRect.top - containerRect.top,
+            width: itemRect.width,
+            height: itemRect.height,
+            opacity: 1
+          });
+        } else {
+          setActiveRect(prev => ({ ...prev, opacity: 0 }));
+        }
+      });
     };
 
     // Run initially
@@ -110,9 +109,10 @@ export function ContentRailNavigation({
             }}
             transition={{
               type: "spring",
-              stiffness: 300,
-              damping: 30,
-              mass: 0.8
+              stiffness: 400,
+              damping: 35,
+              mass: 0.6,
+              velocity: 2
             }}
           />
 
