@@ -2,11 +2,15 @@ import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import CodeBlock from "./components/ui/code-block";
 import { LinkPreview } from "./components/link-preview";
+import { useEffect, useState } from "react";
+import { CustomVideo } from "./video";
+
 
 // This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
+    video: CustomVideo,
     h1: ({ children }) => (
       <h1 className="mdx-h1 font-playfair">{children}</h1>
     ),

@@ -10,12 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 export default function Home() {
   return (
-    <main>
-      <div className="flex flex-col">
-        <section>
-          <RootCopy />
-        </section>
-      </div>
-    </main>
+    <div className="flex flex-col">
+      <section>
+        <RootCopy />
+      </section>
+    </div>
   );
 }

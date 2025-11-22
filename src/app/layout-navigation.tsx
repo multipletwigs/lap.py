@@ -16,7 +16,7 @@ export function LayoutNavigation() {
           <div className="pointer-events-auto shadow-2xl lg:shadow-none rounded-xl w-full">
             <ContentRailNavigation
               label="Navigate"
-              className="bg-background/80 backdrop-blur-md border-border/50 lg:bg-background/40 lg:backdrop-blur-none lg:border-border/40"
+              className="bg-background backdrop-blur-md border-border/50 lg:bg-background/40 lg:backdrop-blur-none lg:border-border/40"
             >
               <div className="flex items-center gap-2 pl-2">
                 <SpotifyWidget />

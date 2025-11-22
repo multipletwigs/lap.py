@@ -36,24 +36,25 @@ export default function RootLayout({
           >
             <SunlightWindow />
 
-            <div className="min-h-screen flex items-center justify-center px-4 py-8">
-              <div className="w-full max-w-6xl flex gap-8 h-[calc(100vh-4rem)]">
+            {/* Mobile Navigation - completely separate from layout */}
+            <div className="lg:hidden">
+              <LayoutNavigation />
+            </div>
+
+            <div className="min-h-screen lg:flex lg:items-center lg:justify-center px-4 py-8">
+              <div className="w-full max-w-6xl flex gap-8 lg:h-[calc(100vh-4rem)]">
                 <aside className="hidden lg:flex lg:flex-col lg:w-72 flex-shrink-0 relative z-10">
                   <Sidebar />
                 </aside>
                 <main className="flex-1 lg:grid-background lg:rounded-xl lg:overflow-hidden flex flex-col mt-0 lg:mt-0">
-                  <div className="flex-1 overflow-y-auto relative z-10">
-                    <div className="px-0 py-0 lg:px-12 lg:py-8 relative">
+                  <div className="flex-1 lg:overflow-y-auto relative z-10">
+                    {/* Desktop Navigation only */}
+                    <div className="hidden lg:block px-12 pt-8">
+                      <LayoutNavigation />
+                    </div>
 
-                      {/* Navigation */}
-                      {/* On desktop, it lives here. On mobile, it's fixed at bottom via CSS in component */}
-                      <div className="lg:mb-6">
-                        <LayoutNavigation />
-                      </div>
-
-                      <div className="page-content-wrapper lg:px-0 pb-18 lg:pb-0">
-                        {children}
-                      </div>
+                    <div className="page-content-wrapper px-0 py-0 lg:px-12 lg:pb-8 pb-24 lg:pb-0 lg:mt-6">
+                      {children}
                     </div>
                   </div>
                 </main>

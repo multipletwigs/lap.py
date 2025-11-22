@@ -182,6 +182,23 @@
     view-transition-name: page-content;
   }
 
+  /* Exclude elements from view transitions */
+  .view-transition-exclude {
+    view-transition-name: none !important;
+  }
+
+  .view-transition-exclude * {
+    view-transition-name: none !important;
+  }
+
+  /* Ensure navigation stays fully opaque during transitions on mobile */
+  @media (max-width: 768px) {
+    .view-transition-exclude {
+      isolation: isolate;
+      z-index: 9999;
+    }
+  }
+
   /* Ensure sunlight overlay stays above the page content during transition */
   /* We don't want the overlay to participate in the view transition snapshotting in a way that layers it on top of content */
   /* Instead, we just want it to persist. The best way is often to NOT name it, but if we must... */
@@ -218,21 +235,20 @@
     animation-name: fade-in-quick;
   }
 
-  /* Near-instant on mobile - no fancy animations */
+  /* Simpler blur-based transitions on mobile */
   @media (max-width: 768px) {
     ::view-transition-old(page-content),
     ::view-transition-new(page-content) {
-      animation-duration: 0.05s;
-      animation-timing-function: linear;
+      animation-duration: 0.15s;
+      animation-timing-function: ease-out;
     }
 
-    /* Use simple fade only, no transforms */
     ::view-transition-old(page-content) {
-      animation-name: fade-out-instant;
+      animation-name: blur-fade-out;
     }
 
     ::view-transition-new(page-content) {
-      animation-name: fade-in-instant;
+      animation-name: blur-fade-in;
     }
 
     /* Completely disable on low-end devices */
@@ -307,6 +323,31 @@
 
     to {
       opacity: 1;
+    }
+  }
+
+  /* Blur-based transitions for mobile */
+  @keyframes blur-fade-out {
+    from {
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    to {
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+
+  @keyframes blur-fade-in {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0px);
     }
   }
 

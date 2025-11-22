@@ -1,12 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "./sunlight.module.css";
 
 export function SunlightWindow() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // On mobile, only show the background color (no expensive effects)
+  if (isMobile) {
+    return <div className={styles["sunlight-background"]} />;
+  }
+
   return (
     <>
       <div className={styles["sunlight-background"]} />
-      
+
       {/* Shadows and Blur - Layered behind content */}
       <div className={styles["sunlight-shadows"]}>
         <div className={styles.perspective}>
