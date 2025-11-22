@@ -216,6 +216,23 @@
     animation-name: fade-in;
   }
 
+  /* Much faster and simpler transitions on mobile for better performance */
+  @media (max-width: 768px) {
+    ::view-transition-old(page-content),
+    ::view-transition-new(page-content) {
+      animation-duration: 0.15s;
+      animation-timing-function: ease-out;
+    }
+
+    /* Disable transitions on low-end devices */
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(page-content),
+      ::view-transition-new(page-content) {
+        animation-duration: 0.05s;
+      }
+    }
+  }
+
   @keyframes fade-out {
     from {
       opacity: 1;

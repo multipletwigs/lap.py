@@ -130,6 +130,7 @@ export function ContentRailNavigation({
                     ? "text-foreground"
                     : "text-muted-foreground/60 hover:text-muted-foreground"
                 )}
+                prefetch={true}
               >
                 {item.text}
               </Link>

@@ -36,6 +36,7 @@ export function ContentBreadcrumbs({ items, className }: ContentBreadcrumbsProps
               <Link
                 href={item.href}
                 className="text-muted-foreground/80 hover:text-foreground transition-colors"
+                prefetch={true}
               >
                 {item.label}
               </Link>

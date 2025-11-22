@@ -49,6 +49,7 @@ export const DropdownNavigation = () => {
                   <Link
                     href={item.link.href}
                     className="flex flex-row justify-between w-full align-middle items-center"
+                    prefetch={true}
                   >
                     {item.triggerName}
                     {`${pathName}` === item.link.href ? <CheckIcon /> : <></>}
@@ -80,11 +81,12 @@ export const TabNavigation = () => {
                 ? "text-foreground bg-foreground/5"
                 : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
             }`}
-            style={{ 
+            style={{
               fontSize: 'clamp(14px, 1.3vw, 15px)',
               fontWeight: isActive ? 500 : 400,
               letterSpacing: '-0.01em'
             }}
+            prefetch={true}
           >
             {item.link.text}
           </Link>
