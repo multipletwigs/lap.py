@@ -7,16 +7,10 @@ export function SunlightWindow() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    setIsMobile(window.innerWidth < 768);
   }, []);
 
-  // On mobile, don't show sunlight effects at all
+  // Disable on mobile for better performance
   if (isMobile) {
     return null;
   }
