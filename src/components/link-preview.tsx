@@ -28,6 +28,7 @@ const BLOCKED_DOMAINS = [
   "vercel.com",
   "nextjs.org",
   "kiyotaka.ai",
+  "monash.edu",
 ];
 
 export function LinkPreview({

@@ -34,7 +34,7 @@ export function ContentRailNavigation({
   const currentSection = `/${pathname.split("/")[1] ?? ""}`;
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeRect, setActiveRect] = useState({ top: 0, height: 0, left: 0, width: 0, opacity: 0 });
+  const [activeRect, setActiveRect] = useState({ x: 0, y: 0, width: 0, height: 0, opacity: 0 });
 
   const navigationItems = useMemo(() => {
     if (items?.length) return items;
@@ -57,10 +57,10 @@ export function ContentRailNavigation({
         const itemRect = activeEl.getBoundingClientRect();
 
         setActiveRect({
-          top: itemRect.top - containerRect.top,
-          height: itemRect.height,
-          left: itemRect.left - containerRect.left,
+          x: itemRect.left - containerRect.left,
+          y: itemRect.top - containerRect.top,
           width: itemRect.width,
+          height: itemRect.height,
           opacity: 1
         });
       } else {
@@ -87,15 +87,6 @@ export function ContentRailNavigation({
 
   if (!navigationItems.length) return null;
 
-  const containerWidth = containerRef.current?.offsetWidth || 0;
-  const containerHeight = containerRef.current?.offsetHeight || 0;
-
-  // Calculate inset values for clip-path
-  const insetTop = activeRect.top;
-  const insetRight = containerWidth - (activeRect.left + activeRect.width);
-  const insetBottom = containerHeight - (activeRect.top + activeRect.height);
-  const insetLeft = activeRect.left;
-
   return (
     <section
       aria-label="Primary content navigation"
@@ -106,7 +97,26 @@ export function ContentRailNavigation({
     >
       <div className="overflow-x-auto scrollbar-hidden -my-2 py-2 -ml-2 pl-2 mask-linear-fade">
         <div ref={containerRef} className="relative flex flex-nowrap gap-1.5 pr-4">
-          {/* Base Layer (Inactive State) */}
+          {/* Animated background indicator */}
+          <motion.div
+            className="absolute rounded-md bg-foreground/10 pointer-events-none"
+            initial={false}
+            animate={{
+              x: activeRect.x,
+              y: activeRect.y,
+              width: activeRect.width,
+              height: activeRect.height,
+              opacity: activeRect.opacity
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30,
+              mass: 0.8
+            }}
+          />
+
+          {/* Navigation items */}
           {navigationItems.map((item) => {
             const isActive = currentSection === item.href;
             return (
@@ -114,37 +124,17 @@ export function ContentRailNavigation({
                 key={item.href}
                 href={item.href}
                 data-active={isActive}
-                className="inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200 whitespace-nowrap"
+                className={cn(
+                  "relative inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium whitespace-nowrap transition-colors duration-200 z-10",
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted-foreground/60 hover:text-muted-foreground"
+                )}
               >
                 {item.text}
               </Link>
             );
           })}
-
-          {/* Active Layer (Active State + Background) - Masked by clip-path */}
-          <motion.div
-            className="absolute inset-0 flex flex-nowrap gap-1.5 pointer-events-none bg-foreground/10 text-foreground z-10"
-            initial={false}
-            animate={{
-              clipPath: `inset(${insetTop}px ${insetRight}px ${insetBottom}px ${insetLeft}px round 6px)`
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-              mass: 1
-            }}
-            style={{ opacity: activeRect.opacity }}
-          >
-            {navigationItems.map((item) => (
-              <span
-                key={item.href}
-                className="inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium whitespace-nowrap"
-              >
-                {item.text}
-              </span>
-            ))}
-          </motion.div>
         </div>
       </div>
 
