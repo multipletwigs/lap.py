@@ -179,7 +179,7 @@ export function LinkPreview({
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-          <Dialog.Content className="fixed left-[50%] top-[50%] z-50 w-[95vw] h-[85vh] max-w-6xl translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-xl border bg-white/80 dark:bg-neutral-900/80 shadow-2xl backdrop-blur-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[2%] data-[state=open]:slide-in-from-top-[2%] duration-200">
+          <Dialog.Content className="fixed left-[50%] top-[50%] z-50 w-[95vw] h-[85vh] max-w-6xl translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-xl border bg-white/80 dark:bg-neutral-900/80 shadow-2xl backdrop-blur-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-bottom-[2%] data-[state=open]:slide-in-from-bottom-[2%] duration-200">
             <PreviewContent
               hostname={hostname}
               href={href}

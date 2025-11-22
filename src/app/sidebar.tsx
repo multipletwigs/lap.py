@@ -18,7 +18,7 @@ export function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col min-h-full relative">
+    <div className="flex flex-col h-full relative">
       <div className="mb-8 -mx-2">
         <div className="relative w-full h-16 lg:h-32 overflow-hidden rounded-xl">
           <Image
@@ -92,12 +92,12 @@ export function Sidebar() {
         </p>
       </div>
 
-      <div className="lg:flex-1">
+      <div className="lg:flex-1 max-h-[25vh] lg:max-h-none overflow-y-auto scrollbar-hidden">
         <EmploymentTimeline />
       </div>
 
       {/* Footer section - Pinned to bottom on desktop, flow naturally on mobile */}
-      <div className="mt-auto pt-8 sticky bottom-0 pb-6 z-20 flex flex-col gap-6">
+      <div className="mt-auto pt-8 lg:sticky bottom-0 pb-6 z-20 flex flex-col gap-6 shrink-0">
         <div className="relative">
           {/* NowPlaying has its own absolute positioning when expanded to prevent layout shift */}
           <LofiPlayer />

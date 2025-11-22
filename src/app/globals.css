@@ -218,19 +218,28 @@
     animation-name: fade-in-quick;
   }
 
-  /* Even faster on mobile for better performance */
+  /* Near-instant on mobile - no fancy animations */
   @media (max-width: 768px) {
     ::view-transition-old(page-content),
     ::view-transition-new(page-content) {
-      animation-duration: 0.12s;
-      animation-timing-function: ease-out;
+      animation-duration: 0.05s;
+      animation-timing-function: linear;
     }
 
-    /* Near-instant on low-end devices */
+    /* Use simple fade only, no transforms */
+    ::view-transition-old(page-content) {
+      animation-name: fade-out-instant;
+    }
+
+    ::view-transition-new(page-content) {
+      animation-name: fade-in-instant;
+    }
+
+    /* Completely disable on low-end devices */
     @media (prefers-reduced-motion: reduce) {
       ::view-transition-old(page-content),
       ::view-transition-new(page-content) {
-        animation-duration: 0.05s;
+        animation: none;
       }
     }
   }
@@ -277,6 +286,27 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Instant fade animations for mobile - no transforms */
+  @keyframes fade-out-instant {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-instant {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 
