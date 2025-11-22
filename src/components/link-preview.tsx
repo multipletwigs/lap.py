@@ -7,7 +7,7 @@ import { X, Loader2, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
 
-interface LinkPreviewProps {
+interface LinkPreviewProps extends React.HTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
   className?: string;
   href: string;
@@ -137,6 +137,7 @@ export function LinkPreview({
   children,
   href,
   className,
+  ...props
 }: LinkPreviewProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -171,6 +172,7 @@ export function LinkPreview({
               handleOpen();
             }}
             className={cn("cursor-pointer inline-block", className)}
+            {...props}
           >
             {children}
           </a>
@@ -202,6 +204,7 @@ export function LinkPreview({
             handleOpen();
           }}
           className={cn("cursor-pointer inline-block", className)}
+          {...props}
         >
           {children}
         </a>
