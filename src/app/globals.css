@@ -191,23 +191,14 @@
     view-transition-name: none !important;
   }
 
-  /* Ensure navigation stays fully opaque during transitions on mobile */
+  /* Exclude sunlight effects from transitions on mobile to prevent flash */
   @media (max-width: 768px) {
-    .view-transition-exclude {
-      isolation: isolate;
-      z-index: 9999;
+    .sunlight-mobile-wrapper,
+    .sunlight-mobile-wrapper * {
+      view-transition-name: none !important;
     }
   }
 
-  /* Ensure sunlight overlay stays above the page content during transition */
-  /* We don't want the overlay to participate in the view transition snapshotting in a way that layers it on top of content */
-  /* Instead, we just want it to persist. The best way is often to NOT name it, but if we must... */
-  /* ::view-transition-group(sunlight-overlay) {
-    z-index: 5; */
-  /* Prevent any animation on the overlay itself, just keep it static on top */
-  /* animation: none !important;
-    mix-blend-mode: screen;
-  } */
 
   /* Ensure the root snapshot (which contains sidebar) stays below the overlay, but content stays above? */
   /* Actually, typically root is z-index 0. */
@@ -235,28 +226,20 @@
     animation-name: fade-in-quick;
   }
 
-  /* Simpler blur-based transitions on mobile */
+  /* Faster simple transitions on mobile */
   @media (max-width: 768px) {
     ::view-transition-old(page-content),
     ::view-transition-new(page-content) {
-      animation-duration: 0.15s;
-      animation-timing-function: ease-out;
+      animation-duration: 0.08s !important;
+      animation-timing-function: linear !important;
     }
 
     ::view-transition-old(page-content) {
-      animation-name: blur-fade-out;
+      animation-name: fade-out-instant !important;
     }
 
     ::view-transition-new(page-content) {
-      animation-name: blur-fade-in;
-    }
-
-    /* Completely disable on low-end devices */
-    @media (prefers-reduced-motion: reduce) {
-      ::view-transition-old(page-content),
-      ::view-transition-new(page-content) {
-        animation: none;
-      }
+      animation-name: fade-in-instant !important;
     }
   }
 

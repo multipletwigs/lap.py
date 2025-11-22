@@ -14,8 +14,6 @@ export function CustomVideo(props: React.VideoHTMLAttributes<HTMLVideoElement>) 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // On mobile: disable autoplay, add controls, ensure inline playback
-  // On desktop: allow autoplay if specified
   return (
     <video
       {...props}

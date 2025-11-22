@@ -16,9 +16,9 @@ export function SunlightWindow() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // On mobile, only show the background color (no expensive effects)
+  // On mobile, don't show sunlight effects at all
   if (isMobile) {
-    return <div className={styles["sunlight-background"]} />;
+    return null;
   }
 
   return (

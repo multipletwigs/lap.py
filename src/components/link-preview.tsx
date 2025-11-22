@@ -211,7 +211,7 @@ export function LinkPreview({
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 z-50 bg-black/40" />
-        <Drawer.Content className="fixed bottom-0 left-0 right-0 z-50 flex h-[92vh] flex-col rounded-t-xl bg-background outline-none">
+        <Drawer.Content className="fixed bottom-0 left-0 right-0 z-50 flex h-[96%] flex-col rounded-t-xl bg-background outline-none">
           <div className="flex justify-center pt-3 pb-2 shrink-0">
             <div className="h-1.5 w-12 rounded-full bg-muted" />
           </div>

@@ -25,16 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ViewTransitions>
-      <html lang="en" suppressHydrationWarning>
-        <body className={playfair.variable}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SunlightWindow />
+    <html lang="en" suppressHydrationWarning>
+      <body className={playfair.variable}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Sunlight outside ViewTransitions to prevent revert flash */}
+          <SunlightWindow />
+
+          <ViewTransitions>
 
             {/* Mobile Navigation - completely separate from layout */}
             <div className="lg:hidden">
@@ -62,11 +64,11 @@ export default function RootLayout({
             </div>
 
             <SpeedInsights />
-          </ThemeProvider>
-          <Analytics />
-        </body>
-      </html>
-    </ViewTransitions>
+          </ViewTransitions>
+        </ThemeProvider>
+        <Analytics />
+      </body>
+    </html>
   );
 }
 

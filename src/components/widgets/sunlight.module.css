@@ -159,7 +159,7 @@
 
 .perspective {
   position: absolute;
-  transition: transform 1.7s var(--timing-fn), opacity 4s ease;
+  transition: transform, opacity ease;
   top: -30vh;
   right: 0;
   width: 80vw;
@@ -184,6 +184,19 @@
       0.0000, 1.0000, 0.0000, 0.0000,
       0.0000, 0.0000, 1.0000, 0.0000,
       0.0000, 0.0000, 0.0000, 1.0000);
+}
+
+/* Disable transforms and transitions on mobile for better performance */
+@media (max-width: 768px) {
+  .perspective {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .blinds>.shutters,
+  .shutter {
+    transition: none !important;
+  }
 }
 
 .leaves {

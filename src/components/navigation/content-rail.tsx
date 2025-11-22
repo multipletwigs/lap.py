@@ -80,7 +80,6 @@ export function ContentRailNavigation({
     >
       <div className="overflow-x-auto scrollbar-hidden -my-2 py-2 -ml-2 pl-2 mask-linear-fade">
         <div ref={containerRef} className="relative flex flex-nowrap gap-1.5 pr-4">
-          {/* Animated background indicator */}
           <motion.div
             className="absolute rounded-md bg-foreground/10 pointer-events-none"
             initial={false}
