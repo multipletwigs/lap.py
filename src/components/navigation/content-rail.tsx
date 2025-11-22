@@ -42,15 +42,11 @@ export function ContentRailNavigation({
 
   useEffect(() => {
     const updateRect = () => {
-      // Use requestAnimationFrame to avoid blocking navigation
       requestAnimationFrame(() => {
         if (!containerRef.current) return;
-
-        // Find the active element using the data attribute
         const activeEl = containerRef.current.querySelector(`[data-active="true"]`) as HTMLElement;
 
         if (activeEl) {
-          // Calculate positions relative to the container
           const containerRect = containerRef.current.getBoundingClientRect();
           const itemRect = activeEl.getBoundingClientRect();
 
@@ -70,19 +66,7 @@ export function ContentRailNavigation({
     // Run initially
     updateRect();
 
-    // Add resize listener
-    window.addEventListener('resize', updateRect);
-
-    // Use ResizeObserver for more robust size change detection
-    const resizeObserver = new ResizeObserver(updateRect);
-    if (containerRef.current === null) return;
-    resizeObserver.observe(containerRef.current);
-
-    return () => {
-      window.removeEventListener('resize', updateRect);
-      resizeObserver.disconnect();
-    };
-  }, [pathname, navigationItems]);
+  }, [pathname]);
 
   if (!navigationItems.length) return null;
 
