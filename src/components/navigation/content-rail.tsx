@@ -125,10 +125,10 @@ export function ContentRailNavigation({
                 href={item.href}
                 data-active={isActive}
                 className={cn(
-                  "relative inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium whitespace-nowrap transition-colors duration-200 z-10",
+                  "relative inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium whitespace-nowrap transition-colors duration-100 z-10 active:scale-[0.97]",
                   isActive
                     ? "text-foreground"
-                    : "text-muted-foreground/60 hover:text-muted-foreground"
+                    : "text-muted-foreground/60 hover:text-muted-foreground active:text-foreground"
                 )}
                 prefetch={true}
               >
